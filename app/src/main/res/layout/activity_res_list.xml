@@ -1,25 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_grey"
-    android:padding="@dimen/box_inset_layout_padding"
-    tools:context=".ResListActivity"
-    tools:deviceIds="wear">
+    tools:context=".ResListActivity">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/inner_frame_layout_padding"
-        app:boxedEdges="all">
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_world" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    </FrameLayout>
-</androidx.wear.widget.BoxInsetLayout>
+            <TextView
+                android:id="@+id/txtSort"
+                android:layout_width="126dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="53dp"
+                android:background="@android:color/darker_gray"
+                android:gravity="center"
+                android:text="@string/reslist_sort"
+                android:textSize="@dimen/ResList_font_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchView2" />
+
+            <TextView
+                android:id="@+id/txtRest"
+                android:layout_width="138dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="53dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:color/darker_gray"
+                android:gravity="center"
+                android:text="@string/reslist_restaurant"
+                android:textSize="@dimen/ResList_font_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchView2" />
+
+            <SearchView
+                android:id="@+id/searchView2"
+                android:layout_width="304dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="53dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </SearchView>
+
+            <TextView
+                android:id="@+id/txtRes1"
+                android:layout_width="133dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/reslist_restaurant"
+                android:textSize="@dimen/ResList_font_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtRest"
+                tools:text="Restaurant" />
+
+            <TextView
+                android:id="@+id/txtRes2"
+                android:layout_width="133dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="51dp"
+                android:text="@string/reslist_restaurant"
+                android:textSize="@dimen/ResList_font_size"
+                app:layout_constraintBottom_toTopOf="@+id/proB5"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Restaurant" />
+
+            <TextView
+                android:id="@+id/txtRes5"
+                android:layout_width="133dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="51dp"
+                android:text="@string/reslist_restaurant"
+                android:textSize="@dimen/ResList_font_size"
+                app:layout_constraintBottom_toTopOf="@+id/proB3"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Restaurant" />
+
+            <TextView
+                android:id="@+id/txtRes4"
+                android:layout_width="133dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginBottom="1dp"
+                android:text="@string/reslist_restaurant"
+                android:textSize="@dimen/ResList_font_size"
+                app:layout_constraintBottom_toTopOf="@+id/proB4"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Restaurant" />
+
+            <TextView
+                android:id="@+id/txtRes3"
+                android:layout_width="133dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="53dp"
+                android:text="@string/reslist_restaurant"
+                android:textSize="@dimen/ResList_font_size"
+                app:layout_constraintBottom_toTopOf="@+id/proB2"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Restaurant" />
+
+            <TextView
+                android:id="@+id/txtQ1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="78dp"
+                android:text="@string/reslist_q"
+                android:textSize="@dimen/ResList_font_size"
+                app:layout_constraintBottom_toTopOf="@+id/proB1"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/txtQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="78dp"
+                android:text="@string/reslist_q"
+                android:textSize="@dimen/ResList_font_size"
+                app:layout_constraintBottom_toTopOf="@+id/proB2"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/txtQ2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="78dp"
+                android:layout_marginBottom="1dp"
+                android:text="@string/reslist_q"
+                android:textSize="@dimen/ResList_font_size"
+                app:layout_constraintBottom_toTopOf="@+id/proB4"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/txtQ3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="78dp"
+                android:text="@string/reslist_q"
+                android:textSize="@dimen/ResList_font_size"
+                app:layout_constraintBottom_toTopOf="@+id/proB3"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/txtQ5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="78dp"
+                android:text="@string/reslist_q"
+                android:textSize="@dimen/ResList_font_size"
+                app:layout_constraintBottom_toTopOf="@+id/proB5"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/proB1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="303dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="53dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtRes1" />
+
+            <ProgressBar
+                android:id="@+id/proB2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="303dp"
+                android:layout_height="79dp"
+                android:layout_marginStart="53dp"
+                android:layout_marginBottom="22dp"
+                app:layout_constraintBottom_toTopOf="@+id/txtRes4"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/proB3"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="305dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="53dp"
+                android:layout_marginTop="710dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/proB5"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="305dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="53dp"
+                android:layout_marginBottom="55dp"
+                app:layout_constraintBottom_toTopOf="@+id/txtRes5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/proB4"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="305dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="51dp"
+                android:layout_marginBottom="47dp"
+                app:layout_constraintBottom_toTopOf="@+id/txtRes2"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
