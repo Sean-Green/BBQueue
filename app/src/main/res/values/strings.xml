@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BBQueue</string>
+    <string name="loginBtn">LOGIN</string>
+    <string name="rgstrBtn">CREATE ACCOUNT</string>
+    <string name="lgnToast">LOGGED IN</string>
+    <string name="rgstToast">REGISTERED</string>
 </resources>
