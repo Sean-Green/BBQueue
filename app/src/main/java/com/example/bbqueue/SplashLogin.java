@@ -29,4 +29,14 @@ public class SplashLogin extends AppCompatActivity {
         Intent intent = new Intent(this, Front_Queue.class);
         startActivity(intent);
     }
+
+    public void navResList(View view) {
+        Intent intent = new Intent(this, ResListActivity.class);
+        startActivity(intent);
+    }
+
+    public void navQueue(View view) {
+        Intent intent = new Intent(this, InQueue.class);
+        startActivity(intent);
+    }
 }
