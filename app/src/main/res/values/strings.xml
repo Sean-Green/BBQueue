@@ -19,4 +19,7 @@
     <string name="InQueueDirectionsBtn">Directions</string>
     <string name="InQueueTimeLeftMessage1">Time remaining: </string>
     <string name="InQueueTimeLeftMessage2">until you reach the front of the queue</string>
+    <string name="reslist_restaurant">Restaurant</string>
+    <string name="reslist_q">QUEUE</string>
+    <string name="reslist_sort">Sort</string>
 </resources>

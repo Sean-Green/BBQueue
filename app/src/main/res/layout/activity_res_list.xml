@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
+    tools:context=".ResListActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/linearSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <SearchView
+                android:id="@+id/searchView2"
+                android:layout_width="304dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:layout_marginBottom="10dp">
+
+            </SearchView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearOption"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/txtRest"
+                android:layout_width="138dp"
+                android:layout_height="33dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:color/darker_gray"
+                android:gravity="center"
+                android:text="@string/reslist_restaurant"
+                android:textSize="@dimen/ResList_font_size" />
+
+            <TextView
+                android:id="@+id/txtSort"
+                android:layout_width="138dp"
+                android:layout_height="33dp"
+                android:background="@android:color/darker_gray"
+                android:gravity="center"
+                android:text="@string/reslist_sort"
+                android:textSize="@dimen/ResList_font_size" />
+        </LinearLayout>
+
+        <GridLayout
+            android:id="@+id/gridRes2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:columnCount="2">
+
+            <TextView
+                android:id="@+id/txtRes2"
+                android:layout_height="35dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/reslist_restaurant"
+                android:textSize="@dimen/ResList_font_size"
+                tools:text="Restaurant" />
+
+            <TextView
+                android:id="@+id/txtQ2"
+                android:layout_height="35dp"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_gravity="right"
+                android:layout_marginEnd="70dp"
+                android:gravity="right"
+                android:text="@string/reslist_q"
+                android:textSize="@dimen/ResList_font_size" />
+
+            <ProgressBar
+                android:id="@+id/proB2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="303dp"
+                android:layout_height="54dp"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_marginStart="53dp" />
+        </GridLayout>
+        <GridLayout
+            android:id="@+id/gridRes3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:columnCount="2">
+
+            <TextView
+                android:id="@+id/txtRes3"
+                android:layout_height="35dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/reslist_restaurant"
+                android:textSize="@dimen/ResList_font_size"
+                tools:text="Restaurant" />
+
+            <TextView
+                android:id="@+id/txtQ3"
+                android:layout_height="35dp"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_gravity="right"
+                android:layout_marginEnd="70dp"
+                android:gravity="right"
+                android:text="@string/reslist_q"
+                android:textSize="@dimen/ResList_font_size" />
+
+            <ProgressBar
+                android:id="@+id/proB3"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="303dp"
+                android:layout_height="54dp"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_marginStart="53dp" />
+        </GridLayout><GridLayout
+        android:id="@+id/gridRes4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:columnCount="2">
+
+        <TextView
+            android:id="@+id/txtRes4"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginStart="53dp"
+            android:text="@string/reslist_restaurant"
+            android:textSize="@dimen/ResList_font_size"
+            tools:text="Restaurant" />
+
+        <TextView
+            android:id="@+id/txtQ4"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="right"
+            android:layout_marginEnd="70dp"
+            android:gravity="right"
+            android:text="@string/reslist_q"
+            android:textSize="@dimen/ResList_font_size" />
+
+        <ProgressBar
+            android:id="@+id/proB4"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="303dp"
+            android:layout_height="54dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_marginStart="53dp" />
+    </GridLayout><GridLayout
+        android:id="@+id/gridRes5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:columnCount="2">
+
+        <TextView
+            android:id="@+id/txtRes5"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginStart="53dp"
+            android:text="@string/reslist_restaurant"
+            android:textSize="@dimen/ResList_font_size"
+            tools:text="Restaurant" />
+
+        <TextView
+            android:id="@+id/txtQ5"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="right"
+            android:layout_marginEnd="70dp"
+            android:gravity="right"
+            android:text="@string/reslist_q"
+            android:textSize="@dimen/ResList_font_size" />
+
+        <ProgressBar
+            android:id="@+id/proB5"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="303dp"
+            android:layout_height="54dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_marginStart="53dp" />
+    </GridLayout><GridLayout
+        android:id="@+id/gridRes6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:columnCount="2">
+
+        <TextView
+            android:id="@+id/txtRes6"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginStart="53dp"
+            android:text="@string/reslist_restaurant"
+            android:textSize="@dimen/ResList_font_size"
+            tools:text="Restaurant" />
+
+        <TextView
+            android:id="@+id/txtQ6"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="right"
+            android:layout_marginEnd="70dp"
+            android:gravity="right"
+            android:text="@string/reslist_q"
+            android:textSize="@dimen/ResList_font_size" />
+
+        <ProgressBar
+            android:id="@+id/proB6"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="303dp"
+            android:layout_height="54dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_marginStart="53dp" />
+    </GridLayout><GridLayout
+        android:id="@+id/gridRes7"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:columnCount="2">
+
+        <TextView
+            android:id="@+id/txtRes7"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginStart="53dp"
+            android:text="@string/reslist_restaurant"
+            android:textSize="@dimen/ResList_font_size"
+            tools:text="Restaurant" />
+
+        <TextView
+            android:id="@+id/txtQ7"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="right"
+            android:layout_marginEnd="70dp"
+            android:gravity="right"
+            android:text="@string/reslist_q"
+            android:textSize="@dimen/ResList_font_size" />
+
+        <ProgressBar
+            android:id="@+id/proB7"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="303dp"
+            android:layout_height="54dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_marginStart="53dp" />
+    </GridLayout><GridLayout
+        android:id="@+id/gridRes8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:columnCount="2">
+
+        <TextView
+            android:id="@+id/txtRes8"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginStart="53dp"
+            android:text="@string/reslist_restaurant"
+            android:textSize="@dimen/ResList_font_size"
+            tools:text="Restaurant" />
+
+        <TextView
+            android:id="@+id/txtQ8"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="right"
+            android:layout_marginEnd="70dp"
+            android:gravity="right"
+            android:text="@string/reslist_q"
+            android:textSize="@dimen/ResList_font_size" />
+
+        <ProgressBar
+            android:id="@+id/proB8"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="303dp"
+            android:layout_height="54dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_marginStart="53dp" />
+    </GridLayout><GridLayout
+        android:id="@+id/gridRes9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:columnCount="2">
+
+        <TextView
+            android:id="@+id/txtRes9"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginStart="53dp"
+            android:text="@string/reslist_restaurant"
+            android:textSize="@dimen/ResList_font_size"
+            tools:text="Restaurant" />
+
+        <TextView
+            android:id="@+id/txtQ9"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="right"
+            android:layout_marginEnd="70dp"
+            android:gravity="right"
+            android:text="@string/reslist_q"
+            android:textSize="@dimen/ResList_font_size" />
+
+        <ProgressBar
+            android:id="@+id/proB9"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="303dp"
+            android:layout_height="54dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_marginStart="53dp" />
+    </GridLayout><GridLayout
+        android:id="@+id/gridRes10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:columnCount="2">
+
+        <TextView
+            android:id="@+id/txtRes10"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginStart="53dp"
+            android:text="@string/reslist_restaurant"
+            android:textSize="@dimen/ResList_font_size"
+            tools:text="Restaurant" />
+
+        <TextView
+            android:id="@+id/txtQ10"
+            android:layout_height="35dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="right"
+            android:layout_marginEnd="70dp"
+            android:gravity="right"
+            android:text="@string/reslist_q"
+            android:textSize="@dimen/ResList_font_size" />
+
+        <ProgressBar
+            android:id="@+id/proB10"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="303dp"
+            android:layout_height="54dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_marginStart="53dp" />
+    </GridLayout>
+    </LinearLayout>
+</ScrollView>
