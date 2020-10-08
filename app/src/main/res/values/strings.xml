@@ -1,3 +1,18 @@
 <resources>
+    <!--  SPLASH LOGIN STRINGS  -->
     <string name="app_name">BBQueue</string>
+    <string name="loginBtn">LOGIN</string>
+    <string name="rgstrBtn">CREATE ACCOUNT</string>
+    <string name="lgnToast">LOGGED IN</string>
+    <string name="rgstToast">REGISTERED</string>
+    <string name="navFrontQueue">FrontOfQueue</string>
+
+    <!--  FRONT OF QUEUE STRINGS  -->
+    <string name="FOQ_TitleString">FRONT OF QUEUE</string>
+    <string name="FOQ_lateHint">I will be late by:</string>
+    <string name="FOQ_lateHintMinutes">minutes</string>
+    <string name="REBBQUEUE">Queue Again</string>
+    <string name="btnReQueueGPS">Queue based on GPS</string>
+    <string name="btnGetDirections">Directions</string>
+
 </resources>
