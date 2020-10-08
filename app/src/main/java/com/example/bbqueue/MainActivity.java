@@ -15,12 +15,14 @@ public class MainActivity extends AppCompatActivity {
 
         new CountDownTimer(30000, 1000) {
             TextView mTextField = findViewById(R.id.textView);
+            TextView bTextField = findViewById(R.id.textView2);
             public void onTick(long millisUntilFinished) {
-                mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+                mTextField.setText("Time remaining: " + millisUntilFinished / 1000);
             }
 
             public void onFinish() {
                 mTextField.setText("done!");
+                bTextField.setText("");
             }
         }.start();
 
