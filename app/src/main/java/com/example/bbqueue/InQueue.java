@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class InQueue extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_inqueue);
 
         new CountDownTimer(30000, 1000) {
             TextView mTextField = findViewById(R.id.textView);
