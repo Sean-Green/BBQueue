@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
+    android:layout_margin="10dp"
+    tools:context=".Front_Queue">
+
+    <TextView
+        android:id="@+id/FOQTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/FOQ_TitleString"
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+    <TextView
+        android:id="@+id/lateHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/FOQ_lateHint"
+        android:textAlignment="center"
+
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+    <LinearLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center">
+        <EditText
+            android:id="@+id/minutesET"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+        <TextView
+            android:id="@+id/lateHintMins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/FOQ_lateHintMinutes"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnQueueAgain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/REBBQUEUE"
+        android:onClick="queueAgainFromMinutes"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+
+    <Button
+        android:id="@+id/btnQueueTimeFromGPS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnReQueueGPS"
+        android:onClick="queueAgainFromGPS"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <Button
+        android:id="@+id/btnFOQdirections"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnGetDirections"
+        android:onClick="getDirections"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+
+</LinearLayout>
