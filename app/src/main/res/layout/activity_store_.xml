@@ -11,13 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start">
+
         <ImageView
             android:id="@+id/storeProfileImage"
-            android:contentDescription="@string/profilepicturedescription"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_row="0"
             android:layout_column="0"
+            android:background="#6632C3"
+            android:contentDescription="@string/profilepicturedescription"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/store_profile"
             tools:srcCompat="@drawable/store_profile" />
 
         <LinearLayout
@@ -55,6 +59,7 @@
         android:id="@+id/viewQueue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="viewQueueClick"
         android:text="@string/storeA_viewQBtn" />
 
 </LinearLayout>
