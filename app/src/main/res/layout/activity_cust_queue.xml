@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
+    tools:context=".ResListActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/linearSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/searchView2"
+                android:layout_width="304dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:background="@color/LightGrey" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/SortOptions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/txtRest"
+                android:layout_width="138dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:text="@string/CustQueuePartySizeSort"
+                android:textSize="@dimen/ResList_font_size" />
+
+            <Button
+                android:id="@+id/txtSort"
+                android:layout_width="138dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="@string/CustQueueETAsort"
+                android:textSize="@dimen/ResList_font_size" />
+
+
+        </LinearLayout>
+
+        <GridLayout
+            android:id="@+id/gridRes1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:columnCount="2"
+            android:background="@android:color/darker_gray">
+
+            <TextView
+                android:id="@+id/CustName1"
+                android:layout_height="35dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/CustQueueCustName"
+                android:textSize="@dimen/ResList_font_size"/>
+            <TextView
+                android:id="@+id/CustPartySize1"
+                android:layout_height="35dp"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/CustQueueCustPartySize"
+                android:textSize="@dimen/ResList_font_size"
+                />
+            <TextView
+                android:id="@+id/CustPhoneNumber1"
+                android:layout_height="35dp"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/CustQueueCustPhoneNumber"
+                android:textSize="@dimen/ResList_font_size"
+                />
+            <LinearLayout
+                android:id="@+id/linearOption1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_row="3"
+                android:layout_column="0">
+
+
+
+                <Button
+                    android:id="@+id/TextCust1"
+                    android:layout_width="138dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="40dp"
+                    android:gravity="center"
+                    android:text="@string/CustQueueTextCust"
+                    android:textSize="@dimen/ResList_font_size"/>
+
+                <Button
+                    android:id="@+id/CallCust1"
+                    android:layout_width="138dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/CustQueueCallCust"
+                    android:textSize="@dimen/ResList_font_size"/>
+            </LinearLayout>
+
+
+
+        </GridLayout>
+        <GridLayout
+            android:id="@+id/gridRes2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:columnCount="2"
+            android:background="@android:color/darker_gray">
+
+            <TextView
+                android:id="@+id/CustName2"
+                android:layout_height="35dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/CustQueueCustName"
+                android:textSize="@dimen/ResList_font_size"/>
+            <TextView
+                android:id="@+id/CustPartySize2"
+                android:layout_height="35dp"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/CustQueueCustPartySize"
+                android:textSize="@dimen/ResList_font_size"
+                />
+            <TextView
+                android:id="@+id/CustPhoneNumber2"
+                android:layout_height="35dp"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/CustQueueCustPhoneNumber"
+                android:textSize="@dimen/ResList_font_size"
+                />
+            <LinearLayout
+                android:id="@+id/linearOption2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_row="3"
+                android:layout_column="0">
+
+
+
+                <Button
+                    android:id="@+id/TextCust2"
+                    android:layout_width="138dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="40dp"
+                    android:gravity="center"
+                    android:text="@string/CustQueueTextCust"
+                    android:textSize="@dimen/ResList_font_size"/>
+
+                <Button
+                    android:id="@+id/CallCust2"
+                    android:layout_width="138dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/CustQueueCallCust"
+                    android:textSize="@dimen/ResList_font_size"/>
+            </LinearLayout>
+
+
+
+        </GridLayout>
+        <GridLayout
+            android:id="@+id/gridRes3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:columnCount="2"
+            android:background="@android:color/darker_gray">
+
+            <TextView
+                android:id="@+id/CustName3"
+                android:layout_height="35dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/CustQueueCustName"
+                android:textSize="@dimen/ResList_font_size"/>
+            <TextView
+                android:id="@+id/CustPartySize3"
+                android:layout_height="35dp"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/CustQueueCustPartySize"
+                android:textSize="@dimen/ResList_font_size"
+                />
+            <TextView
+                android:id="@+id/CustPhoneNumber3"
+                android:layout_height="35dp"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/CustQueueCustPhoneNumber"
+                android:textSize="@dimen/ResList_font_size"
+                />
+            <LinearLayout
+                android:id="@+id/linearOption3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_row="3"
+                android:layout_column="0">
+
+
+
+                <Button
+                    android:id="@+id/TextCust3"
+                    android:layout_width="138dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="40dp"
+                    android:gravity="center"
+                    android:text="@string/CustQueueTextCust"
+                    android:textSize="@dimen/ResList_font_size"/>
+
+                <Button
+                    android:id="@+id/CallCust3"
+                    android:layout_width="138dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/CustQueueCallCust"
+                    android:textSize="@dimen/ResList_font_size"/>
+            </LinearLayout>
+
+
+
+        </GridLayout>
+        <GridLayout
+            android:id="@+id/gridRes4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:columnCount="2"
+            android:background="@android:color/darker_gray">
+
+            <TextView
+                android:id="@+id/CustName4"
+                android:layout_height="35dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/CustQueueCustName"
+                android:textSize="@dimen/ResList_font_size"/>
+            <TextView
+                android:id="@+id/CustPartySize4"
+                android:layout_height="35dp"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/CustQueueCustPartySize"
+                android:textSize="@dimen/ResList_font_size"
+                />
+            <TextView
+                android:id="@+id/CustPhoneNumber4"
+                android:layout_height="35dp"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:layout_marginStart="53dp"
+                android:text="@string/CustQueueCustPhoneNumber"
+                android:textSize="@dimen/ResList_font_size"
+                />
+            <LinearLayout
+                android:id="@+id/linearOption4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_row="3"
+                android:layout_column="0">
+
+
+
+                <Button
+                    android:id="@+id/TextCust4"
+                    android:layout_width="138dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="40dp"
+                    android:gravity="center"
+                    android:text="@string/CustQueueTextCust"
+                    android:textSize="@dimen/ResList_font_size"/>
+
+                <Button
+                    android:id="@+id/CallCust4"
+                    android:layout_width="138dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/CustQueueCallCust"
+                    android:textSize="@dimen/ResList_font_size"/>
+            </LinearLayout>
+
+
+
+        </GridLayout>
+    </LinearLayout>
+</ScrollView>
