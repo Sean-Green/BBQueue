@@ -62,4 +62,12 @@
     <string name="Thursday">Thursday</string>
     <string name="Friday">Friday</string>
     <string name="hoobtn">Hours of Operation</string>
+    <string name="action_settings">Settings</string>
+    <string name="CustQueuePartySizeSort">Party Size</string>
+    <string name="CustQueueETAsort">ETA</string>
+    <string name="CustQueueCallCust">Call</string>
+    <string name="CustQueueTextCust">Text</string>
+    <string name="CustQueueCustPhoneNumber">555-555-5555</string>
+    <string name="CustQueueCustPartySize">Party Size: 3</string>
+    <string name="CustQueueCustName">John Doe</string>
 </resources>
