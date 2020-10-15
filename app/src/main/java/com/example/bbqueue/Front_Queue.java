@@ -2,6 +2,7 @@ package com.example.bbqueue;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -19,11 +20,17 @@ public class Front_Queue extends AppCompatActivity {
     public void queueAgainFromMinutes(View view) {
         String toastText = minutes.getText().toString();
         Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, InQueue.class);
+        intent.putExtra("minutes", toastText);
+        startActivity(intent);
     }
 
     public void queueAgainFromGPS(View view) {
         String toastText = getString(R.string.btnReQueueGPS);
         Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, InQueue.class);
+        intent.putExtra("gps", toastText);
+        startActivity(intent);
     }
 
     public void getDirections(View view) {
