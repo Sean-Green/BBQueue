@@ -1,10 +1,12 @@
 package com.example.bbqueue;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class InQueue extends AppCompatActivity {
@@ -13,6 +15,9 @@ public class InQueue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inqueue);
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         new CountDownTimer(10000, 1000) {
             TextView mTextField = findViewById(R.id.textView);
@@ -29,5 +34,13 @@ public class InQueue extends AppCompatActivity {
             }
         }.start();
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if (id==android.R.id.home) {
+            finish();
+        }
+        return false;
     }
 }
