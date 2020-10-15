@@ -21,7 +21,7 @@ public class Store_Activity extends AppCompatActivity {
     }
 
     public void viewQueueClick(View view) {
-        String toastText = getString(R.string.viewqueuetoast);
-        Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, CustQueue.class);
+        startActivity(intent);
     }
 }
