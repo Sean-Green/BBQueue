@@ -47,4 +47,14 @@
     <string name="queueSwitch">Open</string>
     <string name="queue_status_title">Customers</string>
     <string name="custNum">7</string>
+    <string name="edit_store_wait_hint">Average Customer Time</string>
+    <string name="customer_wait">Minutes</string>
+    <string name="Monday">Monday</string>
+    <string name="time">12:00 PM</string>
+    <string name="to">to</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="hoobtn">Hours of Operation</string>
 </resources>
