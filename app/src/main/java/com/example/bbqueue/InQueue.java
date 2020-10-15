@@ -14,7 +14,7 @@ public class InQueue extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inqueue);
 
-        new CountDownTimer(30000, 1000) {
+        new CountDownTimer(10000, 1000) {
             TextView mTextField = findViewById(R.id.textView);
             TextView bTextField = findViewById(R.id.textView2);
             public void onTick(long millisUntilFinished) {
