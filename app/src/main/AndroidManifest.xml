@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InQueue"></activity>
-        <activity android:name=".Front_Queue"></activity>
-        <activity android:name=".ResListActivity"></activity>
+        <activity android:name=".Edit_Store_Details_Activity"></activity>
+        <activity android:name=".Store_Activity" />
+        <activity android:name=".InQueue" />
+        <activity android:name=".Front_Queue" />
+        <activity android:name=".ResListActivity" />
         <activity android:name=".SplashLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

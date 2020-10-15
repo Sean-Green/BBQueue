@@ -1,7 +1,7 @@
 <resources>
     <!--  SPLASH LOGIN STRINGS  -->
     <string name="app_name">BBQueue</string>
-    <string name="loginBtn">LOGIN</string>
+    <string name="loginBtn">LOGIN(store)</string>
     <string name="rgstrBtn">CREATE ACCOUNT</string>
     <string name="lgnToast">LOGGED IN</string>
     <string name="rgstToast">REGISTERED</string>
@@ -24,4 +24,37 @@
     <string name="reslist_sort">Sort</string>
     <string name="navResList">RESLIST</string>
     <string name="navQueue">QUEUE</string>
+
+<!--    Store Page      -->
+    <string name="storeA_viewQBtn">View Queue</string>
+    <string name="storeA_editBtn">Edit Store Details</string>
+    <string name="profilepicturedescription">Profile Picture</string>
+    <string name="store_name">Store Name</string>
+    <string name="store_address">Store Address</string>
+    <string name="viewqueuetoast">View your Queue</string>
+
+<!--    Store Details-->
+    <string name="editStoreNameHint">Store Name:</string>
+    <string name="edit_store_address_hint">Address</string>
+    <string name="store_hours_title">Hours of Operation</string>
+    <string name="tableSizeHint">Table Size</string>
+    <string name="numHint">Persons</string>
+    <string name="tableAmountHint">Amount</string>
+    <string name="tableAmountDisplay">Tables</string>
+    <string name="tables_title">Table Info</string>
+    <string name="btnAddTable">Add Table</string>
+    <string name="removeBtn">X</string>
+    <string name="queueSwitch">Open</string>
+    <string name="queue_status_title">Customers</string>
+    <string name="custNum">7</string>
+    <string name="edit_store_wait_hint">Average Customer Time</string>
+    <string name="customer_wait">Minutes</string>
+    <string name="Monday">Monday</string>
+    <string name="time">12:00 PM</string>
+    <string name="to">to</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="hoobtn">Hours of Operation</string>
 </resources>

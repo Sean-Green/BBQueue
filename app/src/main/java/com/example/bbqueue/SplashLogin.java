@@ -16,8 +16,8 @@ public class SplashLogin extends AppCompatActivity {
     }
 
     public void login(View view) {
-        String toastText = getString(R.string.lgnToast);
-        Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Store_Activity.class);
+        startActivity(intent);
     }
 
     public void register(View view) {

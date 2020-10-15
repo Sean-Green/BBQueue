@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Edit_Store_Details_Activity">
+
+    <TextView
+        android:id="@+id/StoreNameHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/editStoreNameHint" />
+
+    <EditText
+        android:id="@+id/editTextStoreName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="@string/store_name" />
+
+    <TextView
+        android:id="@+id/storeAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_store_address_hint" />
+
+    <EditText
+        android:id="@+id/editTextStoreAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:text="@string/store_address" />
+
+    <Button
+        android:id="@+id/bthHoO"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="openHoursDialog"
+        android:text="@string/hoobtn" />
+
+    <TextView
+        android:id="@+id/customerWaitHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_store_wait_hint" />
+
+    <EditText
+        android:id="@+id/editTextCustomerWait"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:text="@string/customer_wait" />
+    <TextView
+        android:id="@+id/tableTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/tables_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tableSizeHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tableSizeHint" />
+            <EditText
+                android:id="@+id/editTableSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="@string/numHint" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tableAmountHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tableAmountHint" />
+            <EditText
+                android:id="@+id/editTableAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tableAmountDisplay" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/removeTableBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/removeBtn"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnAddTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnAddTable" />
+
+</LinearLayout>
