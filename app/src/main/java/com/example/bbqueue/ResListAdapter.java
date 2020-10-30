@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -30,13 +31,20 @@ public class ResListAdapter extends ArrayAdapter<Restaurant> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = context.getLayoutInflater();
+        // Get the data item for this position
+        Restaurant res = getItem(position);
+        // Check if an existing view is being reused, otherwise inflate the view
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.reslist_row_layout, parent, false);
+        }
 
-        View listViewItem = inflater.inflate(R.layout.activity_res_list, null, true);
+        TextView txtResName = convertView.findViewById(R.id.txtResName);
+        TextView txtQuery = convertView.findViewById(R.id.txtQuery);
+        txtResName.setText(res.getName());
+        txtQuery.setText(Integer.toString(res.getWait_time()));
+        // Return the completed view to render on screen
 
-
-
-        return listViewItem;
+        return convertView;
     }
 
 }
