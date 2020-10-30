@@ -4,9 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".SplashLogin">
+
+    <EditText
+        android:id="@+id/LoginEmail"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_gravity="center"
+        android:inputType="textEmailAddress"
+        />
+
+    <EditText
+        android:id="@+id/LoginPassword"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:id="@+id/btnMainLogin"
+        android:layout_width="100dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:onClick="login"
+        android:text="@string/MainLogin"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintStart_toStartOf="@+id/btnRegister" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -17,6 +47,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnRegister"
         app:layout_constraintStart_toStartOf="@+id/btnRegister" />
+
 
     <Button
         android:layout_marginTop="10dp"

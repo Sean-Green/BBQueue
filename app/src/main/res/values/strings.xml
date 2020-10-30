@@ -30,7 +30,7 @@
     <string name="navResList">Login(Customer)</string>
     <string name="navQueue">QUEUE</string>
 
-<!--    Store Page      -->
+    <!--    Store Page      -->
     <string name="storeA_viewQBtn">View Queue</string>
     <string name="storeA_editBtn">Edit Store Details</string>
     <string name="profilepicturedescription">Profile Picture</string>
@@ -38,7 +38,7 @@
     <string name="store_address">Store Address</string>
     <string name="viewqueuetoast">View your Queue</string>
 
-<!--    Store Details-->
+    <!--    Store Details-->
     <string name="editStoreNameHint">Store Name:</string>
     <string name="edit_store_address_hint">Address</string>
     <string name="store_hours_title">Hours of Operation</string>
@@ -70,4 +70,14 @@
     <string name="CustQueueCustPhoneNumber">555-555-5555</string>
     <string name="CustQueueCustPartySize">Party Size: 3</string>
     <string name="CustQueueCustName">John Doe</string>
+    <string name="MainLogin">Login</string>
+    <string name="WhatTypeAccount">What type of account are you creating?</string>
+    <string name="CustomerCreateAccount">Customer</string>
+    <string name="ResCreateAccount">Restaurant</string>
+    <string name="CustFName">First name</string>
+    <string name="CustLName">Last name</string>
+    <string name="CustAddress">Home address</string>
+    <string name="CustEmail">Email address</string>
+    <string name="CustPassword">Password</string>
+    <string name="CustPhone">Phone number</string>
 </resources>
