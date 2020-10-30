@@ -8,7 +8,7 @@ android:layout_marginTop="20dp"
 android:paddingTop="20dp"
 android:columnCount="2"
 android:clickable="true"
-android:onClick="navQueue">
+android:onClick="toQueue">
 
 <TextView
     android:id="@+id/txtResName"
