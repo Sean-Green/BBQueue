@@ -20,7 +20,7 @@ public class Restaurant {
     public Restaurant(String name, String url, String imgurl, int wait_time){
         this.name = name;
         this.url = url;
-        this.imgurl = url;
+        this.imgurl = imgurl;
         this.wait_time = wait_time;
     }
     public Restaurant(){}
