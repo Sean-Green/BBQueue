@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".CustomerAccountCreate">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:context=".CustomerAccountCreate">
+    <EditText
+        android:id="@+id/CustFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="7"
+        android:hint="@string/CustFName"
+        android:paddingRight="5dp"
+        android:inputType="textPersonName"
+        />
+
+    <EditText
+        android:id="@+id/CustLastName"
+        android:hint="@string/CustLName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="7"
+        android:inputType="textPersonName"
+        />
+    </LinearLayout>
+    <EditText
+        android:id="@+id/CustPhone"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/CustPhone"
+        android:ems="10"
+        android:inputType="textPersonName"
+        />
+
+    <EditText
+    android:id="@+id/CustAddress"
+    android:layout_width="250dp"
+    android:hint="@string/CustAddress"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textPersonName"
+    />
+
+    <EditText
+        android:id="@+id/CustEmail"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/CustEmail"
+        android:ems="10"
+        android:inputType="textPersonName"
+        />
+
+
+    <EditText
+        android:id="@+id/CustPassword"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/CustPassword"
+        android:ems="10"
+        android:inputType="textPersonName"
+        />
+
+
+    <Button
+        android:id="@+id/btnMainLogin"
+        android:layout_width="100dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:onClick="OnCreateAccount"
+        android:text="@string/MainLogin"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintStart_toStartOf="@+id/btnRegister" />
+
+
+
+</LinearLayout>
