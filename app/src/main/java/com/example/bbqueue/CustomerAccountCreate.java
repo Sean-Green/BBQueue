@@ -40,32 +40,11 @@ public class CustomerAccountCreate extends AppCompatActivity {
         String E = Email.getText().toString().trim();
         EditText Password = findViewById(R.id.CustPassword);
         String P = Password.getText().toString().trim();
-        EditText FirstName = findViewById(R.id.CustFirstName);
-        String FN = FirstName.getText().toString();
-        EditText LastName = findViewById(R.id.CustLastName);
-        String LN = LastName.getText().toString();
-        EditText Address = findViewById(R.id.CustAddress);
-        String Add = Address.getText().toString();
-        EditText Phone = findViewById(R.id.CustPhone);
-        String PhoneNum = Phone.getText().toString();
-
         CreateAccount(E, P);
-        RTDCreate(FN, LN, Add, E, PhoneNum);
         Intent intent = new Intent(this, SplashLogin.class);
         startActivity(intent);
     }
 
-    private void RTDCreate(String fn, String ln, String add, String e, String p) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        User u = new User();
-        DatabaseReference myRef = database.getReference();
-        u.address = add;
-        u.firstName = fn;
-        u.lastName = ln;
-        u.email = e;
-        u.phoneNumber = p;
-        myRef.child("Users").child(mAuth.getCurrentUser().getUid()).setValue(u);
-    }
 
     public void CreateAccount(String email, String password){
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -76,6 +55,7 @@ public class CustomerAccountCreate extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             //Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            RTDCreate(user);
                             Toast.makeText(CustomerAccountCreate.this, "Authentication Success.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
@@ -89,7 +69,29 @@ public class CustomerAccountCreate extends AppCompatActivity {
 
                     }
                 });
+        
+    }
 
+    private void RTDCreate(FirebaseUser user) {
+        EditText Email = findViewById(R.id.CustEmail);
+        String E = Email.getText().toString().trim();
+        EditText FirstName = findViewById(R.id.CustFirstName);
+        String FN = FirstName.getText().toString();
+        EditText LastName = findViewById(R.id.CustLastName);
+        String LN = LastName.getText().toString();
+        EditText Address = findViewById(R.id.CustAddress);
+        String Add = Address.getText().toString();
+        EditText Phone = findViewById(R.id.CustPhone);
+        String PhoneNum = Phone.getText().toString();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        User u = new User();
+        DatabaseReference myRef = database.getReference();
+        u.address = Add;
+        u.firstName = FN;
+        u.lastName = LN;
+        u.email = E;
+        u.phoneNumber = PhoneNum;
+        myRef.child("Users").child(user.getUid()).setValue(u);
     }
 
 
