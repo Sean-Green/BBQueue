@@ -41,7 +41,7 @@ public class ResListAdapter extends ArrayAdapter<Restaurant> {
         TextView txtResName = convertView.findViewById(R.id.txtResName);
         TextView txtQuery = convertView.findViewById(R.id.txtQuery);
         txtResName.setText(res.getName());
-        txtQuery.setText(Integer.toString(res.getWait_time()));
+        txtQuery.setText(0);
         // Return the completed view to render on screen
 
         return convertView;

@@ -1,27 +1,64 @@
 package com.example.bbqueue;
+
+import java.util.ArrayList;
+
 public class Restaurant {
+    private String resID;
+    private int avgwait;
+    private ArrayList<Section> sections;
+    private Queue queue;
     private String name;
-    public String getName(){return name;}
-    public void setName(String name){this.name = name;}
+
+    public String getResID() {
+        return resID;
+    }
+
+    public void setResID(String resID) {
+        this.resID = resID;
+    }
+
+    public int getAvgwait() {
+        return avgwait;
+    }
+
+    public void setAvgwait(int avgwait) {
+        this.avgwait = avgwait;
+    }
+
+    public ArrayList<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(ArrayList<Section> sections) {
+        this.sections = sections;
+    }
+
+    public Queue getQueue() {
+        return queue;
+    }
+
+    public void setQueue(Queue queue) {
+        this.queue = queue;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
 
     private String url;
-    public String getUrl(){return url;}
-    public void setUrl(String url){this.url = url;}
+    public String getUrl(){
+        return url;
+    }
+    public void setUrl(String url){
+        this.url = url;
+    }
 
-    private String imgurl;
-    public String getImgurl(){return imgurl;}
-    public void setImgurl(String imgurl){this.imgurl = imgurl;}
-
-    private int wait_time;
-    public int getWait_time(){return wait_time;}
-    public void setWait_time(int wait_time){this.wait_time = wait_time;}
-    //add more when needed
-
-    public Restaurant(String name, String url, String imgurl, int wait_time){
+    public Restaurant(String name, String url, String resID){
         this.name = name;
         this.url = url;
-        this.imgurl = imgurl;
-        this.wait_time = wait_time;
+        this.resID = resID;
     }
     public Restaurant(){}
 }
