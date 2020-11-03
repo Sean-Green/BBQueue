@@ -80,4 +80,7 @@
     <string name="CustEmail">Email address</string>
     <string name="CustPassword">Password</string>
     <string name="CustPhone">Phone number</string>
+    <string name="ResNameCA">Restaurant name</string>
+    <string name="ResAddressCA">Restaurant address</string>
+    <string name="ResWebsiteCA">Restaurant website URL</string>
 </resources>

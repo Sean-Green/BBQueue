@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.concurrent.TimeUnit;
+
 public class CustomerAccountCreate extends AppCompatActivity {
    private FirebaseAuth mAuth;
 
@@ -25,7 +27,13 @@ public class CustomerAccountCreate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_account_create);
+        Bundle i = getIntent().getExtras();
+        int type = i.getInt("type");
+        if(type == 1) {
+            setContentView(R.layout.activity_customer_account_create);
+        } else {
+            setContentView(R.layout.res_account_create);
+        }
         mAuth = FirebaseAuth.getInstance();
     }
     @Override
@@ -35,12 +43,14 @@ public class CustomerAccountCreate extends AppCompatActivity {
         //FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
-    public void OnCreateAccount(View view) {
+    public void OnCreateAccount(View view) throws InterruptedException {
         EditText Email = findViewById(R.id.CustEmail);
         String E = Email.getText().toString().trim();
         EditText Password = findViewById(R.id.CustPassword);
         String P = Password.getText().toString().trim();
         CreateAccount(E, P);
+        TimeUnit.SECONDS.sleep(1);
+        RTDCreate();
         Intent intent = new Intent(this, SplashLogin.class);
         startActivity(intent);
     }
@@ -55,7 +65,7 @@ public class CustomerAccountCreate extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             //Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            RTDCreate(user);
+
                             Toast.makeText(CustomerAccountCreate.this, "Authentication Success.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
@@ -69,10 +79,10 @@ public class CustomerAccountCreate extends AppCompatActivity {
 
                     }
                 });
-        
+
     }
 
-    private void RTDCreate(FirebaseUser user) {
+    private void RTDCreate() {
         EditText Email = findViewById(R.id.CustEmail);
         String E = Email.getText().toString().trim();
         EditText FirstName = findViewById(R.id.CustFirstName);
@@ -91,7 +101,38 @@ public class CustomerAccountCreate extends AppCompatActivity {
         u.lastName = LN;
         u.email = E;
         u.phoneNumber = PhoneNum;
-        myRef.child("Users").child(user.getUid()).setValue(u);
+        myRef.child("Users").child(mAuth.getCurrentUser().getUid()).setValue(u);
+    }
+
+    public void OnCreateAccountRes(View view) throws InterruptedException {
+        EditText Email = findViewById(R.id.ResEmail);
+        String E = Email.getText().toString().trim();
+        EditText Password = findViewById(R.id.ResPassword);
+        String P = Password.getText().toString().trim();
+        CreateAccount(E, P);
+        TimeUnit.SECONDS.sleep(1);
+        RTDCreateRes();
+        Intent intent = new Intent(this, SplashLogin.class);
+        startActivity(intent);
+    }
+
+    private void RTDCreateRes() {
+        EditText Email = findViewById(R.id.ResEmail);
+        String E = Email.getText().toString().trim();
+        EditText FirstName = findViewById(R.id.ResName);
+        String FN = FirstName.getText().toString();
+        EditText Address = findViewById(R.id.ResAddress);
+        String Add = Address.getText().toString();
+        EditText Phone = findViewById(R.id.ResPhone);
+        String PhoneNum = Phone.getText().toString();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        User u = new User();
+        DatabaseReference myRef = database.getReference();
+        u.address = Add;
+        u.firstName = FN;
+        u.email = E;
+        u.phoneNumber = PhoneNum;
+        myRef.child("Restaurants").child(mAuth.getCurrentUser().getUid()).setValue(u);
     }
 
 
