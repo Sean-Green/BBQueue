@@ -8,9 +8,8 @@ public class Section {
     private ArrayList<Table> tables;
 
     public Section(){
-        id ="section 1";
+        id = "Section";
         tables = new ArrayList<Table>();
-        tables.add(new Table());
     }
 
     public String getId() {
