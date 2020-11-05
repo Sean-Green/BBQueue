@@ -3,8 +3,14 @@ package com.example.bbqueue;
 import java.util.ArrayList;
 
 public class Section {
+
     private String id;
     private ArrayList<Table> tables;
+
+    public Section(){
+        id ="section 1";
+        tables = new ArrayList<Table>();
+    }
 
     public String getId() {
         return id;

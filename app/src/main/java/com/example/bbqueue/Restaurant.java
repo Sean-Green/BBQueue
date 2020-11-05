@@ -5,23 +5,24 @@ import java.util.ArrayList;
 public class Restaurant {
     private  String resID;
     private int avgwait;
-    private ArrayList<Section> sections;
+    private Section sections;
     private  Queue queue;
     public  String name;
     public  String address;
     public  String phoneNumber;
-
 
     public Restaurant(String n, String a, String phoneNum, String res){
         name = n;
         address = a;
         phoneNumber = phoneNum;
         resID = res;
-        sections = null;
+        sections = new Section();
         queue  = new Queue();
         avgwait = 0;
     }
+
     public Restaurant(){}
+
     public String getResID() {
         return resID;
     }
@@ -38,11 +39,11 @@ public class Restaurant {
         this.avgwait = avgwait;
     }
 
-    public ArrayList<Section> getSections() {
+    public Section getSections() {
         return sections;
     }
 
-    public void setSections(ArrayList<Section> sections) {
+    public void setSections(Section sections) {
         this.sections = sections;
     }
 
