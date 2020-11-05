@@ -17,7 +17,7 @@ public class Restaurant {
         phoneNumber = phoneNum;
         resID = res;
         sections = new Section();
-        queue  = new Queue();
+        queue  = null;
         avgwait = 0;
     }
 
