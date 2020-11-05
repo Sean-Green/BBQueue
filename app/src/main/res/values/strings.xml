@@ -83,4 +83,5 @@
     <string name="ResNameCA">Restaurant name</string>
     <string name="ResAddressCA">Restaurant address</string>
     <string name="ResWebsiteCA">Restaurant website URL</string>
+    <string name="MainLogin2">Login Store</string>
 </resources>

@@ -49,7 +49,7 @@ public class CustomerAccountCreate extends AppCompatActivity {
         EditText Password = findViewById(R.id.CustPassword);
         String P = Password.getText().toString().trim();
         CreateAccount(E, P);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         RTDCreate();
         Intent intent = new Intent(this, SplashLogin.class);
         startActivity(intent);
@@ -87,20 +87,19 @@ public class CustomerAccountCreate extends AppCompatActivity {
         String E = Email.getText().toString().trim();
         EditText FirstName = findViewById(R.id.CustFirstName);
         String FN = FirstName.getText().toString();
-        EditText LastName = findViewById(R.id.CustLastName);
-        String LN = LastName.getText().toString();
         EditText Address = findViewById(R.id.CustAddress);
         String Add = Address.getText().toString();
         EditText Phone = findViewById(R.id.CustPhone);
         String PhoneNum = Phone.getText().toString();
+
+
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        User u = new User();
         DatabaseReference myRef = database.getReference();
-        u.address = Add;
-        u.firstName = FN;
-        u.lastName = LN;
-        u.email = E;
-        u.phoneNumber = PhoneNum;
+
+
+        Customer u = new Customer(mAuth.getCurrentUser().getUid(), FN, PhoneNum, E, Add);
+
         myRef.child("Users").child(mAuth.getCurrentUser().getUid()).setValue(u);
     }
 
@@ -116,7 +115,7 @@ public class CustomerAccountCreate extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void RTDCreateRes() {
+    private void RTDCreateRes() throws InterruptedException {
         EditText Email = findViewById(R.id.ResEmail);
         String E = Email.getText().toString().trim();
         EditText FirstName = findViewById(R.id.ResName);
@@ -125,16 +124,17 @@ public class CustomerAccountCreate extends AppCompatActivity {
         String Add = Address.getText().toString();
         EditText Phone = findViewById(R.id.ResPhone);
         String PhoneNum = Phone.getText().toString();
+
+
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        User u = new User();
         DatabaseReference myRef = database.getReference();
-        u.address = Add;
-        u.firstName = FN;
-        u.email = E;
-        u.phoneNumber = PhoneNum;
+
+        Restaurant u = new Restaurant(FN, Add,PhoneNum, mAuth.getCurrentUser().getUid());
+        Log.e("Res Info", u.name);
+        TimeUnit.SECONDS.sleep(1);
         myRef.child("Restaurants").child(mAuth.getCurrentUser().getUid()).setValue(u);
+        TimeUnit.SECONDS.sleep(1);
     }
-
-
 
 }

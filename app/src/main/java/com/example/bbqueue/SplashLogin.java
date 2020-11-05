@@ -21,8 +21,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.concurrent.TimeUnit;
+
 public class SplashLogin extends AppCompatActivity {
-    private FirebaseAuth mAuth;
+    private  FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +33,29 @@ public class SplashLogin extends AppCompatActivity {
         setContentView(R.layout.activity_splash_login);
     }
 
-    public void login(View view) {
+    public void login(View view) throws InterruptedException {
         EditText Email = findViewById(R.id.LoginEmail);
         String E = Email.getText().toString().trim();
         EditText Password = findViewById(R.id.LoginPassword);
         String P = Password.getText().toString().trim();
         signIn(E, P);
+        TimeUnit.SECONDS.sleep(1);
+        getUserCust();
+        Intent intent = new Intent(this, ResListActivity.class);
+        startActivity(intent);
+    }
+
+    public void loginStore(View view) throws InterruptedException {
+        EditText Email = findViewById(R.id.LoginEmail);
+        String E = Email.getText().toString().trim();
+        EditText Password = findViewById(R.id.LoginPassword);
+        String P = Password.getText().toString().trim();
+        signIn(E, P);
+        TimeUnit.SECONDS.sleep(1);
+        getUserStore();
+        TimeUnit.SECONDS.sleep(1);
+        Intent intent = new Intent(this, Store_Activity.class);
+        startActivity(intent);
     }
 
     public void signIn(String email, String password) {
@@ -48,9 +67,7 @@ public class SplashLogin extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             //Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            String email = user.getEmail();
-                            getToast(user);
-                        } else {
+                            } else {
                             // If sign in fails, display a message to the user.
                             //Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(SplashLogin.this, "Authentication failed.",
@@ -61,8 +78,7 @@ public class SplashLogin extends AppCompatActivity {
                     }
                 });
     }
-
-    private void getToast(FirebaseUser user) {
+    private void getUserCust() {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users");
@@ -73,9 +89,28 @@ public class SplashLogin extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                User value = dataSnapshot.getValue(User.class);
-                Toast.makeText(SplashLogin.this, value.firstName,
-                        Toast.LENGTH_SHORT).show();
+                Customer value = dataSnapshot.getValue(Customer.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
+    }
+
+    private void getUserStore() {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users");
+        myRef = myRef.child(mAuth.getCurrentUser().getUid());
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Restaurant value = dataSnapshot.getValue(Restaurant.class);
             }
 
             @Override
