@@ -10,6 +10,7 @@ public class Section {
     public Section(){
         id ="section 1";
         tables = new ArrayList<Table>();
+        tables.add(new Table());
     }
 
     public String getId() {
