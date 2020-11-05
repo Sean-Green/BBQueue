@@ -1,5 +1,7 @@
 package com.example.bbqueue;
 
+import java.util.Date;
+
 public class Customer {
     public String id;
     public  int partySize;
@@ -8,8 +10,8 @@ public class Customer {
     public  String email;
     public String homeAddress;
     public  boolean queueStatus;
-    public  Restaurant curRes = null;
-    private int timeEnteredQueue;
+    public  String curResID;
+    private Date timeEnteredQueue;
 
 
     public Customer(String i, String n, String phone, String e, String h){
@@ -21,10 +23,21 @@ public class Customer {
 
     }
 
-    public Customer(){};
+    public Customer() {};
+
+    public Customer(String resID){
+        id = "1234";
+        name = "John Doe";
+        phoneNumber = "1234567890";
+        email = "john.doe@gmail.com";
+        homeAddress = "234 street st Langley";
+        queueStatus = true;
+        curResID = resID;
+        timeEnteredQueue = new Date();
+    };
 
 
-    public void setAll(String i, String n, String phone, String e, String h, int pSize, boolean qStat, Restaurant cur, int timeQueue){
+    public void setAll(String i, String n, String phone, String e, String h, int pSize, boolean qStat, String cur, Date timeQueue){
         this.id = i;
         this.name = n;
         this.phoneNumber = phone;
@@ -32,7 +45,7 @@ public class Customer {
         this.homeAddress = h;
         partySize = pSize;
         queueStatus = qStat;
-        curRes = cur;
+        curResID = cur;
         timeEnteredQueue = timeQueue;
 
     }
@@ -67,11 +80,11 @@ public class Customer {
         return queueStatus;
     }
 
-    public Restaurant getCurRes() {
-        return curRes;
+    public String getCurRes() {
+        return curResID;
     }
 
-    public int getTimeEnteredQueue() {
+    public Date getTimeEnteredQueue() {
         return timeEnteredQueue;
     }
 
@@ -105,11 +118,11 @@ public class Customer {
         this.queueStatus = queueStatus;
     }
 
-    public void setCurRes(Restaurant curRes) {
-        this.curRes = curRes;
+    public void setCurRes(String curRes) {
+        this.curResID = curRes;
     }
 
-    public void setTimeEnteredQueue(int timeEnteredQueue) {
+    public void setTimeEnteredQueue(Date timeEnteredQueue) {
         this.timeEnteredQueue = timeEnteredQueue;
     }
 }
