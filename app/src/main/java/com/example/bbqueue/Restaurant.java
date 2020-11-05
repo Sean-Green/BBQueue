@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Restaurant {
     private  String resID;
     private int avgwait;
-    private Section sections;
-    private ArrayList<Customer> queue;
+    private ArrayList<Section> sections;
+    private ArrayList<Customer> waitList;
     public  String name;
     public  String address;
     public  String phoneNumber;
@@ -16,8 +16,10 @@ public class Restaurant {
         address = a;
         phoneNumber = phoneNum;
         resID = res;
-        sections = new Section();
-        queue = new ArrayList<Customer>();
+        sections = new ArrayList<Section>();
+        sections.add(new Section());
+        waitList = new ArrayList<Customer>();
+        waitList.add(new Customer(this.resID));
         avgwait = 30;
     }
 
@@ -39,20 +41,20 @@ public class Restaurant {
         this.avgwait = avgwait;
     }
 
-    public Section getSections() {
+    public ArrayList<Section> getSections() {
         return sections;
     }
 
-    public void setSections(Section sections) {
+    public void setSections(ArrayList<Section> sections) {
         this.sections = sections;
     }
 
-    public ArrayList<Customer> getQueue() {
-        return queue;
+    public ArrayList<Customer> getWaitList() {
+        return waitList;
     }
 
-    public void setQueue(ArrayList<Customer> queue) {
-        this.queue = queue;
+    public void setWaitList(ArrayList<Customer> waitList) {
+        this.waitList = waitList;
     }
     public String getName(){
         return name;

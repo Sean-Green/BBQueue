@@ -31,7 +31,7 @@
     <string name="navQueue">QUEUE</string>
 
     <!--    Store Page      -->
-    <string name="storeA_viewQBtn">View Queue</string>
+    <string name="storeA_viewQBtn">Add Queue</string>
     <string name="storeA_editBtn">Edit Store Details</string>
     <string name="profilepicturedescription">Profile Picture</string>
     <string name="store_name">Store Name</string>

@@ -130,7 +130,7 @@ public class CustomerAccountCreate extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
 
-        Restaurant u = new Restaurant(FN, Add,PhoneNum, mAuth.getCurrentUser().getUid());
+        Restaurant u = new Restaurant(FN, Add, PhoneNum, mAuth.getCurrentUser().getUid());
         Log.e("Res Info", u.name);
         TimeUnit.SECONDS.sleep(1);
         myRef.child("Restaurants").child(mAuth.getCurrentUser().getUid()).setValue(u);

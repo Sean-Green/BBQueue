@@ -24,6 +24,9 @@ import java.util.concurrent.TimeUnit;
 public class Store_Activity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Restaurant curRes;
+    private TextView tvName;
+    private TextView tvAddress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,20 +82,37 @@ public class Store_Activity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("Restaurants");
         myRef = myRef.child(mAuth.getCurrentUser().getUid());
         // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 Restaurant value = dataSnapshot.getValue(Restaurant.class);
                 Log.d("DATA", "Value is: " + value.getName());
+                setTitle(value.getName());
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
+                Log.e("DATA", "Couldn't read from DB");
                 // Failed to read value
             }
         });
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // This method is called once with the initial value and again
+//                // whenever data at this location is updated.
+//                Restaurant value = dataSnapshot.getValue(Restaurant.class);
+//                Log.d("DATA", "Value is: " + value.getName());
+//                setTitle(value.getName());
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError error) {
+//                // Failed to read value
+//            }
+//        });
     }
 
 }
