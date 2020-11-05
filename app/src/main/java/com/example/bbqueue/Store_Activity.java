@@ -20,7 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
-
+//testa@test.ca
+//tester
 public class Store_Activity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Restaurant curRes;
@@ -81,7 +82,8 @@ public class Store_Activity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Restaurants");
         myRef = myRef.child(mAuth.getCurrentUser().getUid());
-        // Read from the database
+        try {
+            // Read from the database
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -98,21 +100,26 @@ public class Store_Activity extends AppCompatActivity {
                 // Failed to read value
             }
         });
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                Restaurant value = dataSnapshot.getValue(Restaurant.class);
-//                Log.d("DATA", "Value is: " + value.getName());
-//                setTitle(value.getName());
-//            }
+//            myRef.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot) {
+//                    // This method is called once with the initial value and again
+//                    // whenever data at this location is updated.
+//                    Restaurant value = dataSnapshot.getValue(Restaurant.class);
+//                    Log.d("DATA", "Value is: " + value.getName());
+//                    setTitle(value.getName());
+//                }
 //
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//            }
-//        });
+//                @Override
+//                public void onCancelled(DatabaseError error) {
+//                    // Failed to read value
+//                }
+//            });
+        } catch (Exception e) {
+            Log.e("DBread", e.toString());
+        }
+
+
     }
 
 }

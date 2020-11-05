@@ -3,7 +3,7 @@ package com.example.bbqueue;
 import java.util.ArrayList;
 
 public class Restaurant {
-    private  String resID;
+    private String resID;
     private int avgwait;
     private ArrayList<Section> sections;
     private ArrayList<Customer> waitList;

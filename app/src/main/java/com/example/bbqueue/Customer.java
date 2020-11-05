@@ -10,7 +10,7 @@ public class Customer {
     public  String email;
     public String homeAddress;
     public  boolean queueStatus;
-    public  String curResID = null;
+    public  String curResID;
     private Date timeEnteredQueue;
 
 
