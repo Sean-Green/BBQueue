@@ -84,7 +84,7 @@ public class ResListActivity extends AppCompatActivity {
                 for (DataSnapshot resSnapshot : dataSnapshot.getChildren()) {
                     String resName = resSnapshot.child("name").getValue(String.class);
                     int wait_time = resSnapshot.child("wait_time").getValue(Integer.class);
-                    Restaurant r = new Restaurant(resName, "", "");
+                    Restaurant r = new Restaurant(resName,"", "", "");
                     reslist.add(r);
                 }
                 ResListAdapter adapter = new ResListAdapter(ResListActivity.this, reslist);

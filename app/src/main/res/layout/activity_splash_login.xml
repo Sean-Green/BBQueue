@@ -38,6 +38,18 @@
         app:layout_constraintBottom_toTopOf="@+id/btnRegister"
         app:layout_constraintStart_toStartOf="@+id/btnRegister" />
 
+
+    <Button
+        android:id="@+id/btnMainLogin2"
+        android:layout_width="100dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:onClick="loginStore"
+        android:text="@string/MainLogin2"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintStart_toStartOf="@+id/btnRegister" />
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"

@@ -3,12 +3,25 @@ package com.example.bbqueue;
 import java.util.ArrayList;
 
 public class Restaurant {
-    private String resID;
+    private  String resID;
     private int avgwait;
     private ArrayList<Section> sections;
-    private Queue queue;
-    private String name;
+    private  Queue queue;
+    public  String name;
+    public  String address;
+    public  String phoneNumber;
 
+
+    public Restaurant(String n, String a, String phoneNum, String res){
+        name = n;
+        address = a;
+        phoneNumber = phoneNum;
+        resID = res;
+        sections = null;
+        queue  = new Queue();
+        avgwait = 0;
+    }
+    public Restaurant(){}
     public String getResID() {
         return resID;
     }
@@ -47,7 +60,7 @@ public class Restaurant {
         this.name = name;
     }
 
-    private String url;
+    private static String url;
     public String getUrl(){
         return url;
     }
@@ -55,10 +68,5 @@ public class Restaurant {
         this.url = url;
     }
 
-    public Restaurant(String name, String url, String resID){
-        this.name = name;
-        this.url = url;
-        this.resID = resID;
-    }
-    public Restaurant(){}
+
 }
