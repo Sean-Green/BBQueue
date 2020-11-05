@@ -6,7 +6,7 @@ public class Restaurant {
     private  String resID;
     private int avgwait;
     private Section sections;
-    private  Queue queue;
+    private ArrayList<Customer> queue;
     public  String name;
     public  String address;
     public  String phoneNumber;
@@ -17,8 +17,8 @@ public class Restaurant {
         phoneNumber = phoneNum;
         resID = res;
         sections = new Section();
-        queue  = null;
-        avgwait = 0;
+        queue = new ArrayList<Customer>();
+        avgwait = 30;
     }
 
     public Restaurant(){}
@@ -47,11 +47,11 @@ public class Restaurant {
         this.sections = sections;
     }
 
-    public Queue getQueue() {
+    public ArrayList<Customer> getQueue() {
         return queue;
     }
 
-    public void setQueue(Queue queue) {
+    public void setQueue(ArrayList<Customer> queue) {
         this.queue = queue;
     }
     public String getName(){
