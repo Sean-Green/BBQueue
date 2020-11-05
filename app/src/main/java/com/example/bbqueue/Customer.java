@@ -23,6 +23,8 @@ public class Customer {
 
     }
 
+    public Customer() {};
+
     public Customer(String resID){
         id = "1234";
         name = "John Doe";

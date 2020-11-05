@@ -134,7 +134,7 @@ public class CustomerAccountCreate extends AppCompatActivity {
         Log.e("Res Info", u.name);
         TimeUnit.SECONDS.sleep(1);
         myRef.child("Restaurants").child(mAuth.getCurrentUser().getUid()).setValue(u);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
     }
 
 }

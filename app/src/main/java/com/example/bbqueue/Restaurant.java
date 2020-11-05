@@ -3,6 +3,7 @@ package com.example.bbqueue;
 import java.util.ArrayList;
 
 public class Restaurant {
+    private String url;
     private String resID;
     private int avgwait;
     private ArrayList<Section> sections;
@@ -56,18 +57,20 @@ public class Restaurant {
     public void setWaitList(ArrayList<Customer> waitList) {
         this.waitList = waitList;
     }
+
     public String getName(){
         return name;
     }
+
     public void setName(String name){
         this.name = name;
     }
 
-    private static String url;
     public String getUrl(){
         return url;
     }
     public void setUrl(String url){
+
         this.url = url;
     }
 
