@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +28,7 @@ public class ResListActivity extends AppCompatActivity {
     ListView lvRes;
     List<Restaurant> reslist;
     DatabaseReference databaseRes;
+    SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +36,45 @@ public class ResListActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
+        searchView = findViewById(R.id.searchView);
         lvRes = findViewById(R.id.lvRes);
         reslist = new ArrayList<Restaurant>();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(final String query) {
+                databaseRes = FirebaseDatabase.getInstance().getReference("Restaurants");
+                if(query.isEmpty()){
+                    refreshResList();
+                    return false;
+                }
+                databaseRes.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        reslist.clear();
+                        for (DataSnapshot resSnapshot : dataSnapshot.getChildren()) {
+                            Restaurant r = resSnapshot.getValue(Restaurant.class);
+                            System.out.println(r.getName() + query + (r.getName() == query));
+                            if(r.getName().equalsIgnoreCase(query)) {
+                                reslist.add(r);
+                            }
+                        }
+                        ResListAdapter adapter = new ResListAdapter(ResListActivity.this, reslist);
+                        lvRes.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
     }
     public void toQueue(View view) {
@@ -76,24 +115,25 @@ public class ResListActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        databaseRes = FirebaseDatabase.getInstance().getReference("restaurants");
+        refreshResList();
+    }
+    private void refreshResList(){
+        databaseRes = FirebaseDatabase.getInstance().getReference("Restaurants");
         databaseRes.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 reslist.clear();
                 for (DataSnapshot resSnapshot : dataSnapshot.getChildren()) {
-                    String resName = resSnapshot.child("name").getValue(String.class);
-                    int wait_time = resSnapshot.child("wait_time").getValue(Integer.class);
-                    Restaurant r = new Restaurant(resName,"", "", "");
+                    Restaurant r = resSnapshot.getValue(Restaurant.class);
+                    System.out.println(resSnapshot.toString());
+                    System.out.println(r.toString());
                     reslist.add(r);
                 }
                 ResListAdapter adapter = new ResListAdapter(ResListActivity.this, reslist);
                 lvRes.setAdapter(adapter);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
     }
-
 }
