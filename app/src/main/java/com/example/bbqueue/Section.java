@@ -32,4 +32,14 @@ public class Section {
     public void addTable(Table table){
         tables.add(table);
     }
+
+    public String getOpenTableString(){
+
+        String max = "/" + tables.size();
+        int open = 0;
+        for (int i = 0; i < tables.size(); ++i){
+            if (tables.get(i).isOpen()){ ++open;}
+        }
+        return open + max + " Tables Open";
+    }
 }

@@ -31,7 +31,7 @@
     <string name="navQueue">QUEUE</string>
 
     <!--    Store Page      -->
-    <string name="storeA_viewQBtn">Add Queue</string>
+    <string name="storeA_viewQBtn">Add Section</string>
     <string name="storeA_editBtn">Edit Store Details</string>
     <string name="profilepicturedescription">Profile Picture</string>
     <string name="store_name">Store Name</string>
@@ -84,4 +84,6 @@
     <string name="ResAddressCA">Restaurant address</string>
     <string name="ResWebsiteCA">Restaurant website URL</string>
     <string name="MainLogin2">Login Store</string>
+    <string name="section_name">Section 1</string>
+    <string name="tablesAvailable">0/10 Tables\nOpen</string>
 </resources>
