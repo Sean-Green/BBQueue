@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 //testa@test.ca
 //tester
@@ -27,7 +30,8 @@ public class Store_Activity extends AppCompatActivity {
     private Restaurant curRes;
     private TextView tvName;
     private TextView tvAddress;
-
+    private ListView lvSections;
+    ArrayList<Section> slist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,7 @@ public class Store_Activity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
+        lvSections = findViewById(R.id.lvSections);
     }
 
     public void onStart() {
@@ -100,21 +105,22 @@ public class Store_Activity extends AppCompatActivity {
                 // Failed to read value
             }
         });
-//            myRef.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    // This method is called once with the initial value and again
-//                    // whenever data at this location is updated.
-//                    Restaurant value = dataSnapshot.getValue(Restaurant.class);
-//                    Log.d("DATA", "Value is: " + value.getName());
-//                    setTitle(value.getName());
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError error) {
-//                    // Failed to read value
-//                }
-//            });
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    Restaurant value = dataSnapshot.getValue(Restaurant.class);
+                    slist = value.getSections();
+                    SectionAdapter adapter = new SectionAdapter(Store_Activity.this, slist);
+                    lvSections.setAdapter(adapter);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                }
+            });
         } catch (Exception e) {
             Log.e("DBread", e.toString());
         }
