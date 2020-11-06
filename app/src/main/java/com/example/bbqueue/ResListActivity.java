@@ -42,8 +42,14 @@ public class ResListActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(final String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(final String newText) {
                 databaseRes = FirebaseDatabase.getInstance().getReference("Restaurants");
-                if(query.isEmpty()){
+                if(newText == null || newText.trim().isEmpty()){
                     refreshResList();
                     return false;
                 }
@@ -53,8 +59,7 @@ public class ResListActivity extends AppCompatActivity {
                         reslist.clear();
                         for (DataSnapshot resSnapshot : dataSnapshot.getChildren()) {
                             Restaurant r = resSnapshot.getValue(Restaurant.class);
-                            System.out.println(r.getName() + query + (r.getName() == query));
-                            if(r.getName().equalsIgnoreCase(query)) {
+                            if(r.getName().equalsIgnoreCase(newText)) {
                                 reslist.add(r);
                             }
                         }
@@ -67,11 +72,6 @@ public class ResListActivity extends AppCompatActivity {
 
                     }
                 });
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
                 return false;
             }
         });
