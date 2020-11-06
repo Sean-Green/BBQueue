@@ -87,10 +87,9 @@
         android:text="@string/storeA_editBtn" />
 
     <Button
-        android:id="@+id/viewQueue"
+        android:id="@+id/btnAddSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="viewQueueClick"
         android:text="@string/storeA_viewQBtn" />
 
     <ListView

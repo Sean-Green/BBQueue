@@ -75,4 +75,7 @@ public class Restaurant {
     }
 
 
+    public void addSection() {
+        sections.add(new Section());
+    }
 }
