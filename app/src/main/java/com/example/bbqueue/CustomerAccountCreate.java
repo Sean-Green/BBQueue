@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,7 +54,7 @@ public class CustomerAccountCreate extends AppCompatActivity {
         TimeUnit.SECONDS.sleep(2);
         RTDCreate();
         Intent intent = new Intent(this, SplashLogin.class);
-        startActivity(intent);
+        //startActivity(intent);
     }
 
 
@@ -62,9 +64,22 @@ public class CustomerAccountCreate extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             // Sign in success, update UI with the signed-in user's information
                             //Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(CustomerAccountCreate.this, "Verification Sent", Toast.LENGTH_LONG);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(CustomerAccountCreate.this, "Verification email not sent", Toast.LENGTH_LONG);
+                                }
+                            });
+
 
                             Toast.makeText(CustomerAccountCreate.this, "Authentication Success.",
                                     Toast.LENGTH_SHORT).show();
