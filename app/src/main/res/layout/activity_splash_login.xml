@@ -5,6 +5,7 @@
     android:layout_margin="10dp"
     android:layout_width="match_parent"
     android:layout_gravity="center"
+    android:id="@+id/splash"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".SplashLogin">
@@ -31,13 +32,14 @@
         android:id="@+id/btnMainLogin"
         android:layout_width="100dp"
         android:layout_gravity="center"
+        android:backgroundTint="@color/BBQPastelPurp"
         android:layout_height="wrap_content"
         android:onClick="login"
         android:text="@string/MainLogin"
+        android:textColor="@color/BBQWhite"
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnRegister"
         app:layout_constraintStart_toStartOf="@+id/btnRegister" />
-
 
 
 
@@ -45,9 +47,11 @@
         android:layout_marginTop="10dp"
         android:id="@+id/btnRegister"
         android:layout_gravity="center"
+        android:backgroundTint="@color/BBQPastelPurp"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:onClick="register"
+        android:textColor="@color/BBQWhite"
         android:text="@string/rgstrBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

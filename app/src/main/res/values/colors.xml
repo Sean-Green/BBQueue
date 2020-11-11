@@ -144,4 +144,12 @@
 <color name="DarkBlue">#00008B</color>
 <color name="Navy">#000080</color>
 <color name="Black">#000000</color>
+
+
+    <color name="BBQWhite">#F9F9F6</color>
+    <color name="BBQGreyPurple">#BCBCCE</color>
+    <color name="BBQGreyBlue">#9AA8C7</color>
+    <color name="BBQPastelPurp">#948DC8</color>
+    <color name="BBQBumbyBlue">#5C78AE</color>
+
 </resources>
