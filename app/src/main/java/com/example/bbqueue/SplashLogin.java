@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,6 +27,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SplashLogin extends AppCompatActivity {
     private  FirebaseAuth mAuth;
+    private boolean isCustomer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +44,7 @@ public class SplashLogin extends AppCompatActivity {
         signIn(E, P);
         TimeUnit.SECONDS.sleep(1);
         getUserCust();
-        Intent intent = new Intent(this, ResListActivity.class);
-        startActivity(intent);
+        AccountTypeCheck();
     }
 
     public void loginStore(View view) throws InterruptedException {
@@ -55,6 +57,7 @@ public class SplashLogin extends AppCompatActivity {
         getUserStore();
         TimeUnit.SECONDS.sleep(1);
         Intent intent = new Intent(this, Store_Activity.class);
+        intent.putExtra("mAuth", mAuth.getCurrentUser().getUid());
         startActivity(intent);
     }
 
@@ -78,6 +81,37 @@ public class SplashLogin extends AppCompatActivity {
                     }
                 });
     }
+
+    public void AccountTypeCheck(){
+       DatabaseReference databaseRes = FirebaseDatabase.getInstance().getReference("Restaurants");
+
+        databaseRes.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot resSnapshot : dataSnapshot.getChildren()) {
+                    Restaurant r = resSnapshot.getValue(Restaurant.class);
+                    isCustomer = true;
+                    if(mAuth.getCurrentUser().getUid().equals(r.getResID())){
+                        isCustomer = false;
+                    }
+                }
+                if(isCustomer) {
+                    Intent intent = new Intent(SplashLogin.this, ResListActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(SplashLogin.this, Store_Activity.class);
+                    startActivity(intent);
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
+
+    }
+
+
+
     private void getUserCust() {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();

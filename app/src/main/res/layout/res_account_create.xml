@@ -54,7 +54,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPostalAddress"
         />
 
 
@@ -71,7 +71,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         />
     <TextView
         android:id="@+id/textView9"
@@ -86,7 +86,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         />
 
 
@@ -96,6 +96,8 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:onClick="OnCreateAccountRes"
+        android:backgroundTint="@color/BBQPastelPurp"
+        android:textColor="@color/BBQWhite"
         android:text="@string/rgstrBtn"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toTopOf="@+id/btnRegister"
