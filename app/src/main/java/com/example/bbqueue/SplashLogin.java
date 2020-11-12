@@ -91,8 +91,12 @@ public class SplashLogin extends AppCompatActivity {
                 for (DataSnapshot resSnapshot : dataSnapshot.getChildren()) {
                     Restaurant r = resSnapshot.getValue(Restaurant.class);
                     isCustomer = true;
+                    Log.v("cur Id", mAuth.getCurrentUser().getUid());
+                    Log.v("db Id", r.getResID());
                     if(mAuth.getCurrentUser().getUid().equals(r.getResID())){
                         isCustomer = false;
+                        Log.v("db Id", "MATCH");
+                        break;
                     }
                 }
                 if(isCustomer) {
