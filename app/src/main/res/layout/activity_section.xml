@@ -5,56 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Edit_Store_Details_Activity">
-
-    <TextView
-        android:id="@+id/StoreNameHint"
+    tools:context=".Section_Activity">
+    <ListView
+        android:id="@+id/tableListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/editStoreNameHint" />
+        android:layout_height="wrap_content"/>
 
-    <EditText
-        android:id="@+id/editTextStoreName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="@string/store_name" />
-
-    <TextView
-        android:id="@+id/storeAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_store_address_hint" />
-
-    <EditText
-        android:id="@+id/editTextStoreAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPostalAddress"
-        android:text="@string/store_address" />
-
-    <Button
-        android:id="@+id/bthHoO"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="openHoursDialog"
-        android:text="@string/hoobtn" />
-
-    <TextView
-        android:id="@+id/customerWaitHint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_store_wait_hint" />
-
-    <EditText
-        android:id="@+id/editTextCustomerWait"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPostalAddress"
-        android:text="@string/customer_wait" />
     <TextView
         android:id="@+id/tableTitle"
         android:layout_width="match_parent"

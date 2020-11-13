@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,9 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 //testa@test.ca
 //tester
@@ -69,11 +66,13 @@ public class Store_Activity extends AppCompatActivity {
         run.execute();
     }
 
+
     public void editStoreClick(View view) {
-        Intent intent = new Intent(this, Edit_Store_Details_Activity.class);
+        Intent intent = new Intent(this, Section_Activity.class);
         startActivity(intent);
     }
 
+    //back button in title
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 

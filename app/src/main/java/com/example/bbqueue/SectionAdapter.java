@@ -1,7 +1,7 @@
 package com.example.bbqueue;
 
 import android.content.Context;
-import android.text.Layout;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +14,11 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 
 public class SectionAdapter extends ArrayAdapter<Section> {
-    private Context context;
     public SectionAdapter(@NonNull Context context, ArrayList<Section> resource) {
         super(context, 0, resource);
-        this.context = context;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, ViewGroup parent){
 
         Section s = getItem(position);
 
@@ -33,6 +31,15 @@ public class SectionAdapter extends ArrayAdapter<Section> {
 
         txtSecName.setText(s.getId());
         txtTableCount.setText(s.getOpenTableString());
+
+        txtSecName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), Section_Activity.class);
+                i.putExtra("index", position);
+                getContext().startActivity(i);
+            }
+        });
         return convertView;
     }
 
