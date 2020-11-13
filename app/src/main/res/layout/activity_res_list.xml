@@ -8,51 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-
-        <LinearLayout
-            android:id="@+id/linearSearch"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <SearchView
-                android:id="@+id/searchView"
-                android:layout_width="304dp"
-                android:layout_height="38dp"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:layout_marginBottom="10dp">
-
-            </SearchView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearOption"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/txtRest"
-                android:layout_width="138dp"
-                android:layout_height="33dp"
-                android:layout_marginEnd="20dp"
-                android:background="@android:color/darker_gray"
-                android:gravity="center"
-                android:text="@string/reslist_restaurant"
-                android:textSize="@dimen/ResList_font_size" />
-
-            <TextView
-                android:id="@+id/txtSort"
-                android:layout_width="138dp"
-                android:layout_height="33dp"
-                android:background="@android:color/darker_gray"
-                android:gravity="center"
-                android:text="@string/reslist_sort"
-                android:textSize="@dimen/ResList_font_size" />
-        </LinearLayout>
         <ListView
             android:id="@+id/lvRes"
             android:layout_width="match_parent"

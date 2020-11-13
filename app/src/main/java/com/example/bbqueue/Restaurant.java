@@ -73,7 +73,12 @@ public class Restaurant {
 
         this.url = url;
     }
-
+    public String getAddress(){
+        return address;
+    }
+    public String getPhoneNumber(){
+        return phoneNumber;
+    }
 
     public void addSection() {
         sections.add(new Section());
