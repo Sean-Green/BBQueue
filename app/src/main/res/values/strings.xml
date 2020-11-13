@@ -86,4 +86,6 @@
     <string name="MainLogin2">Login Store</string>
     <string name="section_name">Section 1</string>
     <string name="tablesAvailable">0/10 Tables\nOpen</string>
+    <string name="ResendVeri">Resend Verification</string>
+    <string name="VerificationWarn">"Your email is not verified. "</string>
 </resources>

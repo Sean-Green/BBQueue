@@ -54,7 +54,7 @@ public class CustomerAccountCreate extends AppCompatActivity {
         TimeUnit.SECONDS.sleep(2);
         RTDCreate();
         Intent intent = new Intent(this, SplashLogin.class);
-        //startActivity(intent);
+        startActivity(intent);
     }
 
 
@@ -71,12 +71,12 @@ public class CustomerAccountCreate extends AppCompatActivity {
                             user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(CustomerAccountCreate.this, "Verification Sent", Toast.LENGTH_LONG);
+                                    Toast.makeText(CustomerAccountCreate.this, "Verification Sent", Toast.LENGTH_LONG).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(CustomerAccountCreate.this, "Verification email not sent", Toast.LENGTH_LONG);
+                                    Toast.makeText(CustomerAccountCreate.this, "Verification email not sent", Toast.LENGTH_LONG).show();
                                 }
                             });
 
