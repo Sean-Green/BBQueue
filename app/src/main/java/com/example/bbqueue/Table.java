@@ -62,7 +62,7 @@ public class Table {
         return size;
     }
 
-    public String getSizeString() { return size + " Persons";}
+    public String getSizeString() { return size + " Seats";}
      public void setSize(int size){
         this.size = size;
      }

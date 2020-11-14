@@ -92,4 +92,7 @@
     <string name="open">open</string>
     <string name="opencaps">OPEN</string>
     <string name="occuCaps">OCCU</string>
+    <string name="tableIdHint">Table ID</string>
+    <string name="dummyTID">1 - A</string>
+    <string name="tableSeatHint">Seats</string>
 </resources>

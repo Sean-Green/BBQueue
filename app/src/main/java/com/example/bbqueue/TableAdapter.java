@@ -1,6 +1,7 @@
 package com.example.bbqueue;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,11 +15,16 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
-import static androidx.core.graphics.drawable.IconCompat.getResources;
+//import static androidx.core.graphics.drawable.IconCompat.getResources;
 
 public class TableAdapter extends ArrayAdapter<Table> {
-    public TableAdapter(@NonNull Context context, ArrayList<Table> resource) {
-        super(context, 0, resource);
+    private Activity context;
+    private ArrayList<Table> tableList;
+
+    public TableAdapter(Activity context, ArrayList<Table> resource) {
+        super(context, R.layout.table_list_layout, resource);
+        this.context = context;
+        tableList = resource;
     }
 
     @SuppressLint("SetTextI18n")
@@ -30,7 +36,7 @@ public class TableAdapter extends ArrayAdapter<Table> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.table_list_layout, parent, false);
         }
 
-        Button tableName = convertView.findViewById(R.id.tableName);
+        TextView tableName = convertView.findViewById(R.id.tableName);
         TextView tableSize = convertView.findViewById(R.id.tableSize);
         TextView tableStatus = convertView.findViewById(R.id.tableStatus);
 
@@ -43,6 +49,7 @@ public class TableAdapter extends ArrayAdapter<Table> {
             tableStatus.setText(R.string.occuCaps);
             tableStatus.setBackgroundColor(getContext().getResources().getColor(R.color.FireBrick));
         }
+        getContext();
         return convertView;
     }
 }

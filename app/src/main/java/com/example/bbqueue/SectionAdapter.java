@@ -32,14 +32,14 @@ public class SectionAdapter extends ArrayAdapter<Section> {
         txtSecName.setText(s.getId());
         txtTableCount.setText(s.getOpenTableString());
 
-        txtSecName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), Section_Activity.class);
-                i.putExtra("index", position);
-                getContext().startActivity(i);
-            }
-        });
+//        txtSecName.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getContext(), Section_Activity.class);
+//                i.putExtra("index", position);
+//                getContext().startActivity(i);
+//            }
+//        });
         return convertView;
     }
 
