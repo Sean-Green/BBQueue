@@ -88,4 +88,13 @@
     <string name="tablesAvailable">0/10 Tables\nOpen</string>
     <string name="ResendVeri">Resend Verification</string>
     <string name="VerificationWarn">"Your email is not verified. "</string>
+    <string name="sectionTitle">Section</string>
+    <string name="table_name">Table Name</string>
+    <string name="_2_person">2 Person</string>
+    <string name="open">open</string>
+    <string name="opencaps">OPEN</string>
+    <string name="occuCaps">OCCU</string>
+    <string name="tableIdHint">Table ID</string>
+    <string name="dummyTID">1 - A</string>
+    <string name="tableSeatHint">Seats</string>
 </resources>
