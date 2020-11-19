@@ -34,6 +34,7 @@
     <string name="reslist_address">Address</string>
     <string name="reslist_number">Phone No.</string>
     <string name="reslist_directions">Directions</string>
+    <string name="reslist_avgWait">WaitTime (avg)</string>
 
     <!--    Store Page      -->
     <string name="storeA_viewQBtn">Add Section</string>

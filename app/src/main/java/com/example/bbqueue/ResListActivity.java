@@ -45,7 +45,7 @@ public class ResListActivity extends AppCompatActivity {
     public void showEditDialog(View view) {
         FragmentManager fm = getSupportFragmentManager();
         ResFragment resFragment = ResFragment.newInstance((String) view.getTag());
-        resFragment.show(fm, "fragment_edit_name");
+        resFragment.show(fm, "res_fragment");
     }
 
 //    public void toQueue(View view) {
@@ -93,7 +93,7 @@ public class ResListActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
                 databaseRes = FirebaseDatabase.getInstance().getReference("Restaurants");
-                databaseRes.addValueEventListener(new ValueEventListener() {
+                databaseRes.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         reslist.clear();
@@ -114,7 +114,7 @@ public class ResListActivity extends AppCompatActivity {
     private class SearchList extends AsyncTask <String, Void, Void>{
         @Override
         protected Void doInBackground(final String... strings) {
-            databaseRes.addValueEventListener(new ValueEventListener() {
+            databaseRes.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     reslist.clear();
