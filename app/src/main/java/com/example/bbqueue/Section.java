@@ -33,6 +33,20 @@ public class Section {
         tables.add(table);
     }
 
+    /**
+     * Removes table at given index, returns false if only 1 table left
+     * 0 tables breaks the database interaction.
+     * @param i
+     * @return
+     */
+    public boolean removeTableAtIndex(int i) {
+        if (tables.size() > 1){
+            tables.remove(i);
+            return true;
+        }
+        return false;
+    }
+
     public String getOpenTableString(){
 
         String max = "/" + tables.size();

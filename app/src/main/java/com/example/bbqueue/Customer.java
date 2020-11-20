@@ -20,7 +20,6 @@ public class Customer {
         this.phoneNumber = phone;
         this.email = e;
         this.homeAddress = h;
-
     }
 
     public Customer() {};

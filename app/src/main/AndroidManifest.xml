@@ -12,7 +12,7 @@
         <activity android:name=".CustomerAccountCreate"></activity>
         <activity android:name=".CreateAccountSubMenu" />
         <activity android:name=".CustQueue" />
-        <activity android:name=".Edit_Store_Details_Activity" />
+        <activity android:name=".Section_Activity" />
         <activity android:name=".Store_Activity" />
         <activity android:name=".InQueue" />
         <activity android:name=".Front_Queue" />

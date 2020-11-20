@@ -69,8 +69,8 @@ public class Restaurant {
     public String getUrl(){
         return url;
     }
-    public void setUrl(String url){
 
+    public void setUrl(String url){
         this.url = url;
     }
     public String getAddress(){
@@ -82,5 +82,13 @@ public class Restaurant {
 
     public void addSection() {
         sections.add(new Section());
+    }
+
+    public ArrayList<Table> getSectionTables(int index){
+        return sections.get(index).getTables();
+    }
+
+    public Section getSectionIndex(int i) {
+        return sections.get(i);
     }
 }
