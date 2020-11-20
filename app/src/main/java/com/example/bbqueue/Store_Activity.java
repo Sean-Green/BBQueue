@@ -271,13 +271,19 @@ public class Store_Activity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+                int count = 0;
                 for(DataSnapshot d : dataSnapshot.getChildren()){
                     Section test = d.getValue(Section.class);
+                    count++;
                     newSections.add(test);
 
                 }
-                newSections.remove(position);
-                deleteDbRef.setValue(newSections);
+                if(count > 1) {
+                    newSections.remove(position);
+                    deleteDbRef.setValue(newSections);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Restaurants must have atleast 1 section", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

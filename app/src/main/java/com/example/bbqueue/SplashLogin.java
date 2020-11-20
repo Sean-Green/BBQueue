@@ -103,7 +103,7 @@ public class SplashLogin extends AppCompatActivity {
     public void AccountTypeCheck(){
        DatabaseReference databaseRes = FirebaseDatabase.getInstance().getReference("Restaurants");
 
-        databaseRes.addValueEventListener(new ValueEventListener() {
+        databaseRes.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot resSnapshot : dataSnapshot.getChildren()) {
