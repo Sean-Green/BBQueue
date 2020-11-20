@@ -76,7 +76,15 @@ public class Section_Activity extends AppCompatActivity {
         lvTables.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+        
+        lvTables.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 editTableDialog(position);
+                return false;
             }
         });
 
