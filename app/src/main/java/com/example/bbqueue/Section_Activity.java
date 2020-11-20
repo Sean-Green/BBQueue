@@ -2,6 +2,7 @@ package com.example.bbqueue;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +19,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -68,6 +73,13 @@ public class Section_Activity extends AppCompatActivity {
             }
         });
 
+        lvTables.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                editTableDialog(position);
+            }
+        });
+
     }
 
     public void onStart() {
@@ -111,12 +123,12 @@ public class Section_Activity extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     tList = new ArrayList<>();
-                    for (DataSnapshot memberSnapshot : dataSnapshot.getChildren()) {
-                        Table member = memberSnapshot.getValue(Table.class);
-                        tList.add(member);
-                    }
-//                    Section value = dataSnapshot.getValue(Section.class);
-//                    tList = value.getTables();
+//                    for (DataSnapshot memberSnapshot : dataSnapshot.getChildren()) {
+//                        Table member = memberSnapshot.getValue(Table.class);
+//                        tList.add(member);
+//                    }
+                    Section value = dataSnapshot.getValue(Section.class);
+                    tList = value.getTables();
                     TableAdapter adapter = new TableAdapter(Section_Activity.this, tList);
                     lvTables.setAdapter(adapter);
                 }
@@ -156,15 +168,75 @@ public class Section_Activity extends AppCompatActivity {
 
         }
     }
-    //    old code for layout inflater, may reuse for table editing
-//    public void openHoursDialog(View view) {
-//        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-//        dialogBuilder.setTitle(R.string.hoobtn);
-//        LayoutInflater inflater = getLayoutInflater();
-//
-//        final View dialogView = inflater.inflate(R.layout.hours_op_dialog, null);
-//        dialogBuilder.setView(dialogView);
-//        final AlertDialog alertDialog = dialogBuilder.create();
-//        alertDialog.show();
-//    }
+
+    private class RemoveTable extends AsyncTask<Void, Void, Void> {
+        int position;
+        public RemoveTable(int i){
+            super();
+            position = i;
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+//            Task remove = myRef.setValue(tList);
+//            remove.addOnSuccessListener(new OnSuccessListener() {
+//                @Override
+//                public void onSuccess(Object o) {
+//                    Toast.makeText(getApplicationContext(),"Reading deleted.",Toast.LENGTH_LONG).show();
+//                }
+//            });
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Section thisSection = dataSnapshot.getValue(Section.class);
+                    if (thisSection.removeTableAtIndex(position)) {
+                        Task remove = myRef.setValue(thisSection);
+                        remove.addOnSuccessListener(new OnSuccessListener() {
+
+                            @Override
+                            public void onSuccess(Object o) {
+                                Toast.makeText(Section_Activity.this, "Reading deleted.", Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+                        remove.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(Section_Activity.this,
+                                        "something went wrong, please try again.\n" + e.toString(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        Toast.makeText(Section_Activity.this,
+                                "Cannot delete last table in a section",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+            });
+            return null;
+        }
+    }
+//        old code for layout inflater, may reuse for table editing
+    public void editTableDialog(int i) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setTitle(R.string.edit_table);
+        LayoutInflater inflater = getLayoutInflater();
+
+        final View dialogView = inflater.inflate(R.layout.edit_table_layout, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText etCurrentName = dialogView.findViewById(R.id.currentName);
+        etCurrentName.setText(tList.get(i).getTableID());
+
+        final EditText etCurrentSeats =dialogView.findViewById(R.id.currentSeats);
+        etCurrentSeats.setText(tList.get(i).getSizeString());
+
+        final AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
 }

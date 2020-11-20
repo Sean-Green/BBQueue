@@ -55,7 +55,7 @@ public class Store_Activity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        // Create even listeners
+        // Create event listeners
         btnAddSec = findViewById(R.id.btnAddSection);
         btnAddSec.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,37 +66,36 @@ public class Store_Activity extends AppCompatActivity {
         });
 
         lvSections = findViewById(R.id.lvSections);
-        lvSections.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                secInd = position;
-                myRef.child("sections/" + secInd).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        Section section = dataSnapshot.getValue(Section.class);
-
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getApplicationContext());
-                        dialogBuilder.setTitle(R.string.hoobtn);
-                        LayoutInflater inflater = getLayoutInflater();
-
-                        final View dialogView = inflater.inflate(R.layout.hours_op_dialog, null);
-                        dialogBuilder.setView(dialogView);
-                        final AlertDialog alertDialog = dialogBuilder.create();
-                        alertDialog.show();
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        Log.e("DATA", "Couldn't read from DB");
-                        // Failed to read value
-                    }
-                });
-                GetSectionDetails gsd = new GetSectionDetails();
-                gsd.execute();
-            }
-        });
+//        lvSections.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                secInd = position;
+//                myRef.child("sections/" + secInd).addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        // This method is called once with the initial value and again
+//                        // whenever data at this location is updated.
+//                        Section section = dataSnapshot.getValue(Section.class);
+//                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getApplicationContext());
+//                        dialogBuilder.setTitle(R.string.hoobtn);
+//                        LayoutInflater inflater = getLayoutInflater();
+//
+//                        final View dialogView = inflater.inflate(R.layout.hours_op_dialog, null);
+//                        dialogBuilder.setView(dialogView);
+//                        final AlertDialog alertDialog = dialogBuilder.create();
+//                        alertDialog.show();
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError error) {
+//                        Log.e("DATA", "Couldn't read from DB");
+//                        // Failed to read value
+//                    }
+//                });
+//                GetSectionDetails gsd = new GetSectionDetails();
+//                gsd.execute();
+//            }
+//        });
 
     }
 

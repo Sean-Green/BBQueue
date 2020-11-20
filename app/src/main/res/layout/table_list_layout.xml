@@ -24,7 +24,7 @@
             android:gravity="center"
             android:id="@+id/tableName"
             android:text="@string/table_name"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent" />
 
         <TextView
@@ -40,8 +40,8 @@
             android:text="@string/open"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_width="100sp"
-            android:layout_height="wrap_content"/>
+            android:layout_width="150sp"
+            android:layout_height="30dp"/>
 
     </LinearLayout>
 </LinearLayout>
