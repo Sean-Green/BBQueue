@@ -130,6 +130,9 @@ public class Store_Activity extends AppCompatActivity {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
                     Restaurant value = dataSnapshot.getValue(Restaurant.class);
+                    slist = value.getSections();
+                    SectionAdapter adapter = new SectionAdapter(Store_Activity.this, slist);
+                    lvSections.setAdapter(adapter);
                     Log.d("DATA", "Value is: " + value.getName());
                     setTitle(value.getName());
                 }
@@ -140,23 +143,21 @@ public class Store_Activity extends AppCompatActivity {
                     // Failed to read value
                 }
             });
-            myRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    Restaurant value = dataSnapshot.getValue(Restaurant.class);
-                    slist = value.getSections();
-                    SectionAdapter adapter = new SectionAdapter(Store_Activity.this, slist);
-                    lvSections.setAdapter(adapter);
+//            myRef.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot) {
+//                    // This method is called once with the initial value and again
+//                    // whenever data at this location is updated.
+//                    Restaurant value = dataSnapshot.getValue(Restaurant.class);
 
-                }
-
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                }
-            });
+//
+//                }
+//
+//                @Override
+//                public void onCancelled(DatabaseError error) {
+//                    // Failed to read value
+//                }
+//            });
             return null;
         }
         @Override
