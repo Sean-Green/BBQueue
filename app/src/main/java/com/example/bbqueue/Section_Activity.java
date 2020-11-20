@@ -194,7 +194,7 @@ public class Section_Activity extends AppCompatActivity {
 
                             @Override
                             public void onSuccess(Object o) {
-                                Toast.makeText(Section_Activity.this, "Reading deleted.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Section_Activity.this, "Table deleted.", Toast.LENGTH_LONG).show();
 
                             }
                         });
@@ -203,7 +203,7 @@ public class Section_Activity extends AppCompatActivity {
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(Section_Activity.this,
                                         "something went wrong, please try again.\n" + e.toString(),
-                                        Toast.LENGTH_SHORT).show();
+                                        Toast.LENGTH_LONG).show();
                             }
                         });
                     } else {
@@ -221,8 +221,10 @@ public class Section_Activity extends AppCompatActivity {
             return null;
         }
     }
-//        old code for layout inflater, may reuse for table editing
+
+
     public void editTableDialog(int i) {
+        final int position = i;
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setTitle(R.string.edit_table);
         LayoutInflater inflater = getLayoutInflater();
@@ -231,12 +233,88 @@ public class Section_Activity extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
         final EditText etCurrentName = dialogView.findViewById(R.id.currentName);
-        etCurrentName.setText(tList.get(i).getTableID());
+        etCurrentName.setHint(tList.get(i).getTableID());
 
         final EditText etCurrentSeats =dialogView.findViewById(R.id.currentSeats);
-        etCurrentSeats.setText(tList.get(i).getSizeString());
+        etCurrentSeats.setHint(tList.get(i).getSizeString());
 
         final AlertDialog alertDialog = dialogBuilder.create();
+
+        final Button cancel = dialogView.findViewById(R.id.editTblBtnCancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
         alertDialog.show();
+        final Button delete = dialogView.findViewById(R.id.editTblBtnDelete);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new RemoveTable(position).execute();
+                alertDialog.dismiss();
+            }
+        });
+
+        final Button update = dialogView.findViewById(R.id.editTblBtnSave);
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean f1 = false, f2 = false;
+                String newTableName = etCurrentName.getText().toString().trim();
+                if (newTableName.length() < 1) {
+                    newTableName = etCurrentName.getHint().toString();
+                    f1 = true;
+                    return;
+                }
+                int newSeats;
+                String newTableSeats = etCurrentSeats.getText().toString().trim();
+                if (newTableSeats.length() < 1) {
+                    newSeats = Integer.parseInt("" + etCurrentSeats.getHint().toString().charAt(0));
+                    f2 = true;
+                } else {
+                    newSeats = Integer.parseInt(newTableSeats);
+                }
+                if (f1 && f2) {
+                    Toast.makeText(getApplicationContext(), "No new information", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    new UpdateTable(position, newTableName, newSeats).execute();
+                    alertDialog.dismiss();
+                }
+            }
+        });
+    }
+
+    private class UpdateTable extends AsyncTask<Void, Void, Void>{
+        int position;
+        String name;
+        int seats;
+        public UpdateTable(int i, String n, int s){
+            super();
+            position = i;
+            name = n;
+            seats = s;
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Table upd = new Table(name, seats);
+            Task setTable = myRef.child("tables/"+ position).setValue(upd);
+            setTable.addOnSuccessListener(new OnSuccessListener() {
+                @Override
+                public void onSuccess(Object o) {
+                    Log.d("UPDATING", "onSuccess: updated");
+                }
+            });
+            setTable.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("UPDATING", "onFailure: failed");
+                }
+            });
+            return null;
+        }
     }
 }

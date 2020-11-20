@@ -49,6 +49,7 @@
             android:layout_weight="1"
             android:text="@string/cancel"
             android:layout_marginHorizontal="5dp"/>
+
     </LinearLayout>
     <Button
         android:id="@+id/editTblBtnSave"
