@@ -9,6 +9,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +35,8 @@ public class ResListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signInWithEmailAndPassword("cockroaches5083j@gmail.com", "123456789");
         setContentView(R.layout.activity_res_list);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
@@ -40,37 +44,14 @@ public class ResListActivity extends AppCompatActivity {
         lvRes = findViewById(R.id.lvRes);
         reslist = new ArrayList<Restaurant>();
         databaseRes = FirebaseDatabase.getInstance().getReference("Restaurants");
-
     }
+
     public void showEditDialog(View view) {
         FragmentManager fm = getSupportFragmentManager();
         ResFragment resFragment = ResFragment.newInstance((String) view.getTag());
         resFragment.show(fm, "res_fragment");
     }
 
-//    public void toQueue(View view) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("Enter Party Size");
-//        final EditText input = new EditText(this);
-//        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER);
-//        builder.setView(input);
-//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                String m_text = input.getText().toString();
-//                Intent intent = new Intent(getApplicationContext(), InQueue.class);
-//                startActivity(intent);
-//            }
-//        });
-//        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.cancel();
-//            }
-//        });
-//        showEditDialog();
-////        builder.show();
-//    }
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
 
@@ -144,7 +125,7 @@ public class ResListActivity extends AppCompatActivity {
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
+        final SearchView searchView =
                 (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
@@ -153,19 +134,18 @@ public class ResListActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(final String query) {
 
-                return false;
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(final String newText) {
-                if(newText == null || newText.trim().isEmpty()){
+                if(searchView.isFocused() && TextUtils.isEmpty(newText)){
                     RefreshList rs = new RefreshList();
                     rs.execute();
-                    return false;
                 }
                 SearchList sl = new SearchList();
                 sl.execute(newText);
-                return false;
+                return true;
             }
         });
         return true;

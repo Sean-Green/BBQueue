@@ -76,35 +76,37 @@ public class ResFragment extends DialogFragment {
         resQueue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("wow");
-                databaseRes.addListenerForSingleValueEvent(new ValueEventListener() {
+                final DatabaseReference custRes = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getUid());
+                custRes.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        final Restaurant res = dataSnapshot.getValue(Restaurant.class);
-                        final String uid = mAuth.getCurrentUser().getUid();
-                        System.out.println(uid);
-                        final DatabaseReference userRes = FirebaseDatabase.getInstance().getReference("Users").child(uid);
-                        userRes.addListenerForSingleValueEvent(new ValueEventListener() {
+                        final Customer c = dataSnapshot.getValue(Customer.class);
+                        c.setPartySize(Integer.parseInt(mEditText.getText().toString()));
+                        c.setQueueStatus(true);
+                        c.setTimeEnteredQueue(Calendar.getInstance().getTime());
+                        custRes.setValue(c);
+                        final DatabaseReference waitList = databaseRes.child("waitList");
+                        waitList.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                final Customer cust = dataSnapshot.getValue(Customer.class);
-                                Date currentTime = Calendar.getInstance().getTime();
-                                cust.setTimeEnteredQueue(currentTime);
-                                int partySize = Integer.parseInt(mEditText.getText().toString());
-                                cust.setPartySize(partySize);
-                                cust.setQueueStatus(true);
-                                userRes.setValue(cust).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                ArrayList<Customer> list = new ArrayList<>();
+                                for(DataSnapshot c : dataSnapshot.getChildren()){
+                                    list.add(c.getValue(Customer.class));
+                                }
+                                list.add(c);
+                                waitList.setValue(list).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
-                                    public void onSuccess(Void aVoid) {
-                                        ArrayList<Customer> cList = res.getWaitList();
-                                        cList.add(cust);
-                                        databaseRes.child("waitList").setValue(cList);
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Intent intent = new Intent(getContext(), InQueue.class);
+                                        intent.putExtra("resID", id);
+                                        startActivity(intent);
                                     }
                                 });
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
+
                             }
                         });
                     }
@@ -114,10 +116,6 @@ public class ResFragment extends DialogFragment {
 
                     }
                 });
-//                Intent intent = new Intent(getContext(), InQueue.class);
-//                intent.putExtra("id",id);
-//                startActivity(intent);
-
             }
         });
 
