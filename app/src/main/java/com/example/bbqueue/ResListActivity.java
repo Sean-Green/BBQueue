@@ -36,7 +36,7 @@ public class ResListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mAuth.signInWithEmailAndPassword("cockroaches5083j@gmail.com", "123456789");
+//        mAuth.signInWithEmailAndPassword("cockroaches5083j@gmail.com", "123456789");
         setContentView(R.layout.activity_res_list);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
