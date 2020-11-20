@@ -208,10 +208,10 @@ public class SplashLogin extends AppCompatActivity {
 //        Intent intent = new Intent(this, ResListActivity.class);
 //        startActivity(intent);
 //    }
-//    public void navStoreFront(View view) {
-//        Intent intent = new Intent(this, Store_Activity.class);
-//        startActivity(intent);
-//    }
+    public void navStoreFront(View view) {
+        Intent intent = new Intent(this, Store_Activity.class);
+        startActivity(intent);
+    }
 //    public void navQueue(View view) {
 //        Intent intent = new Intent(this, InQueue.class);
 //        startActivity(intent);
