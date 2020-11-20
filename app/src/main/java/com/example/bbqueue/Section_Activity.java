@@ -76,10 +76,10 @@ public class Section_Activity extends AppCompatActivity {
         lvTables.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                //TODO Seat customers
             }
         });
-        
+
         lvTables.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
