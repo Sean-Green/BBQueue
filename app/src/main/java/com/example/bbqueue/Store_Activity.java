@@ -1,5 +1,6 @@
 package com.example.bbqueue;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,15 +8,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -70,21 +77,13 @@ public class Store_Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 secInd = position;
-                myRef.child("sections/" + secInd).addListenerForSingleValueEvent(new ValueEventListener() {
+                myRef.child("sections").child(Integer.toString(secInd)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
                         Section section = dataSnapshot.getValue(Section.class);
-
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getApplicationContext());
-                        dialogBuilder.setTitle(R.string.hoobtn);
-                        LayoutInflater inflater = getLayoutInflater();
-
-                        final View dialogView = inflater.inflate(R.layout.hours_op_dialog, null);
-                        dialogBuilder.setView(dialogView);
-                        final AlertDialog alertDialog = dialogBuilder.create();
-                        alertDialog.show();
+                        showUpdateDialog(section, secInd);
                     }
 
                     @Override
@@ -208,4 +207,84 @@ public class Store_Activity extends AppCompatActivity {
         protected void onPostExecute(Void result) {}
     }
 
+
+
+    private void showUpdateDialog(final Section section, final int position) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        final View dialogView = inflater.inflate(R.layout.update_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText name = dialogView.findViewById(R.id.editTextSectionId);
+
+
+        final Button btnUpdate = dialogView.findViewById(R.id.btnUpdate);
+
+        dialogBuilder.setTitle("Update Section");
+
+        final AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sys = name.getText().toString().trim();
+
+                if (TextUtils.isEmpty(sys)) {
+                    name.setError("First Name is required");
+                    return;
+                }
+               updateReading(section, sys, position);
+                alertDialog.dismiss();
+            }
+        });
+
+        final Button btnDelete = dialogView.findViewById(R.id.btnDelete);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteReading(position);
+                alertDialog.dismiss();
+            }
+        });
+
+    }
+
+    private void updateReading(Section section, String name, int position) {
+
+        DatabaseReference updateDbRef = myRef.child("sections").child(Integer.toString(position));
+        section.setId(name);
+        updateDbRef.setValue(section);
+
+    }
+
+    private void deleteReading(final int position) {
+        final ArrayList<Section> newSections = new ArrayList<>();
+
+        final DatabaseReference deleteDbRef =myRef.child("sections");
+
+        deleteDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                for(DataSnapshot d : dataSnapshot.getChildren()){
+                    Section test = d.getValue(Section.class);
+                    newSections.add(test);
+
+                }
+                newSections.remove(position);
+                deleteDbRef.setValue(newSections);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.e("DATA", "Couldn't read from DB");
+                // Failed to read value
+            }
+        });
+
+    }
 }

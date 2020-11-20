@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
@@ -12,13 +13,6 @@
         android:layout_height="wrap_content">
 
 <!--TODO Hard limits on frame sizes-->
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/baseline_delete_black_18dp" />
 
         <TextView
             android:id="@+id/tableName"
