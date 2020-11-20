@@ -92,9 +92,20 @@
     <string name="table_name">Table Name</string>
     <string name="_2_person">2 Person</string>
     <string name="open">open</string>
-    <string name="opencaps">OPEN</string>
-    <string name="occuCaps">OCCU</string>
+    <string name="seatTable">Seat</string>
+    <string name="openTable">Open</string>
     <string name="tableIdHint">Table ID</string>
     <string name="dummyTID">1 - A</string>
     <string name="tableSeatHint">Seats</string>
+    <string name="seat">Seat</string>
+    <string name="party_name">Party Name</string>
+    <string name="_4">4</string>
+    <string name="table_name_hint">Table Name:</string>
+    <string name="current_name">current name</string>
+    <string name="_4_seats">4 Seats</string>
+    <string name="seats">Seats:</string>
+    <string name="delete">delete</string>
+    <string name="cancel">cancel</string>
+    <string name="update">update</string>
+    <string name="edit_table">Edit Table</string>
 </resources>

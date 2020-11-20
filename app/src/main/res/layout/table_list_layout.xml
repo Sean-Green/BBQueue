@@ -5,44 +5,43 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
-        android:clickable="true"
+        android:descendantFocusability="blocksDescendants"
         android:layout_marginVertical="10dp"
         android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp">
 
 <!--TODO Hard limits on frame sizes-->
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/baseline_delete_black_18dp" />
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            app:srcCompat="@drawable/baseline_delete_black_18dp" />-->
 
         <TextView
+            android:gravity="center"
             android:id="@+id/tableName"
             android:text="@string/table_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_width="150dp"
+            android:layout_height="match_parent" />
 
         <TextView
             android:id="@+id/tableSize"
+            android:gravity="center"
             android:text="@string/_2_person"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"/>
 
         <TextView
-            style="@style/Widget.MaterialComponents.Button"
             android:id="@+id/tableStatus"
             android:text="@string/open"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"/>
+            android:layout_width="150sp"
+            android:layout_height="30dp"/>
 
     </LinearLayout>
 </LinearLayout>

@@ -17,10 +17,9 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tableIDHint"
@@ -37,10 +36,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tableSeatHint"
@@ -51,13 +49,14 @@
             <EditText
                 android:id="@+id/editTableSeat"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:inputType="number"/>
 
         </LinearLayout>
 
         <Button
             android:id="@+id/btnAddTable"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/btnAddTable"/>
