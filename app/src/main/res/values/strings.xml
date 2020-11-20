@@ -22,6 +22,7 @@
     <string name="InQueueTimeLeftMessage2">until you reach the front of the queue</string>
     <string name="InQueueTimeRemaining">Time Remaining: %d</string>
     <string name="InQueueDone">Done!</string>
+    <string name="InQueueAbandon">Abandon</string>
 
     <!-- RESLIST STRINGS -->
     <string name="reslist_restaurant">Restaurant</string>

@@ -81,36 +81,40 @@ public class ResFragment extends DialogFragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         final Customer c = dataSnapshot.getValue(Customer.class);
-                        c.setPartySize(Integer.parseInt(mEditText.getText().toString()));
-                        c.setQueueStatus(true);
-                        c.setTimeEnteredQueue(Calendar.getInstance().getTime());
-                        custRes.setValue(c);
-                        final DatabaseReference waitList = databaseRes.child("waitList");
-                        waitList.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                ArrayList<Customer> list = new ArrayList<>();
-                                for(DataSnapshot c : dataSnapshot.getChildren()){
-                                    list.add(c.getValue(Customer.class));
-                                }
-                                list.add(c);
-                                waitList.setValue(list).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        Intent intent = new Intent(getContext(), InQueue.class);
-                                        intent.putExtra("resID", id);
-                                        startActivity(intent);
+//                        if (!c.queueStatus) {
+                            c.setPartySize(Integer.parseInt(mEditText.getText().toString()));
+                            c.setQueueStatus(true);
+                            c.setTimeEnteredQueue(Calendar.getInstance().getTime());
+                            custRes.setValue(c);
+                            final DatabaseReference waitList = databaseRes.child("waitList");
+                            waitList.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    ArrayList<Customer> list = new ArrayList<>();
+                                    for (DataSnapshot c : dataSnapshot.getChildren()) {
+                                        list.add(c.getValue(Customer.class));
                                     }
-                                });
-                            }
+                                    list.add(c);
+                                    waitList.setValue(list).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Intent intent = new Intent(getContext(), InQueue.class);
+                                            intent.putExtra("resID", id);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            }
-                        });
+                                }
+                            });
+//                        }else{
+//                            Toast.makeText(getContext(), "Already in Queue",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
