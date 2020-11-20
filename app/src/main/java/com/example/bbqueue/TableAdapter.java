@@ -2,16 +2,11 @@ package com.example.bbqueue;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
@@ -26,7 +21,10 @@ public class TableAdapter extends ArrayAdapter<Table> {
         this.context = context;
         tableList = resource;
     }
-
+    @Override
+    public boolean isEnabled(int position) {
+        return true;
+    }
     @SuppressLint("SetTextI18n")
     public View getView(final int position, View convertView, ViewGroup parent){
 
@@ -43,10 +41,10 @@ public class TableAdapter extends ArrayAdapter<Table> {
         tableName.setText(t.getTableID());
         tableSize.setText(t.getSizeString());
         if (t.isOpen()) {
-            tableStatus.setText(R.string.opencaps);
+            tableStatus.setText(R.string.seatTable);
             tableStatus.setBackgroundColor(getContext().getResources().getColor(R.color.Green));
         } else {
-            tableStatus.setText(R.string.occuCaps);
+            tableStatus.setText(R.string.openTable);
             tableStatus.setBackgroundColor(getContext().getResources().getColor(R.color.FireBrick));
         }
         getContext();

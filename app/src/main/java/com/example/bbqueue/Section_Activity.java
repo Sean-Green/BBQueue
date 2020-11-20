@@ -47,26 +47,16 @@ public class Section_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_section);
+
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-
-
         sectionIndex = getIntent().getExtras().getInt("index");
-
         mAuth = FirebaseAuth.getInstance();
         myRef = FirebaseDatabase.getInstance().getReference("Restaurants")
                 .child(mAuth.getCurrentUser().getUid()).child("sections/" + sectionIndex);
-
         lvTables = findViewById(R.id.tableListView);
-        lvTables.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(Section_Activity.this, "POS: " + position, Toast.LENGTH_SHORT).show();
-            }
-        });
-
         tblID = findViewById(R.id.editTableID);
         tblSeat = findViewById(R.id.editTableSeat);
 
@@ -74,14 +64,10 @@ public class Section_Activity extends AppCompatActivity {
         addTbl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addTable();
+                new AddTable().execute();
             }
         });
 
-    }
-
-    private void addTable() {
-        new AddTable().execute();
     }
 
     public void onStart() {
@@ -124,21 +110,15 @@ public class Section_Activity extends AppCompatActivity {
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    Section value = dataSnapshot.getValue(Section.class);
-                    tList = value.getTables();
+                    tList = new ArrayList<>();
+                    for (DataSnapshot memberSnapshot : dataSnapshot.getChildren()) {
+                        Table member = memberSnapshot.getValue(Table.class);
+                        tList.add(member);
+                    }
+//                    Section value = dataSnapshot.getValue(Section.class);
+//                    tList = value.getTables();
                     TableAdapter adapter = new TableAdapter(Section_Activity.this, tList);
                     lvTables.setAdapter(adapter);
-                    lvTables.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent i = new Intent(getApplicationContext(), Section_Activity.class);
-                            i.putExtra("index", position);
-                            getApplicationContext().startActivity(i);
-                            Toast.makeText(Section_Activity.this, "POS: " + position, Toast.LENGTH_SHORT).show();
-                        }
-                    });
                 }
 
                 @Override
@@ -155,7 +135,6 @@ public class Section_Activity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             if (tblID.getText().toString().trim().length() == 0 || tblSeat.getText().toString().trim().length() == 0){
-
                 return null;
             } else {
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {

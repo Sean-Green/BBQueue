@@ -92,9 +92,12 @@
     <string name="table_name">Table Name</string>
     <string name="_2_person">2 Person</string>
     <string name="open">open</string>
-    <string name="opencaps">OPEN</string>
-    <string name="occuCaps">OCCU</string>
+    <string name="seatTable">Seat</string>
+    <string name="openTable">Open</string>
     <string name="tableIdHint">Table ID</string>
     <string name="dummyTID">1 - A</string>
     <string name="tableSeatHint">Seats</string>
+    <string name="seat">Seat</string>
+    <string name="party_name">Party Name</string>
+    <string name="_4">4</string>
 </resources>
