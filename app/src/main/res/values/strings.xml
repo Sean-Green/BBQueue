@@ -108,4 +108,6 @@
     <string name="cancel">cancel</string>
     <string name="update">update</string>
     <string name="edit_table">Edit Table</string>
+    <string name="btnDelete">Delete</string>
+    <string name="btnUpdate">Update</string>
 </resources>
