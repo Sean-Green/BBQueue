@@ -145,10 +145,9 @@ public class Store_Activity extends AppCompatActivity {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
                     Restaurant value = dataSnapshot.getValue(Restaurant.class);
+                    slist = value.getSections();
                     SectionAdapter adapter = new SectionAdapter(Store_Activity.this, slist);
                     lvSections.setAdapter(adapter);
-                    Log.d("DATA", "Value is: " + value.getName());
-                    setTitle(value.getName());
 
                 }
 
