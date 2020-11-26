@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal">
     <TextView
         android:id="@+id/partyName"
@@ -26,5 +27,5 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="18sp"
-        android:text="@string/seat"/>
+        android:text="Penis"/>
 </LinearLayout>

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:descendantFocusability="blocksDescendants"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:backgroundTint="@color/BBQWhite">
     <LinearLayout
         android:layout_margin="10sp"
         android:orientation="horizontal"
@@ -18,6 +19,8 @@
             android:layout_height="match_parent"
             android:textSize="14sp"
             android:layout_weight="1"
+            android:backgroundTint="@color/BBQPastelPurp"
+            android:textColor="@color/BBQWhite"
             android:text="@string/section_name"/>
 
         <TextView

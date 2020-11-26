@@ -110,4 +110,5 @@
     <string name="edit_table">Edit Table</string>
     <string name="btnDelete">Delete</string>
     <string name="btnUpdate">Update</string>
+    <string name="setSection">Set section name</string>
 </resources>

@@ -74,6 +74,13 @@ public class Restaurant {
         this.url = url;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public void addSection() {
         sections.add(new Section());
