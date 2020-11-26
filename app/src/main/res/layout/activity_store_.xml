@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:layout_margin="10dp"
     tools:context=".Store_Activity">
 
@@ -83,7 +84,7 @@
         android:id="@+id/editInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="editStoreClick"
+
         android:text="@string/storeA_editBtn" />
 
     <Button
