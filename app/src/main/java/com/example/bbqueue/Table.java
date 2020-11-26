@@ -4,13 +4,13 @@ public class Table {
     private String tableID;
     private int size;
     private boolean open;
-    private Customer customer;
+    private String customerID;
 
     public Table() {
         open = true;
         size = 2;
         tableID = "table";
-        customer = null;
+        customerID = null;
     }
 
     public Table(String tableID, int size){
@@ -19,9 +19,9 @@ public class Table {
         this.open = true;
     }
 
-    public boolean seat(Customer cust) {
+    public boolean seat(String cust) {
         if (open) {
-            customer = cust;
+            customerID = cust;
             open = false;
             return true;
         } else {
@@ -31,7 +31,7 @@ public class Table {
 
     public void open(){
         this.open = true;
-        customer = null;
+        customerID = null;
     }
 
     public void setTableID(String tableID) {
@@ -50,12 +50,12 @@ public class Table {
         return open;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer(String customer) {
+        this.customerID = customer;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getCustomer() {
+        return customerID;
     }
 
     public int getSize() {

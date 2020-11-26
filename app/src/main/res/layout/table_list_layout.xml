@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
@@ -24,7 +25,8 @@
             android:gravity="center"
             android:id="@+id/tableName"
             android:text="@string/table_name"
-            android:layout_width="150dp"
+            android:textSize="20dp"
+            android:layout_width="150sp"
             android:layout_height="match_parent" />
 
         <TextView
@@ -38,10 +40,13 @@
         <TextView
             android:id="@+id/tableStatus"
             android:text="@string/open"
+            android:paddingTop="10dp"
+            android:layout_margin="0dp"
             android:textSize="20sp"
+            android:layout_gravity="center"
             android:textAlignment="center"
             android:layout_width="150sp"
-            android:layout_height="30dp"/>
+            android:layout_height="50dp"/>
 
     </LinearLayout>
 </LinearLayout>
