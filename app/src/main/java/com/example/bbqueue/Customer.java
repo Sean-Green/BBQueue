@@ -2,7 +2,7 @@ package com.example.bbqueue;
 
 import java.util.Date;
 
-public class Customer {
+public class Customer implements Comparable<Customer>{
     public String id;
     public  int partySize;
     public  String phoneNumber;
@@ -123,5 +123,13 @@ public class Customer {
 
     public void setTimeEnteredQueue(Date timeEnteredQueue) {
         this.timeEnteredQueue = timeEnteredQueue;
+    }
+
+    @Override
+    public int compareTo(Customer o) {
+        if (id.equals("1234")) {
+            return -1;
+        }
+        else return 0;
     }
 }

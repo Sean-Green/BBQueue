@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,8 +35,8 @@ public class Section_Activity extends AppCompatActivity {
     private DatabaseReference restRef;
     private DatabaseReference sectionRef;
 
-
-    int sectionIndex;
+    private int tableLimit;
+    private int sectionIndex;
     private ListView lvTables;
     private ListView lvSeats;
     private ArrayList<Table> tList;
@@ -63,6 +64,7 @@ public class Section_Activity extends AppCompatActivity {
         sectionRef = FirebaseDatabase.getInstance().getReference("Restaurants")
                 .child(mAuth.getCurrentUser().getUid()).child("sections/" + sectionIndex);
         lvTables = findViewById(R.id.tableListView);
+        tableLimit = 1;
         tblID = findViewById(R.id.editTableID);
         tblSeat = findViewById(R.id.editTableSeat);
 
@@ -76,9 +78,36 @@ public class Section_Activity extends AppCompatActivity {
 
         lvTables.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 //TODO Seat customers
-                seatTableDialog(position);
+                if(tList.get(position).isOpen()){
+                    seatTableDialog(position);
+                } else {
+                    AlertDialog.Builder crisis = new AlertDialog.Builder(Section_Activity.this);
+                    crisis.setIcon(R.mipmap.ic_launcher);
+                    crisis.setTitle("Open Table?");
+                    crisis.setMessage("Openning this table will remove customer data and make it " +
+                            "available to seat by any other host.");
+
+                    crisis.setPositiveButton("Open", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            new OpenTable(position).execute();
+                            dialog.dismiss();
+                        }
+                    });
+                    crisis.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    crisis.show();
+                }
+            }
+
+            private void openTableDialog() {
+
             }
         });
 
@@ -148,7 +177,7 @@ public class Section_Activity extends AppCompatActivity {
                     // Failed to read value
                 }
             });
-            // TODO Could be optimized if we look right at the customer arraylist
+
             restRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -156,6 +185,10 @@ public class Section_Activity extends AppCompatActivity {
                     Restaurant value = dataSnapshot.getValue(Restaurant.class);
                     waitList = value.getWaitList();
                     waitList.remove(0);
+                    if (lvSeats != null) {
+                        final CustomerWaitlistAdapter wlAdapt = new CustomerWaitlistAdapter(Section_Activity.this, waitList, tableLimit);
+                        lvSeats.setAdapter(wlAdapt);
+                    }
                 }
 
                 @Override
@@ -252,6 +285,7 @@ public class Section_Activity extends AppCompatActivity {
 
     private void seatTableDialog(int i) {
         final int position = i;
+        tableLimit = tList.get(position).getSize();
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setTitle(R.string.seatTable);
         LayoutInflater inflater = getLayoutInflater();
@@ -261,12 +295,28 @@ public class Section_Activity extends AppCompatActivity {
 
         lvSeats = dialogView.findViewById(R.id.lvSeatingList);
 
-        final AlertDialog waitlist = dialogBuilder.create();
-        waitlist.show();
+        final AlertDialog waitDialog = dialogBuilder.create();
+        waitDialog.show();
 
-        final CustomerWaitlistAdapter wlAdapt = new CustomerWaitlistAdapter(Section_Activity.this, waitList);
+        ArrayList<Customer> tempCustList = waitList;
+//        for (int j = 0; j < tempCustList.size(); j++){
+//            if (tempCustList.get(j).getPartySize() > tableLimit) {
+//                tempCustList.remove(j--);
+//            }
+//        }
+        final CustomerWaitlistAdapter wlAdapt = new CustomerWaitlistAdapter(Section_Activity.this, tempCustList, tableLimit);
         lvSeats.setAdapter(wlAdapt);
 
+        lvSeats.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int p, long id) {
+                Table t = tList.get(position);
+                t.setCustomer(waitList.get(p).getId());
+                t.setOpen(false);
+                new SeatTableRemoveCustomer(t, position, (p+1)).execute();
+                waitDialog.dismiss();
+            }
+        });
     }
 
     public void editTableDialog(int i) {
@@ -360,6 +410,68 @@ public class Section_Activity extends AppCompatActivity {
                     Log.e("UPDATING", "onFailure: failed");
                 }
             });
+            return null;
+        }
+    }
+
+    private class SeatTableRemoveCustomer extends AsyncTask<Void, Void, Void>{
+        Table t;
+        int tPos;
+        int cPos;
+        public SeatTableRemoveCustomer(Table table, int tablePos, int custPos){
+            super();
+            t = table;
+            tPos = tablePos;
+            cPos = custPos;
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Task setTable = sectionRef.child("tables/"+ tPos).setValue(t);
+            setTable.addOnSuccessListener(new OnSuccessListener() {
+                @Override
+                public void onSuccess(Object o) {
+                    Log.d("UPDATING", "onSuccess: table seated");
+                }
+            });
+            setTable.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("UPDATING", "onFailure: table not seated");
+                }
+            });
+            waitList.add(new Customer("Default customer, everylist has one"));
+            waitList.sort(null);
+            waitList.remove(cPos);
+            Task removeCustomer = restRef.child("waitList").setValue(waitList);
+            removeCustomer.addOnSuccessListener(new OnSuccessListener() {
+                @Override
+                public void onSuccess(Object o) {
+                    Log.d("UPDATING", "onSuccess: customer removed");
+                }
+            });
+            removeCustomer.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("UPDATING", "onFailure: customer not removed");
+                }
+            });
+            return null;
+        }
+    }
+
+    private class OpenTable extends AsyncTask<Void, Void, Void>{
+        private int tPos;
+        public OpenTable(int position) {
+            super();
+            tPos = position;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Table t = tList.get(tPos);
+            t.setOpen(true);
+            t.setCustomer(null);
+            Task openTable = sectionRef.child("tables/" + tPos).setValue(t);
             return null;
         }
     }

@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="18sp"
-        android:text="778-555-5590"/>
+        android:text="@string/phone_number"/>
     <TextView
         android:id="@+id/partySize"
         android:layout_width="0dp"

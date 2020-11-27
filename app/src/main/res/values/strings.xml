@@ -100,7 +100,7 @@
     <string name="_2_person">2 Person</string>
     <string name="open">open</string>
     <string name="seatTable">Seat</string>
-    <string name="openTable">Open</string>
+    <string name="openTable">Occupied</string>
     <string name="tableIdHint">Table ID</string>
     <string name="dummyTID">1 - A</string>
     <string name="tableSeatHint">Seats</string>
@@ -118,4 +118,5 @@
     <string name="btnDelete">Delete</string>
     <string name="btnUpdate">Update</string>
     <string name="tables_touch_to_seat_hold_to_edit">Tables, touch to seat, hold to edit.</string>
+    <string name="phone_number">Phone number</string>
 </resources>
