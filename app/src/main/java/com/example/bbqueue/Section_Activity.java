@@ -37,6 +37,7 @@ public class Section_Activity extends AppCompatActivity {
 
     int sectionIndex;
     private ListView lvTables;
+    private ListView lvSeats;
     private ArrayList<Table> tList;
     private ArrayList<Customer> waitList;
 
@@ -147,21 +148,14 @@ public class Section_Activity extends AppCompatActivity {
                     // Failed to read value
                 }
             });
-            return null;
-        }
-    }
-
-    private class GetCustomerDetails extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... arg0){
-            // Read from the database
+            // TODO Could be optimized if we look right at the customer arraylist
             restRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     waitList = new ArrayList<Customer>();
                     Restaurant value = dataSnapshot.getValue(Restaurant.class);
                     waitList = value.getWaitList();
-                    //TODO
+                    waitList.remove(0);
                 }
 
                 @Override
@@ -172,6 +166,8 @@ public class Section_Activity extends AppCompatActivity {
             return null;
         }
     }
+
+
 
     private class AddTable extends AsyncTask<Void, Void, Void> {
 
@@ -260,12 +256,17 @@ public class Section_Activity extends AppCompatActivity {
         dialogBuilder.setTitle(R.string.seatTable);
         LayoutInflater inflater = getLayoutInflater();
 
-        final View dialogView = inflater.inflate(R.layout.edit_table_layout, null);
+        final View dialogView = inflater.inflate(R.layout.seating_list_layout, null);
         dialogBuilder.setView(dialogView);
 
-        final ListView lvSeats = dialogView.findViewById(R.id.lvSeatingList);
-//        lvSeats = new CustomerWaitlistAdapter(getApplicationContext(), );
-    // TODO
+        lvSeats = dialogView.findViewById(R.id.lvSeatingList);
+
+        final AlertDialog waitlist = dialogBuilder.create();
+        waitlist.show();
+
+        final CustomerWaitlistAdapter wlAdapt = new CustomerWaitlistAdapter(Section_Activity.this, waitList);
+        lvSeats.setAdapter(wlAdapt);
+
     }
 
     public void editTableDialog(int i) {

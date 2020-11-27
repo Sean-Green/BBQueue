@@ -31,7 +31,7 @@ public class CustomerWaitlistAdapter extends ArrayAdapter<Customer> {
         TextView tvPartySize = convertView.findViewById(R.id.partySize);
 
         tvPartyName.setText(c.getName());
-        tvPartySize.setText(c.getPartySize());
+        tvPartySize.setText((c.getPartySize() + ""));
 
         return convertView;
     }
