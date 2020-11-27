@@ -60,10 +60,10 @@ String uid;
             public void onTick(long millisUntilFinished) {
                 txtTimeRem.setText(getString(R.string.InQueueTimeRemaining, (millisUntilFinished/1000)));
             }
-
             public void onFinish() {
                 txtTimeRem.setText(R.string.InQueueDone);
-                txtFront.setText("");
+                txtFront.setText("You will be removed from the queue, please speak to the hostess to be seated");
+
 //                Intent intent = new Intent(getApplicationContext(),Front_Queue.class);
 //                startActivity(intent);
             }
@@ -97,8 +97,8 @@ String uid;
                     resRes.child("waitList").setValue(cusList).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-//                            Intent intent = new Intent(getApplicationContext(), ResListActivity.class);
-//                            startActivity(intent);
+                            Intent intent = new Intent(getApplicationContext(), ResListActivity.class);
+                            startActivity(intent);
                         }
                     });
                 }
@@ -120,7 +120,7 @@ String uid;
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String s = dataSnapshot.getValue(String.class);
-                    System.out.println(s);
+
                 }
 
                 @Override

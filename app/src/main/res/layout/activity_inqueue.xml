@@ -60,17 +60,6 @@
         app:layout_constraintVertical_bias="0.541"
         app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="73dp"
-        android:layout_marginBottom="50dp"
-        android:text="@string/reslist_restaurant"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
-
     <Button
         android:id="@+id/btnCancel"
         android:layout_width="104dp"
