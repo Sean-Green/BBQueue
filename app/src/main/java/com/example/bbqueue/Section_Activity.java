@@ -6,7 +6,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,16 +30,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import javax.xml.validation.Validator;
-
 public class Section_Activity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private DatabaseReference myRef;
+    private DatabaseReference restRef;
+    private DatabaseReference sectionRef;
 
-
-    int sectionIndex;
+    private int tableLimit;
+    private int sectionIndex;
     private ListView lvTables;
+    private ListView lvSeats;
     private ArrayList<Table> tList;
+    private ArrayList<Customer> waitList;
 
     EditText tblID;
     EditText tblSeat;
@@ -59,9 +59,12 @@ public class Section_Activity extends AppCompatActivity {
 
         sectionIndex = getIntent().getExtras().getInt("index");
         mAuth = FirebaseAuth.getInstance();
-        myRef = FirebaseDatabase.getInstance().getReference("Restaurants")
+        restRef = FirebaseDatabase.getInstance().getReference("Restaurants")
+                .child(mAuth.getCurrentUser().getUid());
+        sectionRef = FirebaseDatabase.getInstance().getReference("Restaurants")
                 .child(mAuth.getCurrentUser().getUid()).child("sections/" + sectionIndex);
         lvTables = findViewById(R.id.tableListView);
+        tableLimit = 1;
         tblID = findViewById(R.id.editTableID);
         tblSeat = findViewById(R.id.editTableSeat);
 
@@ -75,8 +78,36 @@ public class Section_Activity extends AppCompatActivity {
 
         lvTables.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 //TODO Seat customers
+                if(tList.get(position).isOpen()){
+                    seatTableDialog(position);
+                } else {
+                    AlertDialog.Builder crisis = new AlertDialog.Builder(Section_Activity.this);
+                    crisis.setIcon(R.mipmap.ic_launcher);
+                    crisis.setTitle("Open Table?");
+                    crisis.setMessage("Openning this table will remove customer data and make it " +
+                            "available to seat by any other host.");
+
+                    crisis.setPositiveButton("Open", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            new OpenTable(position).execute();
+                            dialog.dismiss();
+                        }
+                    });
+                    crisis.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    crisis.show();
+                }
+            }
+
+            private void openTableDialog() {
+
             }
         });
 
@@ -111,7 +142,7 @@ public class Section_Activity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... arg0){
             // Read from the database
-            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            sectionRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // This method is called once with the initial value and again
@@ -127,7 +158,7 @@ public class Section_Activity extends AppCompatActivity {
                     // Failed to read value
                 }
             });
-            myRef.addValueEventListener(new ValueEventListener() {
+            sectionRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     tList = new ArrayList<>();
@@ -146,9 +177,30 @@ public class Section_Activity extends AppCompatActivity {
                     // Failed to read value
                 }
             });
+
+            restRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    waitList = new ArrayList<Customer>();
+                    Restaurant value = dataSnapshot.getValue(Restaurant.class);
+                    waitList = value.getWaitList();
+                    waitList.remove(0);
+                    if (lvSeats != null) {
+                        final CustomerWaitlistAdapter wlAdapt = new CustomerWaitlistAdapter(Section_Activity.this, waitList, tableLimit);
+                        lvSeats.setAdapter(wlAdapt);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                }
+            });
             return null;
         }
     }
+
+
 
     private class AddTable extends AsyncTask<Void, Void, Void> {
 
@@ -157,13 +209,13 @@ public class Section_Activity extends AppCompatActivity {
             if (tblID.getText().toString().trim().length() == 0 || tblSeat.getText().toString().trim().length() == 0){
                 return null;
             } else {
-                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                sectionRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Section value = dataSnapshot.getValue(Section.class);
                         value.addTable(new Table(tblID.getText().toString(),
                                 Integer.parseInt(tblSeat.getText().toString())));
-                        myRef.setValue(value);
+                        sectionRef.setValue(value);
                     }
 
                     @Override
@@ -192,12 +244,12 @@ public class Section_Activity extends AppCompatActivity {
 //                    Toast.makeText(getApplicationContext(),"Reading deleted.",Toast.LENGTH_LONG).show();
 //                }
 //            });
-            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            sectionRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     Section thisSection = dataSnapshot.getValue(Section.class);
                     if (thisSection.removeTableAtIndex(position)) {
-                        Task remove = myRef.setValue(thisSection);
+                        Task remove = sectionRef.setValue(thisSection);
                         remove.addOnSuccessListener(new OnSuccessListener() {
 
                             @Override
@@ -230,6 +282,42 @@ public class Section_Activity extends AppCompatActivity {
         }
     }
 
+
+    private void seatTableDialog(int i) {
+        final int position = i;
+        tableLimit = tList.get(position).getSize();
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setTitle(R.string.seatTable);
+        LayoutInflater inflater = getLayoutInflater();
+
+        final View dialogView = inflater.inflate(R.layout.seating_list_layout, null);
+        dialogBuilder.setView(dialogView);
+
+        lvSeats = dialogView.findViewById(R.id.lvSeatingList);
+
+        final AlertDialog waitDialog = dialogBuilder.create();
+        waitDialog.show();
+
+        ArrayList<Customer> tempCustList = waitList;
+//        for (int j = 0; j < tempCustList.size(); j++){
+//            if (tempCustList.get(j).getPartySize() > tableLimit) {
+//                tempCustList.remove(j--);
+//            }
+//        }
+        final CustomerWaitlistAdapter wlAdapt = new CustomerWaitlistAdapter(Section_Activity.this, tempCustList, tableLimit);
+        lvSeats.setAdapter(wlAdapt);
+
+        lvSeats.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int p, long id) {
+                Table t = tList.get(position);
+                t.setCustomer(waitList.get(p).getId());
+                t.setOpen(false);
+                new SeatTableRemoveCustomer(t, position, (p+1)).execute();
+                waitDialog.dismiss();
+            }
+        });
+    }
 
     public void editTableDialog(int i) {
         final int position = i;
@@ -309,7 +397,7 @@ public class Section_Activity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             Table upd = new Table(name, seats);
-            Task setTable = myRef.child("tables/"+ position).setValue(upd);
+            Task setTable = sectionRef.child("tables/"+ position).setValue(upd);
             setTable.addOnSuccessListener(new OnSuccessListener() {
                 @Override
                 public void onSuccess(Object o) {
@@ -322,6 +410,68 @@ public class Section_Activity extends AppCompatActivity {
                     Log.e("UPDATING", "onFailure: failed");
                 }
             });
+            return null;
+        }
+    }
+
+    private class SeatTableRemoveCustomer extends AsyncTask<Void, Void, Void>{
+        Table t;
+        int tPos;
+        int cPos;
+        public SeatTableRemoveCustomer(Table table, int tablePos, int custPos){
+            super();
+            t = table;
+            tPos = tablePos;
+            cPos = custPos;
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Task setTable = sectionRef.child("tables/"+ tPos).setValue(t);
+            setTable.addOnSuccessListener(new OnSuccessListener() {
+                @Override
+                public void onSuccess(Object o) {
+                    Log.d("UPDATING", "onSuccess: table seated");
+                }
+            });
+            setTable.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("UPDATING", "onFailure: table not seated");
+                }
+            });
+            waitList.add(new Customer("Default customer, everylist has one"));
+            waitList.sort(null);
+            waitList.remove(cPos);
+            Task removeCustomer = restRef.child("waitList").setValue(waitList);
+            removeCustomer.addOnSuccessListener(new OnSuccessListener() {
+                @Override
+                public void onSuccess(Object o) {
+                    Log.d("UPDATING", "onSuccess: customer removed");
+                }
+            });
+            removeCustomer.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("UPDATING", "onFailure: customer not removed");
+                }
+            });
+            return null;
+        }
+    }
+
+    private class OpenTable extends AsyncTask<Void, Void, Void>{
+        private int tPos;
+        public OpenTable(int position) {
+            super();
+            tPos = position;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Table t = tList.get(tPos);
+            t.setOpen(true);
+            t.setCustomer(null);
+            Task openTable = sectionRef.child("tables/" + tPos).setValue(t);
             return null;
         }
     }

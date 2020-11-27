@@ -6,11 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Section_Activity">
-    <ListView
-        android:id="@+id/tableListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,5 +57,15 @@
             android:text="@string/btnAddTable"/>
 
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tables_touch_to_seat_hold_to_edit"/>
+    <ListView
+        android:id="@+id/tableListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
 
 </LinearLayout>

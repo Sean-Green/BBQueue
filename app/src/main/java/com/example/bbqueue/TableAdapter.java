@@ -34,6 +34,7 @@ public class TableAdapter extends ArrayAdapter<Table> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.table_list_layout, parent, false);
         }
 
+
         TextView tableName = convertView.findViewById(R.id.tableName);
         TextView tableSize = convertView.findViewById(R.id.tableSize);
         TextView tableStatus = convertView.findViewById(R.id.tableStatus);
