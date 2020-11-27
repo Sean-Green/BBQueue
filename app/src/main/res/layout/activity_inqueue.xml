@@ -34,6 +34,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.586" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/InQueueDirectionsBtn"
+        android:backgroundTint="@color/BBQPastelPurp"
+        android:textColor="@color/BBQWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.923" />
+
     <TextView
         android:id="@+id/txtFront"
         android:layout_width="wrap_content"
@@ -58,7 +72,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtInQueue"
         app:layout_constraintVertical_bias="0.541"
-        app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+        app:srcCompat="@drawable/clockqueue"
+         />
 
     <TextView
         android:id="@+id/textView11"

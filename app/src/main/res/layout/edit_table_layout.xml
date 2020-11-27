@@ -39,6 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="@color/BBQPastelPurp"
+            android:textColor="@color/BBQWhite"
             android:text="@string/delete"
             android:layout_marginHorizontal="5dp"/>
 
@@ -46,6 +48,8 @@
             android:id="@+id/editTblBtnCancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/BBQPastelPurp"
+            android:textColor="@color/BBQWhite"
             android:layout_weight="1"
             android:text="@string/cancel"
             android:layout_marginHorizontal="5dp"/>
@@ -54,6 +58,8 @@
     <Button
         android:id="@+id/editTblBtnSave"
         android:layout_width="match_parent"
+        android:backgroundTint="@color/BBQPastelPurp"
+        android:textColor="@color/BBQWhite"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
         android:text="@string/update"/>

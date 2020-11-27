@@ -7,15 +7,22 @@
     android:layout_gravity="center"
     android:id="@+id/splash"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".SplashLogin">
 
+<LinearLayout android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:paddingLeft="25dp"
+    android:layout_gravity="center">
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/bbqlogo" />
-
+</LinearLayout>
+    <LinearLayout android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
     <EditText
         android:id="@+id/LoginEmail"
         android:layout_width="250dp"
@@ -106,5 +113,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.295" />
 
-
+    </LinearLayout>
 </LinearLayout>

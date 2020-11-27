@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -10,9 +10,10 @@
     tools:context=".Store_Activity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:paddingRight="20dp"
         android:layout_gravity="start">
 
         <ImageView
@@ -31,13 +32,13 @@
             android:layout_margin="10dp"
             android:orientation="vertical"
             android:layout_weight=".8"
+            android:layout_gravity="center"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/storeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginBottom="10dp"
                 android:text="@string/store_name" />
 
@@ -54,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_weight=".8">
 
@@ -76,27 +78,45 @@
 
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+<RelativeLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.5">
     <Button
         android:id="@+id/editInfo"
         android:backgroundTint="@color/BBQPastelPurp"
         android:textColor="@color/BBQWhite"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
 
         android:text="@string/storeA_editBtn" />
-
+</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5">
     <Button
         android:id="@+id/btnAddSection"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:backgroundTint="@color/BBQPastelPurp"
         android:textColor="@color/BBQWhite"
         android:layout_height="wrap_content"
         android:text="@string/storeA_viewQBtn" />
-
+    </RelativeLayout>
+</LinearLayout>
     <ListView
         android:id="@+id/lvSections"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
+    </LinearLayout>
 </LinearLayout>

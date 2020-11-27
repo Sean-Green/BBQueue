@@ -117,6 +117,7 @@
     <string name="edit_table">Edit Table</string>
     <string name="btnDelete">Delete</string>
     <string name="btnUpdate">Update</string>
+    <string name="setSection">Set section name</string>
     <string name="tables_touch_to_seat_hold_to_edit">Tables, touch to seat, hold to edit.</string>
     <string name="phone_number">Phone number</string>
 </resources>
