@@ -22,13 +22,20 @@
     <string name="InQueueTimeLeftMessage2">until you reach the front of the queue</string>
     <string name="InQueueTimeRemaining">Time Remaining: %d</string>
     <string name="InQueueDone">Done!</string>
+    <string name="InQueueAbandon">Abandon</string>
 
     <!-- RESLIST STRINGS -->
     <string name="reslist_restaurant">Restaurant</string>
-    <string name="reslist_q">QUEUE</string>
+    <string name="reslist_q">Queue</string>
     <string name="reslist_sort">Sort</string>
     <string name="navResList">Login(Customer)</string>
     <string name="navQueue">QUEUE</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Restaurant name</string>
+    <string name="reslist_address">Address</string>
+    <string name="reslist_number">Phone No.</string>
+    <string name="reslist_directions">Directions</string>
+    <string name="reslist_avgWait">WaitTime (avg)</string>
 
     <!--    Store Page      -->
     <string name="storeA_viewQBtn">Add Section</string>

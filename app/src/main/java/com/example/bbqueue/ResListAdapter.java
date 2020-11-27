@@ -1,11 +1,16 @@
 package com.example.bbqueue;
 
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Transformation;
 import android.widget.ArrayAdapter;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,14 +42,14 @@ public class ResListAdapter extends ArrayAdapter<Restaurant> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.reslist_row_layout, parent, false);
         }
-
         TextView txtResName = convertView.findViewById(R.id.txtResName);
         TextView txtQuery = convertView.findViewById(R.id.txtQuery);
         assert res != null;
         txtResName.setText(res.getName());
-        txtQuery.setText(Integer.toString(res.getAvgwait()));
+        txtQuery.setText(Integer.toString(res.getAvgwait()) + " mins");
         // Return the completed view to render on screen
-
+        TextView txtID = convertView.findViewById(R.id.resID);
+        convertView.setTag(res.getResID());
         return convertView;
     }
 
