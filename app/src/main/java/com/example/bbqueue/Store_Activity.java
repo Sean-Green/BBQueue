@@ -63,9 +63,9 @@ public class Store_Activity extends AppCompatActivity {
         myRef = database.getReference("Restaurants").child(mAuth.getCurrentUser().getUid());
 
         //Add back button
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setDisplayHomeAsUpEnabled(true);
+//        ActionBar actionBar = getSupportActionBar();
+//        assert actionBar != null;
+//        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Create event listeners
         btnAddSec = findViewById(R.id.btnAddSection);
