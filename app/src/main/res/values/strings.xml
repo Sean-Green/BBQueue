@@ -137,5 +137,11 @@
     <string name="auth_fail">Authentication failed.</string>
     <string name="users">Users</string>
     <string name="resInfo">Res Info</string>
+    <string name="updTableTag">UPDATE TABLES</string>
+    <string name="index">index</string>
     <string name="r_path">Restaurants</string>
+    <string name="s_path">sections/</string>
+    <string name="u_path">Users</string>
+    <string name="tableAlertHint">Open Table?</string>
+    <string name="openTblWarning">Opening this table will remove customer data and make it available to seating.</string>
 </resources>

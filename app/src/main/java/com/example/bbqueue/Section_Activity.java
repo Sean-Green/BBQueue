@@ -48,25 +48,39 @@ public class Section_Activity extends AppCompatActivity {
     Button addTbl;
     //TODO Delete section
 
+    ValueEventListener updDetails =  new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            tList = new ArrayList<>();
+            Section value = dataSnapshot.getValue(Section.class);
+            tList = value.getTables();
+            TableAdapter adapter = new TableAdapter(Section_Activity.this, tList);
+            lvTables.setAdapter(adapter);
+        }
+
+        @Override
+        public void onCancelled(DatabaseError error) {
+            Log.e(getString(R.string.updTableTag), "onCancelled: Unable to update tables", null);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_section);
 
-//        ActionBar actionBar = getSupportActionBar();
-//        assert actionBar != null;
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        sectionIndex = getIntent().getExtras().getInt("index");
-        mAuth = FirebaseAuth.getInstance();
-        restRef = FirebaseDatabase.getInstance().getReference("Restaurants")
-                .child(mAuth.getCurrentUser().getUid());
-        sectionRef = FirebaseDatabase.getInstance().getReference("Restaurants")
-                .child(mAuth.getCurrentUser().getUid()).child("sections/" + sectionIndex);
-        custRef = FirebaseDatabase.getInstance().getReference("Users");
-        lvTables = findViewById(R.id.tableListView);
+        sectionIndex = getIntent().getExtras().getInt(getString(R.string.index));
         tableLimit = 1;
+
+        mAuth = FirebaseAuth.getInstance();
+        restRef = FirebaseDatabase.getInstance().getReference(getString(R.string.r_path))
+                .child(mAuth.getCurrentUser().getUid());
+        sectionRef = FirebaseDatabase.getInstance().getReference(getString(R.string.r_path)).child(
+                mAuth.getCurrentUser().getUid()).child(getString(R.string.s_path) + sectionIndex);
+        custRef = FirebaseDatabase.getInstance().getReference(getString(R.string.u_path));
+
+
+        lvTables = findViewById(R.id.tableListView);
         tblID = findViewById(R.id.editTableID);
         tblSeat = findViewById(R.id.editTableSeat);
 
@@ -87,18 +101,17 @@ public class Section_Activity extends AppCompatActivity {
                 } else {
                     AlertDialog.Builder crisis = new AlertDialog.Builder(Section_Activity.this);
                     crisis.setIcon(R.mipmap.ic_launcher);
-                    crisis.setTitle("Open Table?");
-                    crisis.setMessage("Opening this table will remove customer data and make it " +
-                            "available to seating.");
+                    crisis.setTitle(R.string.tableAlertHint);
+                    crisis.setMessage(R.string.openTblWarning);
 
-                    crisis.setPositiveButton("Open", new DialogInterface.OnClickListener() {
+                    crisis.setPositiveButton(getString(R.string.open), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             new OpenTable(position).execute();
                             dialog.dismiss();
                         }
                     });
-                    crisis.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    crisis.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -129,56 +142,18 @@ public class Section_Activity extends AppCompatActivity {
         run.execute();
     }
 
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-
-        if (id==android.R.id.home) {
-            finish();
-        }
-        return false;
+    @Override
+    public void onBackPressed() {
+        sectionRef.removeEventListener(updDetails);
+        finish();
     }
 
-
     private class GetSectionDetails extends AsyncTask<Void, Void, Void> {
+
+
         @Override
         protected Void doInBackground(Void... arg0){
-            // Read from the database
-            sectionRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    Section value = dataSnapshot.getValue(Section.class);
-                    Log.d("DATA", "Value is: " + value.getId());
-                    setTitle(value.getId());
-                }
-
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    Log.e("DATA", "Couldn't read from DB");
-                    // Failed to read value
-                }
-            });
-            sectionRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    tList = new ArrayList<>();
-//                    for (DataSnapshot memberSnapshot : dataSnapshot.getChildren()) {
-//                        Table member = memberSnapshot.getValue(Table.class);
-//                        tList.add(member);
-//                    }
-                    Section value = dataSnapshot.getValue(Section.class);
-                    tList = value.getTables();
-                    TableAdapter adapter = new TableAdapter(Section_Activity.this, tList);
-                    lvTables.setAdapter(adapter);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                }
-            });
+            sectionRef.addValueEventListener(updDetails);
 
             restRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -188,7 +163,7 @@ public class Section_Activity extends AppCompatActivity {
                     waitList = value.getWaitList();
                     waitList.remove(0);
                     if (lvSeats != null) {
-                        final CustomerWaitlistAdapter wlAdapt = new CustomerWaitlistAdapter(Section_Activity.this, waitList, tableLimit);
+                        final CustomerWaitlistAdapter wlAdapt = new CustomerWaitlistAdapter(Section_Activity.this, waitList);
                         lvSeats.setAdapter(wlAdapt);
                     }
                 }
@@ -239,13 +214,6 @@ public class Section_Activity extends AppCompatActivity {
         }
         @Override
         protected Void doInBackground(Void... voids) {
-//            Task remove = myRef.setValue(tList);
-//            remove.addOnSuccessListener(new OnSuccessListener() {
-//                @Override
-//                public void onSuccess(Object o) {
-//                    Toast.makeText(getApplicationContext(),"Reading deleted.",Toast.LENGTH_LONG).show();
-//                }
-//            });
             sectionRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -300,14 +268,8 @@ public class Section_Activity extends AppCompatActivity {
         waitDialog.show();
 
         ArrayList<Customer> tempCustList = waitList;
-//        for (int j = 0; j < tempCustList.size(); j++){
-//            if (tempCustList.get(j).getPartySize() > tableLimit) {
-//                tempCustList.remove(j--);
-//            }
-//        }
-        final CustomerWaitlistAdapter wlAdapt = new CustomerWaitlistAdapter(Section_Activity.this, tempCustList, tableLimit);
+        final CustomerWaitlistAdapter wlAdapt = new CustomerWaitlistAdapter(Section_Activity.this, tempCustList);
         lvSeats.setAdapter(wlAdapt);
-
         lvSeats.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int p, long id) {

@@ -13,16 +13,11 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 
 public class CustomerWaitlistAdapter extends ArrayAdapter<Customer> {
-    private Activity context;
-    private ArrayList<Customer> custList;
-    private int tableLimit;
-    public CustomerWaitlistAdapter(Activity context, ArrayList<Customer> customers, int tableLimit) {
+    public CustomerWaitlistAdapter(Activity context, ArrayList<Customer> customers) {
         super(context, R.layout.seating_list_item, customers);
-        this.context = context;
-        custList = customers;
-        this.tableLimit = tableLimit;
     }
     public View getView(final int position, View convertView, ViewGroup parents){
+
         Customer c = getItem(position);
 
         if (convertView == null) {
@@ -34,14 +29,8 @@ public class CustomerWaitlistAdapter extends ArrayAdapter<Customer> {
             TextView tvPartySize = convertView.findViewById(R.id.partySize);
 
             tvPartyName.setText(c.getName());
-            tvPartySize.setText((c.getPartySize() + ""));
+            tvPartySize.setText(Integer.toString(c.getPartySize()));
             tvPhoneNum.setText((c.getPhoneNumber()));
-//        this sets everything invisible for some reason, including customers that dont trigger it
-//        if (c.getPartySize() > tableLimit) {
-//            convertView.setVisibility(View.INVISIBLE);
-//            convertView.setClickable(false);
-//            convertView.setMinimumHeight(0);
-//        }
 
         return convertView;
     }
