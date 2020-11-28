@@ -30,7 +30,7 @@ public class CustomerAccountCreate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle i = getIntent().getExtras();
-        int type = i.getInt("type");
+        int type = i.getInt(getString(R.string.type));
         if(type == 1) {
             setContentView(R.layout.activity_customer_account_create);
         } else {
@@ -71,22 +71,22 @@ public class CustomerAccountCreate extends AppCompatActivity {
                             user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(CustomerAccountCreate.this, "Verification Sent", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(CustomerAccountCreate.this, getString(R.string.verisent), Toast.LENGTH_LONG).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(CustomerAccountCreate.this, "Verification email not sent", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(CustomerAccountCreate.this, getString(R.string.veriNotSent), Toast.LENGTH_LONG).show();
                                 }
                             });
 
 
-                            Toast.makeText(CustomerAccountCreate.this, "Authentication Success.",
+                            Toast.makeText(CustomerAccountCreate.this, getString(R.string.auth_succ),
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // If sign in fails, display a message to the user.
                             //Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(CustomerAccountCreate.this, "Authentication failed.",
+                            Toast.makeText(CustomerAccountCreate.this, getString(R.string.auth_fail),
                                     Toast.LENGTH_SHORT).show();
 
                         }
@@ -115,7 +115,7 @@ public class CustomerAccountCreate extends AppCompatActivity {
 
         Customer u = new Customer(mAuth.getCurrentUser().getUid(), FN, PhoneNum, E, Add);
 
-        myRef.child("Users").child(mAuth.getCurrentUser().getUid()).setValue(u);
+        myRef.child(getString(R.string.users)).child(mAuth.getCurrentUser().getUid()).setValue(u);
     }
 
     public void OnCreateAccountRes(View view) throws InterruptedException {
@@ -146,9 +146,9 @@ public class CustomerAccountCreate extends AppCompatActivity {
         DatabaseReference myRef = database.getReference();
 
         Restaurant u = new Restaurant(FN, Add, PhoneNum, mAuth.getCurrentUser().getUid());
-        Log.e("Res Info", u.name);
+        Log.e(getString(R.string.resInfo), u.name);
         TimeUnit.SECONDS.sleep(1);
-        myRef.child("Restaurants").child(mAuth.getCurrentUser().getUid()).setValue(u);
+        myRef.child(getString(R.string.r_path)).child(mAuth.getCurrentUser().getUid()).setValue(u);
         TimeUnit.SECONDS.sleep(3);
     }
 

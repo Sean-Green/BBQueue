@@ -17,13 +17,13 @@ public class CreateAccountSubMenu extends AppCompatActivity {
 
     public void CreateCust(View view) {
         Intent intent = new Intent(this, CustomerAccountCreate.class);
-        intent.putExtra("type", 1);
+        intent.putExtra(getString(R.string.type), 1);
         startActivity(intent);
     }
 
     public void CreateRes(View view) {
         Intent intent = new Intent(this, CustomerAccountCreate.class);
-        intent.putExtra("type", 2);
+        intent.putExtra(getString(R.string.type), 2);
         startActivity(intent);
     }
 

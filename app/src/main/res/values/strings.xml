@@ -130,4 +130,12 @@
     <string name="bigSize">SIZE</string>
     <string name="name">NAME</string>
     <string name="ftpend">Feature Pending</string>
+    <string name="type">type</string>
+    <string name="verisent">Verification Sent</string>
+    <string name="veriNotSent">Verification email not sent</string>
+    <string name="auth_succ">Authentication Success.</string>
+    <string name="auth_fail">Authentication failed.</string>
+    <string name="users">Users</string>
+    <string name="resInfo">Res Info</string>
+    <string name="r_path">Restaurants</string>
 </resources>
