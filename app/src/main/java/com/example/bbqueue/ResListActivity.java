@@ -31,16 +31,15 @@ public class ResListActivity extends AppCompatActivity {
     ListView lvRes;
     List<Restaurant> reslist;
     DatabaseReference databaseRes;
-    SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signInWithEmailAndPassword("cockroaches5083j@gmail.com", "123456789");
         setContentView(R.layout.activity_res_list);
         ActionBar actionBar = getSupportActionBar();
 //        assert actionBar != null;
 //        actionBar.setDisplayHomeAsUpEnabled(true);
-//        searchView = findViewById(R.id.searchView);
         lvRes = findViewById(R.id.lvRes);
         reslist = new ArrayList<Restaurant>();
         databaseRes = FirebaseDatabase.getInstance().getReference("Restaurants");

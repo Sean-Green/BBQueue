@@ -11,15 +11,16 @@
         android:id="@+id/txtInQueue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
         android:text="@string/InQueueTopMessage"
+        android:fontFamily="sans-serif-black"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.223" />
+        app:layout_constraintVertical_bias="0.105" />
 
     <TextView
         android:id="@+id/resTimeRem"
@@ -35,24 +36,25 @@
         app:layout_constraintVertical_bias="0.586" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/InQueueDirectionsBtn"
         android:backgroundTint="@color/BBQPastelPurp"
+        android:text="@string/InQueueAbandon"
         android:textColor="@color/BBQWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.923" />
+        app:layout_constraintVertical_bias="0.881" />
 
     <TextView
         android:id="@+id/txtFront"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
+        android:gravity="center"
         android:text="@string/InQueueTimeLeftMessage2"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,7 +62,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resTimeRem"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintVertical_bias="0.135" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -71,27 +73,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtInQueue"
-        app:layout_constraintVertical_bias="0.541"
-        app:srcCompat="@drawable/clockqueue"
-         />
+        app:layout_constraintVertical_bias="0.741"
+        app:srcCompat="@drawable/clockqueue" />
 
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="104dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="73dp"
-        android:layout_marginBottom="50dp"
-        android:text="@string/InQueueAbandon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-    <Button
-        android:id="@+id/btnDirections"
-        android:text="@string/InQueueDirectionsBtn"
-        android:layout_width="104dp"
-        android:layout_height="51dp"
-        android:layout_marginEnd="73dp"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:id="@+id/txtResName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:text="@string/reslist_restaurant"
+        android:fontFamily="sans-serif-black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInQueue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
