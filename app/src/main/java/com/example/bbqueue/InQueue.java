@@ -31,6 +31,7 @@ public class InQueue extends AppCompatActivity {
 TextView txtTimeRem;
 TextView txtFront;
 TextView txtResName;
+TextView txtInQueue;
 DatabaseReference resRes;
 DatabaseReference cusRes;
 String uid;
@@ -42,14 +43,31 @@ Button btnContact;
         setContentView(R.layout.activity_inqueue);
         txtTimeRem = findViewById(R.id.resTimeRem);
         txtFront = findViewById(R.id.txtFront);
+        txtInQueue = findViewById(R.id.txtInQueue);
         txtResName = findViewById(R.id.txtResName);
         btnAbandon = findViewById(R.id.btnCancel);
         btnContact = findViewById(R.id.btnContact);
         btnAbandon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Abandon ab = new Abandon();
-                ab.execute();
+                AlertDialog alertDialog = new AlertDialog.Builder(InQueue.this).create();
+                alertDialog.setTitle("Abandon Queue?");
+                alertDialog.setMessage("You will be abandoning your spot in the current queue");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Abandon ab = new Abandon();
+                                ab.execute();
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialog.show();
+
             }
         });
         btnContact.setOnClickListener(new View.OnClickListener() {
@@ -78,10 +96,17 @@ Button btnContact;
                     if(front) {
                         txtTimeRem.setText(R.string.InQueueDone);
                         txtFront.setText("You will be removed from the queue, please speak to the hostess to be seated");
+                        txtInQueue.setText(R.string.InQueueFrontOfQueue);
                         btnAbandon.setText(R.string.InQueueBack);
+                        btnAbandon.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Back back = new Back();
+                                back.execute();
+                            }
+                        });
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
@@ -128,15 +153,25 @@ Button btnContact;
     private class Back extends AsyncTask<Void, Void, Void>{
         @Override
         protected Void doInBackground(Void... voids) {
-            cusRes.child("queueStatus").setValue(false);
-            cusRes.child("partySize").setValue(0);
-            cusRes.child("timeEnteredQueue").setValue(new Date()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            cusRes.child("queueStatus").setValue(false).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    Intent intent = new Intent(getApplicationContext(), ResListActivity.class);
-                    startActivity(intent);
+                    cusRes.child("partySize").setValue(0).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            cusRes.child("timeEnteredQueue").setValue(new Date()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Intent intent = new Intent(getApplicationContext(), ResListActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    });
+
                 }
             });
+
             return null;
         }
     }

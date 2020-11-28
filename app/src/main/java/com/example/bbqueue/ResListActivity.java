@@ -36,9 +36,6 @@ public class ResListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_res_list);
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setDisplayHomeAsUpEnabled(true);
         lvRes = findViewById(R.id.lvRes);
         reslist = new ArrayList<Restaurant>();
         databaseRes = FirebaseDatabase.getInstance().getReference("Restaurants");
@@ -50,14 +47,6 @@ public class ResListActivity extends AppCompatActivity {
         resFragment.show(fm, "res_fragment");
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-
-        if (id==android.R.id.home) {
-            finish();
-        }
-        return false;
-    }
     @Override
     protected void onStart() {
         super.onStart();
