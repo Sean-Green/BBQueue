@@ -23,6 +23,8 @@
     <string name="InQueueTimeRemaining">Time Remaining: %d</string>
     <string name="InQueueDone">Done!</string>
     <string name="InQueueAbandon">Abandon</string>
+    <string name="InQueueContact">Contact</string>
+    <string name="InQueueBack">Back</string>
 
     <!-- RESLIST STRINGS -->
     <string name="reslist_restaurant">Restaurant</string>
