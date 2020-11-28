@@ -78,9 +78,9 @@ public class Store_Activity extends AppCompatActivity {
         });
 
         lvSections = findViewById(R.id.lvSections);
-        lvSections.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvSections.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 secInd = position;
                 myRef.child("sections").child(Integer.toString(secInd)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -99,6 +99,7 @@ public class Store_Activity extends AppCompatActivity {
                 });
                 GetSectionDetails gsd = new GetSectionDetails();
                 gsd.execute();
+                return false;
             }
         });
 
@@ -140,10 +141,6 @@ public class Store_Activity extends AppCompatActivity {
                     storeName.setText(value.getName());
                     storeAddress = findViewById(R.id.storeAddress);
                     storeAddress.setText(value.getAddress());
-                    curQueue = findViewById(R.id.custNum);
-                    int i = value.getWaitList().size();
-                    curQueue.setText(Integer.toString(i));
-
                 }
 
                 @Override
@@ -157,7 +154,12 @@ public class Store_Activity extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
+
                     Restaurant value = dataSnapshot.getValue(Restaurant.class);
+
+                    curQueue = findViewById(R.id.custNum);
+                    int i = value.getWaitList().size() - 1;
+                    curQueue.setText(Integer.toString(i));
                     slist = value.getSections();
                     SectionAdapter adapter = new SectionAdapter(Store_Activity.this, slist);
                     lvSections.setAdapter(adapter);

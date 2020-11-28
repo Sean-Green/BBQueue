@@ -4,36 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
+    android:layout_margin="10dp"
     android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal">
     <TextView
         android:id="@+id/partyName"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_weight="1"
-        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:textSize="22sp"
         android:text="@string/party_name"/>
 
     <TextView
         android:id="@+id/partyNumber"
+        android:gravity="center_vertical"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_weight="1"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:text="@string/phone_number"/>
     <TextView
         android:id="@+id/partySize"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_height="50dp"
         android:layout_weight=".5"
         android:textSize="22sp"
         android:textStyle="bold"
         android:textAlignment="center"
         android:text="@string/_4"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="18sp"
-        android:text="@string/btnAddTable"/>
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="1"-->
+<!--        android:textSize="18sp"-->
+<!--        android:text="@string/btnAddTable"/>-->
 </LinearLayout>

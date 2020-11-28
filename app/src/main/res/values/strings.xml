@@ -120,4 +120,8 @@
     <string name="setSection">Set section name</string>
     <string name="tables_touch_to_seat_hold_to_edit">Tables, touch to seat, hold to edit.</string>
     <string name="phone_number">Phone number</string>
+    <string name="size">Size</string>
+    <string name="bigphone">PHONE</string>
+    <string name="bigSize">SIZE</string>
+    <string name="name">NAME</string>
 </resources>

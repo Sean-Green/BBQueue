@@ -86,8 +86,8 @@ public class Section_Activity extends AppCompatActivity {
                     AlertDialog.Builder crisis = new AlertDialog.Builder(Section_Activity.this);
                     crisis.setIcon(R.mipmap.ic_launcher);
                     crisis.setTitle("Open Table?");
-                    crisis.setMessage("Openning this table will remove customer data and make it " +
-                            "available to seat by any other host.");
+                    crisis.setMessage("Opening this table will remove customer data and make it " +
+                            "available to seating.");
 
                     crisis.setPositiveButton("Open", new DialogInterface.OnClickListener() {
                         @Override
@@ -287,7 +287,7 @@ public class Section_Activity extends AppCompatActivity {
         final int position = i;
         tableLimit = tList.get(position).getSize();
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        dialogBuilder.setTitle(R.string.seatTable);
+//        dialogBuilder.setTitle(R.string.seatTable);
         LayoutInflater inflater = getLayoutInflater();
 
         final View dialogView = inflater.inflate(R.layout.seating_list_layout, null);
