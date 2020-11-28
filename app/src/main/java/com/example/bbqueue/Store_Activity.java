@@ -78,9 +78,9 @@ public class Store_Activity extends AppCompatActivity {
         });
 
         lvSections = findViewById(R.id.lvSections);
-        lvSections.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        lvSections.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 secInd = position;
                 myRef.child("sections").child(Integer.toString(secInd)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -99,7 +99,6 @@ public class Store_Activity extends AppCompatActivity {
                 });
                 GetSectionDetails gsd = new GetSectionDetails();
                 gsd.execute();
-                return false;
             }
         });
 

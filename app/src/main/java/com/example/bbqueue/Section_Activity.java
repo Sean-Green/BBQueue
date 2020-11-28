@@ -34,6 +34,7 @@ public class Section_Activity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference restRef;
     private DatabaseReference sectionRef;
+    private DatabaseReference custRef;
 
     private int tableLimit;
     private int sectionIndex;
@@ -63,6 +64,7 @@ public class Section_Activity extends AppCompatActivity {
                 .child(mAuth.getCurrentUser().getUid());
         sectionRef = FirebaseDatabase.getInstance().getReference("Restaurants")
                 .child(mAuth.getCurrentUser().getUid()).child("sections/" + sectionIndex);
+        custRef = FirebaseDatabase.getInstance().getReference("Users");
         lvTables = findViewById(R.id.tableListView);
         tableLimit = 1;
         tblID = findViewById(R.id.editTableID);
@@ -115,7 +117,7 @@ public class Section_Activity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 editTableDialog(position);
-                return false;
+                return true;
             }
         });
 
@@ -287,7 +289,6 @@ public class Section_Activity extends AppCompatActivity {
         final int position = i;
         tableLimit = tList.get(position).getSize();
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-//        dialogBuilder.setTitle(R.string.seatTable);
         LayoutInflater inflater = getLayoutInflater();
 
         final View dialogView = inflater.inflate(R.layout.seating_list_layout, null);
@@ -349,6 +350,7 @@ public class Section_Activity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new OpenTable(position).execute();
                 new RemoveTable(position).execute();
                 alertDialog.dismiss();
             }
@@ -439,7 +441,10 @@ public class Section_Activity extends AppCompatActivity {
                     Log.e("UPDATING", "onFailure: table not seated");
                 }
             });
-            waitList.add(new Customer("Default customer, everylist has one"));
+            String custId = waitList.get(cPos - 1).getId();
+            Task frontOfQueue = custRef.child(custId + "/frontOfQueue").setValue(true);
+            Task setQueueStatus = custRef.child(custId + "/queueStatus").setValue(false);
+            waitList.add(new Customer("Default customer, every list has one"));
             waitList.sort(null);
             waitList.remove(cPos);
             Task removeCustomer = restRef.child("waitList").setValue(waitList);
@@ -455,6 +460,7 @@ public class Section_Activity extends AppCompatActivity {
                     Log.e("UPDATING", "onFailure: customer not removed");
                 }
             });
+
             return null;
         }
     }
@@ -469,6 +475,9 @@ public class Section_Activity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             Table t = tList.get(tPos);
+            String custId = t.getCustomer();
+            Task remove = custRef.child(custId + "/frontOfQueue").setValue(false);
+            Task setQueueStatus = custRef.child(custId + "/queueStatus").setValue(false);
             t.setOpen(true);
             t.setCustomer(null);
             Task openTable = sectionRef.child("tables/" + tPos).setValue(t);
