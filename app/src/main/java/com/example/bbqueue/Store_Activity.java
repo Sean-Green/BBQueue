@@ -41,6 +41,7 @@ public class Store_Activity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ListView lvSections;
     private Button btnAddSec;
+    private Button editInfo;
 
     private int secInd;
     FirebaseDatabase database;
@@ -62,10 +63,14 @@ public class Store_Activity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Restaurants").child(mAuth.getCurrentUser().getUid());
 
-        //Add back button
-//        ActionBar actionBar = getSupportActionBar();
-//        assert actionBar != null;
-//        actionBar.setDisplayHomeAsUpEnabled(true);
+        // We could have removed this button, but it really throws off the feng shui of our app
+        editInfo = findViewById(R.id.editInfo);
+        editInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), getString(R.string.ftpend), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Create event listeners
         btnAddSec = findViewById(R.id.btnAddSection);
@@ -82,23 +87,75 @@ public class Store_Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 secInd = position;
-                myRef.child("sections").child(Integer.toString(secInd)).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        Section section = dataSnapshot.getValue(Section.class);
-                        showUpdateDialog(section, secInd);
-                    }
+                new UpdateSection().execute();
+            }
+        });
+        GetSectionDetails gsd = new GetSectionDetails();
+        gsd.execute();
 
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        Log.e("DATA", "Couldn't read from DB");
-                        // Failed to read value
-                    }
-                });
-                GetSectionDetails gsd = new GetSectionDetails();
-                gsd.execute();
+    }
+
+    private class UpdateSection extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            myRef.child("sections").child(Integer.toString(secInd)).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    Section section = dataSnapshot.getValue(Section.class);
+                    showUpdateDialog(section, secInd);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    Log.e("DATA", "Couldn't read from DB");
+                    // Failed to read value
+                }
+            });
+            return null;
+        }
+    }
+
+    private void showUpdateDialog(final Section section, final int position) {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        final View dialogView = inflater.inflate(R.layout.update_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText name = dialogView.findViewById(R.id.editTextSectionId);
+
+
+        final Button btnUpdate = dialogView.findViewById(R.id.btnUpdate);
+
+        dialogBuilder.setTitle("Update Section");
+
+        final AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sys = name.getText().toString().trim();
+
+                if (TextUtils.isEmpty(sys)) {
+                    name.setError("First Name is required");
+                    return;
+                }
+                updateReading(section, sys, position);
+                alertDialog.dismiss();
+            }
+        });
+
+        final Button btnDelete = dialogView.findViewById(R.id.btnDelete);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteReading(position);
+                alertDialog.dismiss();
             }
         });
 
@@ -222,48 +279,7 @@ public class Store_Activity extends AppCompatActivity {
 
 
 
-    private void showUpdateDialog(final Section section, final int position) {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
-        LayoutInflater inflater = getLayoutInflater();
-
-        final View dialogView = inflater.inflate(R.layout.update_dialog, null);
-        dialogBuilder.setView(dialogView);
-
-        final EditText name = dialogView.findViewById(R.id.editTextSectionId);
-
-
-        final Button btnUpdate = dialogView.findViewById(R.id.btnUpdate);
-
-        dialogBuilder.setTitle("Update Section");
-
-        final AlertDialog alertDialog = dialogBuilder.create();
-        alertDialog.show();
-
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String sys = name.getText().toString().trim();
-
-                if (TextUtils.isEmpty(sys)) {
-                    name.setError("First Name is required");
-                    return;
-                }
-               updateReading(section, sys, position);
-                alertDialog.dismiss();
-            }
-        });
-
-        final Button btnDelete = dialogView.findViewById(R.id.btnDelete);
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteReading(position);
-                alertDialog.dismiss();
-            }
-        });
-
-    }
 
     private void updateReading(Section section, String name, int position) {
 

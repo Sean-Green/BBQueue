@@ -128,4 +128,5 @@
     <string name="bigphone">PHONE</string>
     <string name="bigSize">SIZE</string>
     <string name="name">NAME</string>
+    <string name="ftpend">Feature Pending</string>
 </resources>
