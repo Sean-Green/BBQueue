@@ -67,14 +67,6 @@ Button btnContact;
         Listen listen = new Listen();
         listen.execute();
     }
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-
-        if (id==android.R.id.home) {
-            finish();
-        }
-        return false;
-    }
 
     private class Listen extends AsyncTask<Void, Void, Void>{
         @Override

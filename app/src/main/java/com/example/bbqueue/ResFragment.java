@@ -116,14 +116,17 @@ public class ResFragment extends DialogFragment {
                                 Toast.makeText(getContext(), "Please Enter a valid number",
                                         Toast.LENGTH_SHORT).show();
                             }
-                        }else if (c.getCurRes().equals(id)){
-                            Intent intent = new Intent(getContext(), InQueue.class);
-                            intent.putExtra("resID", id);
-                            startActivity(intent);
                         }else{
-                            Toast.makeText(getContext(), "Already in Queue for another Restaurant",
+                            Toast.makeText(getContext(), "Taken to previous queue",
                                     Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getContext(), InQueue.class);
+                            intent.putExtra("resID", c.getCurRes());
+                            startActivity(intent);
                         }
+//                        }else{
+//                            Toast.makeText(getContext(), "Already in Queue for another Restaurant",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
