@@ -11,16 +11,13 @@
         android:id="@+id/txtInQueue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/InQueueTopMessage"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.105" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/resTimeRem"
@@ -31,23 +28,23 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.586" />
+        app:layout_constraintVertical_bias="0.543" />
 
     <Button
         android:id="@+id/btnCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="44dp"
         android:backgroundTint="@color/BBQPastelPurp"
         android:text="@string/InQueueAbandon"
         android:textColor="@color/BBQWhite"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.267"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.874" />
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtFront"
@@ -57,50 +54,49 @@
         android:gravity="center"
         android:text="@string/InQueueTimeLeftMessage2"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resTimeRem"
-        app:layout_constraintVertical_bias="0.135" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="155dp"
+        android:layout_width="0dp"
         android:layout_height="147dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="94dp"
+        android:layout_marginEnd="404dp"
+        android:layout_marginBottom="94dp"
         android:contentDescription="TODO"
-        app:layout_constraintBottom_toTopOf="@+id/resTimeRem"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnCancel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtInQueue"
-        app:layout_constraintVertical_bias="0.741"
         app:srcCompat="@drawable/clockqueue" />
 
     <TextView
         android:id="@+id/txtResName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="55dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/reslist_restaurant"
         android:textSize="30sp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtInQueue"
         app:layout_constraintTop_toBottomOf="@+id/txtInQueue" />
 
     <Button
         android:id="@+id/btnContact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="97dp"
+        android:layout_marginBottom="94dp"
         android:backgroundTint="@color/BBQPastelPurp"
         android:text="@string/InQueueContact"
         android:textColor="@color/BBQWhite"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.718"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.874" />
+        app:layout_constraintEnd_toEndOf="@+id/btnCancel"
+        app:layout_constraintStart_toStartOf="@+id/btnCancel"
+        app:layout_constraintTop_toTopOf="@+id/btnCancel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

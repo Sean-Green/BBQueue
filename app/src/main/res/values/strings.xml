@@ -16,13 +16,15 @@
     <string name="btnGetDirections">Directions</string>
 
     <!-- IN QUEUE STRINGS -->
-    <string name="InQueueTopMessage">You are in queue</string>
+    <string name="InQueueTopMessage">You are in queue at</string>
     <string name="InQueueDirectionsBtn">Directions</string>
     <string name="InQueueTimeLeftMessage1">Time remaining: </string>
     <string name="InQueueTimeLeftMessage2">until you reach the front of the queue</string>
-    <string name="InQueueTimeRemaining">Time Remaining: %d</string>
+    <string name="InQueueAvgWait">Average Wait Time: %d mins</string>
     <string name="InQueueDone">Done!</string>
     <string name="InQueueAbandon">Abandon</string>
+    <string name="InQueueContact">Contact</string>
+    <string name="InQueueBack">Back</string>
 
     <!-- RESLIST STRINGS -->
     <string name="reslist_restaurant">Restaurant</string>
@@ -36,6 +38,8 @@
     <string name="reslist_number">Phone No.</string>
     <string name="reslist_directions">Directions</string>
     <string name="reslist_avgWait">WaitTime (avg)</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="resFrag_partySize">1</string>
 
     <!--    Store Page      -->
     <string name="storeA_viewQBtn">Add Section</string>

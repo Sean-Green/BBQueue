@@ -3,14 +3,15 @@ package com.example.bbqueue;
 import java.util.Date;
 
 public class Customer implements Comparable<Customer>{
-    public String id;
-    public  int partySize;
-    public  String phoneNumber;
-    public String name;
-    public  String email;
-    public String homeAddress;
-    public  boolean queueStatus;
-    public  String curResID;
+    private String id;
+    private  int partySize;
+    private  String phoneNumber;
+    private String name;
+    private  String email;
+    private String homeAddress;
+    private  boolean queueStatus;
+    private  String curResID;
+    private boolean frontOfQueue;
     private Date timeEnteredQueue;
 
 
@@ -20,6 +21,8 @@ public class Customer implements Comparable<Customer>{
         this.phoneNumber = phone;
         this.email = e;
         this.homeAddress = h;
+        this.setQueueStatus(false);
+        this.setFrontOfQueue(false);
     }
 
     public Customer() {};
@@ -87,6 +90,8 @@ public class Customer implements Comparable<Customer>{
         return timeEnteredQueue;
     }
 
+    public boolean isFrontOfQueue(){ return frontOfQueue;}
+
     //setters
 
     public void setId(String id) {
@@ -124,6 +129,8 @@ public class Customer implements Comparable<Customer>{
     public void setTimeEnteredQueue(Date timeEnteredQueue) {
         this.timeEnteredQueue = timeEnteredQueue;
     }
+
+    public void setFrontOfQueue(boolean frontOfQueue){ this.frontOfQueue = frontOfQueue; }
 
     @Override
     public int compareTo(Customer o) {
