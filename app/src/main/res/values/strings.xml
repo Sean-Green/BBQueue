@@ -17,6 +17,7 @@
 
     <!-- IN QUEUE STRINGS -->
     <string name="InQueueTopMessage">You are in queue at</string>
+    <string name="InQueueFrontOfQueue">Front of queue at</string>
     <string name="InQueueDirectionsBtn">Directions</string>
     <string name="InQueueTimeLeftMessage1">Time remaining: </string>
     <string name="InQueueTimeLeftMessage2">until you reach the front of the queue</string>
