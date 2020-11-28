@@ -2,8 +2,10 @@ package com.example.bbqueue;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -39,24 +41,27 @@ String uid;
         txtTimeRem = findViewById(R.id.resTimeRem);
         txtFront = findViewById(R.id.txtFront);
         txtResName = findViewById(R.id.txtResName);
-        Button btnAbandon = findViewById(R.id.btnCancel);
+        final Button btnAbandon = findViewById(R.id.btnCancel);
+        Button btnContact = findViewById(R.id.btnContact);
         btnAbandon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abandon ab = new abandon();
+                Abandon ab = new Abandon();
                 ab.execute();
+            }
+        });
+        btnContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                contact();
             }
         });
         uid = FirebaseAuth.getInstance().getUid();
         String resID = getIntent().getExtras().getString("resID");
         resRes = FirebaseDatabase.getInstance().getReference("Restaurants").child(resID);
         cusRes = FirebaseDatabase.getInstance().getReference("Users").child(uid);
-        fillInfo upd = new fillInfo();
+        FillInfo upd = new FillInfo();
         upd.execute();
-//        ActionBar actionBar = getSupportActionBar();
-//        assert actionBar != null;
-
-//        actionBar.setDisplayHomeAsUpEnabled(true);
         new CountDownTimer(10000, 1000) {
             public void onTick(long millisUntilFinished) {
                 txtTimeRem.setText(getString(R.string.InQueueTimeRemaining, (millisUntilFinished/1000)));
@@ -64,9 +69,7 @@ String uid;
             public void onFinish() {
                 txtTimeRem.setText(R.string.InQueueDone);
                 txtFront.setText("You will be removed from the queue, please speak to the hostess to be seated");
-
-//                Intent intent = new Intent(getApplicationContext(),Front_Queue.class);
-//                startActivity(intent);
+                btnAbandon.setText(R.string.InQueueBack);
             }
         }.start();
 
@@ -79,7 +82,7 @@ String uid;
         }
         return false;
     }
-    private class abandon extends AsyncTask<Void, Void, Void>{
+    private class Abandon extends AsyncTask<Void, Void, Void>{
         @Override
         protected Void doInBackground(Void... voids) {
             cusRes.child("queueStatus").setValue(false);
@@ -113,7 +116,23 @@ String uid;
         }
     }
 
-    private class fillInfo extends AsyncTask<Void, Void, Void>{
+    private class Back extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... voids) {
+            cusRes.child("queueStatus").setValue(false);
+            cusRes.child("partySize").setValue(0);
+            cusRes.child("timeEnteredQueue").setValue(new Date()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Intent intent = new Intent(getApplicationContext(), ResListActivity.class);
+                    startActivity(intent);
+                }
+            });
+            return null;
+        }
+    }
+
+    private class FillInfo extends AsyncTask<Void, Void, Void>{
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -121,7 +140,7 @@ String uid;
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String s = dataSnapshot.getValue(String.class);
-
+                    txtResName.setText(s);
                 }
 
                 @Override
@@ -131,5 +150,30 @@ String uid;
             });
             return null;
         }
+    }
+
+    public void contact(){
+        resRes.child("phoneNumber").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String s = snapshot.getValue(String.class);
+                AlertDialog alertDialog = new AlertDialog.Builder(InQueue.this).create();
+                alertDialog.setTitle("Phone No.");
+                alertDialog.setMessage(s);
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 }
