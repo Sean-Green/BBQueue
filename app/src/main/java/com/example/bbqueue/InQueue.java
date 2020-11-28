@@ -4,9 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -73,7 +77,7 @@ Button btnContact;
         btnContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contact();
+                new Contact().execute();
             }
         });
         uid = FirebaseAuth.getInstance().getUid();
@@ -197,28 +201,41 @@ Button btnContact;
         }
     }
 
-    public void contact(){
-        resRes.child("phoneNumber").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String s = snapshot.getValue(String.class);
-                AlertDialog alertDialog = new AlertDialog.Builder(InQueue.this).create();
-                alertDialog.setTitle("Phone No.");
-                alertDialog.setMessage(s);
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
-            }
+    private class Contact extends AsyncTask<Void, Void, Void>{
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            resRes.child("phoneNumber").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String s = snapshot.getValue(String.class);
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) ==
+                            PackageManager.PERMISSION_GRANTED){
 
-            }
-        });
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:" + s));
+                        startActivity(callIntent);
+                    } else {
+                        AlertDialog alertDialog = new AlertDialog.Builder(InQueue.this).create();
+                        alertDialog.setTitle("Phone No: ");
+                        alertDialog.setMessage(s + "\n Enable phone in app privileges to have us call for you. :)");
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
+                    }
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            return null;
+        }
     }
 }
+
