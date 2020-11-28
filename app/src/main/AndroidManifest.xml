@@ -15,16 +15,17 @@
         <activity android:name=".Section_Activity" />
         <activity android:name=".Store_Activity" />
         <activity android:name=".InQueue" />
-        <activity android:name=".ResListActivity">
+        <activity android:name=".ResListActivity"
+            android:theme="@style/AppTheme_with_ActionBar"
+            android:label="@string/restaurants">
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
+        </activity>
+        <activity android:name=".SplashLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".SplashLogin">
-
         </activity>
     </application>
 

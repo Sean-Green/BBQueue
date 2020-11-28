@@ -34,6 +34,8 @@ TextView txtResName;
 DatabaseReference resRes;
 DatabaseReference cusRes;
 String uid;
+Button btnAbandon;
+Button btnContact;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +43,8 @@ String uid;
         txtTimeRem = findViewById(R.id.resTimeRem);
         txtFront = findViewById(R.id.txtFront);
         txtResName = findViewById(R.id.txtResName);
-        final Button btnAbandon = findViewById(R.id.btnCancel);
-        Button btnContact = findViewById(R.id.btnContact);
+        btnAbandon = findViewById(R.id.btnCancel);
+        btnContact = findViewById(R.id.btnContact);
         btnAbandon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,17 +64,8 @@ String uid;
         cusRes = FirebaseDatabase.getInstance().getReference("Users").child(uid);
         FillInfo upd = new FillInfo();
         upd.execute();
-        new CountDownTimer(10000, 1000) {
-            public void onTick(long millisUntilFinished) {
-                txtTimeRem.setText(getString(R.string.InQueueTimeRemaining, (millisUntilFinished/1000)));
-            }
-            public void onFinish() {
-                txtTimeRem.setText(R.string.InQueueDone);
-                txtFront.setText("You will be removed from the queue, please speak to the hostess to be seated");
-                btnAbandon.setText(R.string.InQueueBack);
-            }
-        }.start();
-
+        Listen listen = new Listen();
+        listen.execute();
     }
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
@@ -82,6 +75,30 @@ String uid;
         }
         return false;
     }
+
+    private class Listen extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... voids) {
+            cusRes.child("frontOfQueue").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    boolean front = snapshot.getValue(Boolean.class);
+                    if(front) {
+                        txtTimeRem.setText(R.string.InQueueDone);
+                        txtFront.setText("You will be removed from the queue, please speak to the hostess to be seated");
+                        btnAbandon.setText(R.string.InQueueBack);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            return null;
+        }
+    }
+
     private class Abandon extends AsyncTask<Void, Void, Void>{
         @Override
         protected Void doInBackground(Void... voids) {
@@ -136,11 +153,12 @@ String uid;
 
         @Override
         protected Void doInBackground(Void... voids) {
-            resRes.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+            resRes.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String s = dataSnapshot.getValue(String.class);
-                    txtResName.setText(s);
+                   Restaurant r = dataSnapshot.getValue(Restaurant.class);
+                    txtResName.setText(r.getName());
+                    txtTimeRem.setText(getString(R.string.InQueueAvgWait, r.getAvgwait()));
                 }
 
                 @Override
