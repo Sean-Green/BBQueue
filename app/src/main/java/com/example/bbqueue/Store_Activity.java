@@ -31,6 +31,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 //testa@test.ca
@@ -45,6 +47,9 @@ public class Store_Activity extends AppCompatActivity {
     private DatabaseReference myRef;
     FirebaseUser currentUser;
     ArrayList<Section> slist;
+    TextView storeName;
+    TextView storeAddress;
+    TextView curQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +63,9 @@ public class Store_Activity extends AppCompatActivity {
         myRef = database.getReference("Restaurants").child(mAuth.getCurrentUser().getUid());
 
         //Add back button
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setDisplayHomeAsUpEnabled(true);
+//        ActionBar actionBar = getSupportActionBar();
+//        assert actionBar != null;
+//        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Create event listeners
         btnAddSec = findViewById(R.id.btnAddSection);
@@ -131,6 +136,14 @@ public class Store_Activity extends AppCompatActivity {
                     // whenever data at this location is updated.
                     Restaurant value = dataSnapshot.getValue(Restaurant.class);
                     slist = value.getSections();
+                    storeName = findViewById(R.id.storeName);
+                    storeName.setText(value.getName());
+                    storeAddress = findViewById(R.id.storeAddress);
+                    storeAddress.setText(value.getAddress());
+                    curQueue = findViewById(R.id.custNum);
+                    int i = value.getWaitList().size();
+                    curQueue.setText(Integer.toString(i));
+
                 }
 
                 @Override

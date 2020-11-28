@@ -38,8 +38,9 @@ public class ResListActivity extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_res_list);
         ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setDisplayHomeAsUpEnabled(true);
+//        assert actionBar != null;
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        searchView = findViewById(R.id.searchView);
         lvRes = findViewById(R.id.lvRes);
         reslist = new ArrayList<Restaurant>();
         databaseRes = FirebaseDatabase.getInstance().getReference("Restaurants");

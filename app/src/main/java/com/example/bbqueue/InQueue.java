@@ -36,9 +36,6 @@ String uid;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inqueue);
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setDisplayHomeAsUpEnabled(true);
         txtTimeRem = findViewById(R.id.resTimeRem);
         txtFront = findViewById(R.id.txtFront);
         txtResName = findViewById(R.id.txtResName);
@@ -56,6 +53,10 @@ String uid;
         cusRes = FirebaseDatabase.getInstance().getReference("Users").child(uid);
         fillInfo upd = new fillInfo();
         upd.execute();
+//        ActionBar actionBar = getSupportActionBar();
+//        assert actionBar != null;
+
+//        actionBar.setDisplayHomeAsUpEnabled(true);
         new CountDownTimer(10000, 1000) {
             public void onTick(long millisUntilFinished) {
                 txtTimeRem.setText(getString(R.string.InQueueTimeRemaining, (millisUntilFinished/1000)));

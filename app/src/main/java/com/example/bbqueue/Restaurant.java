@@ -80,6 +80,11 @@ public class Restaurant {
         return phoneNumber;
     }
 
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public void addSection() {
         sections.add(new Section());
     }
