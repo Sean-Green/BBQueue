@@ -62,7 +62,7 @@
     <string name="btnAddTable">Add Table</string>
     <string name="removeBtn">X</string>
     <string name="queueSwitch">Open</string>
-    <string name="queue_status_title">Customers</string>
+    <string name="queue_status_title">Wait List</string>
     <string name="custNum">7</string>
     <string name="edit_store_wait_hint">Average Customer Time</string>
     <string name="customer_wait">Minutes</string>
