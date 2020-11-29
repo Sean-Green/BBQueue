@@ -1,4 +1,5 @@
 Sean Green, A01158053, sean.joseph.green@gmail.com
+Johnny Scott, A01185435, Johnny@scottmail.ca
 
 Notes:
 
