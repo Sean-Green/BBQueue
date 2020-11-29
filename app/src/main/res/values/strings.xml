@@ -62,7 +62,7 @@
     <string name="btnAddTable">Add Table</string>
     <string name="removeBtn">X</string>
     <string name="queueSwitch">Open</string>
-    <string name="queue_status_title">Customers</string>
+    <string name="queue_status_title">Wait List</string>
     <string name="custNum">7</string>
     <string name="edit_store_wait_hint">Average Customer Time</string>
     <string name="customer_wait">Minutes</string>
@@ -137,5 +137,18 @@
     <string name="auth_fail">Authentication failed.</string>
     <string name="users">Users</string>
     <string name="resInfo">Res Info</string>
+    <string name="updTableTag">UPDATE TABLES</string>
+    <string name="index">index</string>
     <string name="r_path">Restaurants</string>
+    <string name="s_path">sections/</string>
+    <string name="u_path">Users</string>
+    <string name="tableAlertHint">Open Table?</string>
+    <string name="openTblWarning">Opening this table will remove customer data and make it available to seating.</string>
+    <string name="sections">sections</string>
+    <string name="data">DATA</string>
+    <string name="cant_db">Couldn\'t read from DB</string>
+    <string name="update_section">Update Section</string>
+    <string name="nm_required">Name is required</string>
+    <string name="v_is">\"Value is: \"</string>
+    <string name="one_warning">Restaurants must have at least 1 section</string>
 </resources>
