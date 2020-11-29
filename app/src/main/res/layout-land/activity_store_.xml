@@ -42,12 +42,12 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/store_name" />
 
-            <TextView
-                android:id="@+id/storeAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="@string/store_address" />
+<!--            <TextView-->
+<!--                android:id="@+id/storeAddress"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:text="@string/store_address" />-->
 
         </LinearLayout>
 
@@ -59,11 +59,13 @@
             android:layout_marginTop="10dp"
             android:layout_weight=".8">
 
-            <TextView
-                android:id="@+id/queue_status_title"
+            <Button
+                android:id="@+id/waitListBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
+                android:backgroundTint="@color/BBQPastelPurp"
+                android:textColor="@color/BBQWhite"
                 android:text="@string/queue_status_title" />
 
             <TextView

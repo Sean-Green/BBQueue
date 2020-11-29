@@ -80,6 +80,8 @@ public class SplashLogin extends AppCompatActivity {
                             //Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
+                            //TODO enable the next line to turn on account verification
+                            //TODO //////////////////////////////////////////////////////
 //                            if(mAuth.getCurrentUser().isEmailVerified() && mAuth != null){
                                 AccountTypeCheck();
 //                            } else{
@@ -88,6 +90,7 @@ public class SplashLogin extends AppCompatActivity {
 //                                Button resend = findViewById(R.id.btnResendVeri);
 //                                resend.setVisibility(View.VISIBLE);
 //                            }
+                            //TODO //////////////////////////////////////////////////////
                             } else {
                             // If sign in fails, display a message to the user.
                             //Log.w(TAG, "signInWithEmail:failure", task.getException());
