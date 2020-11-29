@@ -19,12 +19,14 @@ public class CreateAccountSubMenu extends AppCompatActivity {
         Intent intent = new Intent(this, CustomerAccountCreate.class);
         intent.putExtra(getString(R.string.type), 1);
         startActivity(intent);
+        finish();
     }
 
     public void CreateRes(View view) {
         Intent intent = new Intent(this, CustomerAccountCreate.class);
         intent.putExtra(getString(R.string.type), 2);
         startActivity(intent);
+        finish();
     }
 
 }
