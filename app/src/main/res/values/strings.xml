@@ -144,4 +144,11 @@
     <string name="u_path">Users</string>
     <string name="tableAlertHint">Open Table?</string>
     <string name="openTblWarning">Opening this table will remove customer data and make it available to seating.</string>
+    <string name="sections">sections</string>
+    <string name="data">DATA</string>
+    <string name="cant_db">Couldn\'t read from DB</string>
+    <string name="update_section">Update Section</string>
+    <string name="nm_required">Name is required</string>
+    <string name="v_is">\"Value is: \"</string>
+    <string name="one_warning">Restaurants must have at least 1 section</string>
 </resources>

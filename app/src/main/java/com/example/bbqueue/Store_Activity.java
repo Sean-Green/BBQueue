@@ -99,7 +99,7 @@ public class Store_Activity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            myRef.child("sections").child(Integer.toString(secInd)).addListenerForSingleValueEvent(new ValueEventListener() {
+            myRef.child(getString(R.string.sections)).child(Integer.toString(secInd)).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // This method is called once with the initial value and again
@@ -110,7 +110,7 @@ public class Store_Activity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(DatabaseError error) {
-                    Log.e("DATA", "Couldn't read from DB");
+                    Log.e(getString(R.string.data), getString(R.string.cant_db));
                     // Failed to read value
                 }
             });
@@ -131,7 +131,7 @@ public class Store_Activity extends AppCompatActivity {
 
         final Button btnUpdate = dialogView.findViewById(R.id.btnUpdate);
 
-        dialogBuilder.setTitle("Update Section");
+        dialogBuilder.setTitle(R.string.update_section);
 
         final AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
@@ -142,7 +142,7 @@ public class Store_Activity extends AppCompatActivity {
                 String sys = name.getText().toString().trim();
 
                 if (TextUtils.isEmpty(sys)) {
-                    name.setError("First Name is required");
+                    name.setError(getString(R.string.nm_required));
                     return;
                 }
                 updateReading(section, sys, position);
@@ -201,7 +201,7 @@ public class Store_Activity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(DatabaseError error) {
-                    Log.e("DATA", "Couldn't read from DB");
+                    Log.e(getString(R.string.data), getString(R.string.cant_db));
                     // Failed to read value
                 }
             });
@@ -260,14 +260,14 @@ public class Store_Activity extends AppCompatActivity {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
                     Restaurant value = dataSnapshot.getValue(Restaurant.class);
-                    Log.d("DATA", "Value is: " + value.getName());
+                    Log.d(getString(R.string.data), getString(R.string.v_is) + value.getName());
                     value.addSection();
                     myRef.setValue(value);
                 }
 
                 @Override
                 public void onCancelled(DatabaseError error) {
-                    Log.e("DATA", "Couldn't read from DB");
+                    Log.e(getString(R.string.data), getString(R.string.cant_db));
                     // Failed to read value
                 }
             });
@@ -283,7 +283,7 @@ public class Store_Activity extends AppCompatActivity {
 
     private void updateReading(Section section, String name, int position) {
 
-        DatabaseReference updateDbRef = myRef.child("sections").child(Integer.toString(position));
+        DatabaseReference updateDbRef = myRef.child(getString(R.string.sections)).child(Integer.toString(position));
         section.setId(name);
         updateDbRef.setValue(section);
 
@@ -292,7 +292,7 @@ public class Store_Activity extends AppCompatActivity {
     private void deleteReading(final int position) {
         final ArrayList<Section> newSections = new ArrayList<>();
 
-        final DatabaseReference deleteDbRef =myRef.child("sections");
+        final DatabaseReference deleteDbRef =myRef.child(getString(R.string.sections));
 
         deleteDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -310,13 +310,13 @@ public class Store_Activity extends AppCompatActivity {
                     newSections.remove(position);
                     deleteDbRef.setValue(newSections);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Restaurants must have atleast 1 section", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.one_warning), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                Log.e("DATA", "Couldn't read from DB");
+                Log.e(getString(R.string.data), getString(R.string.cant_db));
                 // Failed to read value
             }
         });
