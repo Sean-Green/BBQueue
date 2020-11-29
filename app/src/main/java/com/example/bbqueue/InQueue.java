@@ -90,6 +90,7 @@ Button btnContact;
         listen.execute();
     }
 
+    //Listens for frontOfQueue value to change to true
     private class Listen extends AsyncTask<Void, Void, Void>{
         @Override
         protected Void doInBackground(Void... voids) {
@@ -120,6 +121,7 @@ Button btnContact;
         }
     }
 
+    //Abandons queue
     private class Abandon extends AsyncTask<Void, Void, Void>{
         @Override
         protected Void doInBackground(Void... voids) {
@@ -154,6 +156,7 @@ Button btnContact;
         }
     }
 
+    //Backs out from queue / position not abandoned
     private class Back extends AsyncTask<Void, Void, Void>{
         @Override
         protected Void doInBackground(Void... voids) {
@@ -180,6 +183,7 @@ Button btnContact;
         }
     }
 
+    //Fills page with necessary info of restaurant
     private class FillInfo extends AsyncTask<Void, Void, Void>{
 
         @Override
@@ -201,6 +205,7 @@ Button btnContact;
         }
     }
 
+    //Contacts the restaurant
     private class Contact extends AsyncTask<Void, Void, Void>{
 
         @Override

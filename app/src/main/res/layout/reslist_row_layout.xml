@@ -30,8 +30,5 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     android:gravity="end"
     android:text="@string/reslist_q"
     android:textSize="@dimen/ResList_font_size" />
-<TextView
-    android:id="@+id/resID"
-    android:visibility="gone"/>
 
 </GridLayout>

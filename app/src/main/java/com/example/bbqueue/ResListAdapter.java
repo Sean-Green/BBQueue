@@ -48,7 +48,6 @@ public class ResListAdapter extends ArrayAdapter<Restaurant> {
         txtResName.setText(res.getName());
         txtQuery.setText(Integer.toString(res.getAvgwait()) + " mins");
         // Return the completed view to render on screen
-        TextView txtID = convertView.findViewById(R.id.resID);
         convertView.setTag(res.getResID());
         return convertView;
     }

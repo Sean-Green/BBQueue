@@ -39,11 +39,7 @@
             android:id="@+id/tableStatus"
             style="@style/table_list_item_textView"
             android:text="@string/open"
-            android:paddingTop="10dp"
-            android:layout_margin="0dp"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            />
+            android:textAlignment="center" />
 
     </LinearLayout>
 </LinearLayout>

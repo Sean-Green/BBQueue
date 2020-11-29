@@ -72,7 +72,7 @@ public class ResFragment extends DialogFragment {
         String title = getArguments().getString("title", "Party Size");
         getDialog().setTitle(title);
         final DatabaseReference databaseRes = FirebaseDatabase.getInstance().getReference("Restaurants").child(id);
-
+        //Queue up
         resQueue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,10 +123,6 @@ public class ResFragment extends DialogFragment {
                             intent.putExtra("resID", c.getCurRes());
                             startActivity(intent);
                         }
-//                        }else{
-//                            Toast.makeText(getContext(), "Already in Queue for another Restaurant",
-//                                    Toast.LENGTH_SHORT).show();
-//                        }
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -135,7 +131,7 @@ public class ResFragment extends DialogFragment {
                 });
             }
         });
-
+        //Fills fragment with data
         databaseRes.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
