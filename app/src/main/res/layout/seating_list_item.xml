@@ -13,7 +13,7 @@
         android:layout_height="50dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:textSize="22sp"
+        android:textSize="@dimen/seating_list_item_fontSize"
         android:text="@string/party_name"/>
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="1"
-        android:textSize="22sp"
+        android:textSize="@dimen/seating_list_item_fontSize"
         android:text="@string/phone_number"/>
     <TextView
         android:id="@+id/partySize"
@@ -30,7 +30,7 @@
         android:gravity="center"
         android:layout_height="50dp"
         android:layout_weight=".5"
-        android:textSize="22sp"
+        android:textSize="@dimen/seating_list_item_fontSize"
         android:textStyle="bold"
         android:textAlignment="center"
         android:text="@string/_4"/>

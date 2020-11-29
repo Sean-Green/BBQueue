@@ -16,4 +16,10 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="sub_menu_marginTop">10dp</dimen>
+    <dimen name="cust_queue_marginEnd">20dp</dimen>
+    <dimen name="hours_op_dialog_margin">5dp</dimen>
+    <dimen name="res_account_landscape_padding">15dp</dimen>
+    <dimen name="res_fragment_padding">50dp</dimen>
+    <dimen name="seating_list_item_fontSize">22sp</dimen>
 </resources>

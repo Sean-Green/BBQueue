@@ -18,24 +18,18 @@
         android:text="@string/WhatTypeAccount" />
 
     <Button
-        android:layout_marginTop="10dp"
+        style="@style/themedBtn_createAccount_sub_menu"
         android:id="@+id/btnResListNav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/BBQWhite"
-        android:backgroundTint="@color/BBQPastelPurp"
         android:onClick="CreateCust"
-        android:layout_gravity="center"
         android:text="@string/CustomerCreateAccount"
         app:layout_constraintStart_toStartOf="@+id/btnRegister"
         app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
     <Button
-        android:layout_marginTop="10dp"
+        style="@style/themedBtn_createAccount_sub_menu"
         android:id="@+id/btnRegister"
-        android:layout_gravity="center"
-        android:textColor="@color/BBQWhite"
-        android:backgroundTint="@color/BBQPastelPurp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="CreateRes"

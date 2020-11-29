@@ -12,48 +12,42 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_gravity="left"
+        style="@style/customer_account_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/CustFName" />
 
     <EditText
         android:id="@+id/CustFirstName"
-        android:layout_width="250dp"
+        style="@style/customer_account_editText"
         android:layout_height="wrap_content"
-        android:ems="7"
-        android:paddingRight="5dp"
         android:inputType="textPersonName"
         />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_gravity="left"
+        style="@style/customer_account_textView"
         android:layout_width="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:text="@string/CustPhone" />
     <EditText
         android:id="@+id/CustPhone"
-        android:layout_width="250dp"
+        style="@style/customer_account_editText"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="phone"
         />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_gravity="left"
+        style="@style/customer_account_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/CustAddress" />
 
     <EditText
         android:id="@+id/CustAddress"
-        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:ems="10"
+        style="@style/customer_account_editText"
         android:inputType="textPostalAddress"
         />
 
@@ -61,46 +55,38 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        style="@style/customer_account_textView"
         android:text="@string/CustEmail" />
 
     <EditText
         android:id="@+id/CustEmail"
-        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:ems="10"
+        style="@style/customer_account_editText"
         android:inputType="textEmailAddress"
         />
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_gravity="left"
+        style="@style/customer_account_textView"
         android:layout_width="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:text="@string/CustPassword" />
 
     <EditText
         android:id="@+id/CustPassword"
-        android:layout_width="250dp"
+        style="@style/customer_account_editText"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPassword"
         />
 
     <Button
         android:id="@+id/btnMainLogin"
-        android:layout_width="100dp"
-        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:onClick="OnCreateAccount"
         android:text="@string/rgstrBtn"
-        android:backgroundTint="@color/BBQPastelPurp"
-        android:textColor="@color/BBQWhite"
-        android:layout_marginTop="10dp"
+        style="@style/customer_account_btn"
         app:layout_constraintBottom_toTopOf="@+id/btnRegister"
         app:layout_constraintStart_toStartOf="@+id/btnRegister"/>
 

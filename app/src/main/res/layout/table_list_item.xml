@@ -24,32 +24,26 @@
 <!--            app:srcCompat="@drawable/baseline_delete_black_18dp" />-->
 
         <TextView
-            android:gravity="center"
             android:id="@+id/tableName"
             android:text="@string/table_name"
-            android:textSize="20sp"
-            android:layout_width="150sp"
-            android:layout_height="50sp" />
+            style="@style/table_list_item_textView"
+            />
 
         <TextView
             android:id="@+id/tableSize"
-            android:gravity="center"
             android:text="@string/_2_person"
-            android:textSize="20sp"
-            android:layout_width="0dp"
-            android:layout_height="50sp"
+            style="@style/table_list_item_textView"
             android:layout_weight="1"/>
 
         <TextView
             android:id="@+id/tableStatus"
+            style="@style/table_list_item_textView"
             android:text="@string/open"
             android:paddingTop="10dp"
             android:layout_margin="0dp"
-            android:textSize="20sp"
             android:layout_gravity="center"
             android:textAlignment="center"
-            android:layout_width="150sp"
-            android:layout_height="50dp"/>
+            />
 
     </LinearLayout>
 </LinearLayout>

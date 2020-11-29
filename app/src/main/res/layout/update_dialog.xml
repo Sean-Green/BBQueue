@@ -17,8 +17,7 @@
     <Button
         android:id="@+id/btnUpdate"
         android:layout_width="match_parent"
-        android:backgroundTint="@color/BBQPastelPurp"
-        android:textColor="@color/BBQWhite"
+        style="@style/themedBtn"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/btnUpdate" />
@@ -28,7 +27,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:backgroundTint="@color/BBQPastelPurp"
-        android:textColor="@color/BBQWhite"
+        style="@style/themedBtn"
         android:text="@string/btnDelete" />
 </LinearLayout>

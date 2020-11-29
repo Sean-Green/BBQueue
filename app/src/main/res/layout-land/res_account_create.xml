@@ -17,10 +17,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingRight="15dp">
+    android:paddingRight="@dimen/res_account_landscape_padding">
     <TextView
         android:id="@+id/textView5"
-        android:layout_gravity="left"
+        style="@style/customer_account_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -28,7 +28,7 @@
 
     <EditText
         android:id="@+id/ResName"
-        android:layout_width="250dp"
+        style="@style/customer_account_editText"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         />
@@ -39,16 +39,14 @@
         android:orientation="vertical">
     <TextView
         android:id="@+id/textView6"
-        android:layout_gravity="left"
+        style="@style/customer_account_textView"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
         android:text="@string/CustPhone" />
     <EditText
         android:id="@+id/ResPhone"
-        android:layout_width="250dp"
+        style="@style/customer_account_editText"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="phone"
         />
     </LinearLayout>
@@ -63,20 +61,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingRight="15dp">
+            android:paddingRight="@dimen/res_account_landscape_padding">
     <TextView
         android:id="@+id/textView7"
-        android:layout_gravity="left"
+        style="@style/customer_account_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/ResAddressCA" />
 
     <EditText
         android:id="@+id/ResAddress"
-        android:layout_width="250dp"
+        style="@style/customer_account_editText"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPostalAddress"
         />
 
@@ -87,17 +83,15 @@
             android:orientation="vertical">
     <TextView
         android:id="@+id/textView8"
-        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        style="@style/customer_account_textView"
         android:text="@string/CustEmail" />
 
     <EditText
         android:id="@+id/ResEmail"
-        android:layout_width="250dp"
+        style="@style/customer_account_editText"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textEmailAddress"
         />
         </LinearLayout>
@@ -112,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:orientation="vertical"
-        android:paddingRight="15dp">
+        android:paddingRight="@dimen/res_account_landscape_padding">
     <TextView
         android:id="@+id/textView9"
         android:layout_gravity="left"
@@ -123,21 +117,17 @@
 
     <EditText
         android:id="@+id/ResPassword"
-        android:layout_width="250dp"
+        style="@style/customer_account_editText"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPassword"
         />
     </LinearLayout>
     </LinearLayout>
     <Button
         android:id="@+id/btnMainLogin"
-        android:layout_width="100dp"
-        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:onClick="OnCreateAccountRes"
-        android:backgroundTint="@color/BBQPastelPurp"
-        android:textColor="@color/BBQWhite"
+        style="@style/customer_account_btn"
         android:text="@string/rgstrBtn"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toTopOf="@+id/btnRegister"
