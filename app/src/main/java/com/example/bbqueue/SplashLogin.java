@@ -56,19 +56,6 @@ public class SplashLogin extends AppCompatActivity {
         TimeUnit.SECONDS.sleep(1);
     }
 
-//    public void loginStore(View view) throws InterruptedException {
-//        EditText Email = findViewById(R.id.LoginEmail);
-//        String E = Email.getText().toString().trim();
-//        EditText Password = findViewById(R.id.LoginPassword);
-//        String P = Password.getText().toString().trim();
-//        signIn(E, P);
-//        TimeUnit.SECONDS.sleep(1);
-//        getUserStore();
-//        TimeUnit.SECONDS.sleep(1);
-//        Intent intent = new Intent(this, Store_Activity.class);
-//        intent.putExtra("mAuth", mAuth.getCurrentUser().getUid());
-//        startActivity(intent);
-//    }
 
     public void signIn(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
@@ -135,7 +122,6 @@ public class SplashLogin extends AppCompatActivity {
 
     }
 
-
     public void sendVerification(View view){
         mAuth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -150,73 +136,14 @@ public class SplashLogin extends AppCompatActivity {
         });
     }
 
-
-
-//    private void getUserCust() {
-//
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference("Users");
-//        myRef = myRef.child(mAuth.getCurrentUser().getUid());
-//        // Read from the database
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                Customer value = dataSnapshot.getValue(Customer.class);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//            }
-//        });
-//    }
-//
-//    private void getUserStore() {
-//
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference("Users");
-//        myRef = myRef.child(mAuth.getCurrentUser().getUid());
-//        // Read from the database
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                Restaurant value = dataSnapshot.getValue(Restaurant.class);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//            }
-//        });
-//    }
-
-
-
-
     public void register(View view) {
         Intent intent = new Intent(this, CreateAccountSubMenu.class);
         startActivity(intent);
     }
 
-//    public void navFrontOfQueue(View view) {
-//        Intent intent = new Intent(this, Front_Queue.class);
-//        startActivity(intent);
-//    }
-//
-//    public void navResList(View view) {
-//        Intent intent = new Intent(this, ResListActivity.class);
-//        startActivity(intent);
-//    }
     public void navStoreFront(View view) {
         Intent intent = new Intent(this, Store_Activity.class);
         startActivity(intent);
     }
-//    public void navQueue(View view) {
-//        Intent intent = new Intent(this, InQueue.class);
-//        startActivity(intent);
-//    }
+
 }
