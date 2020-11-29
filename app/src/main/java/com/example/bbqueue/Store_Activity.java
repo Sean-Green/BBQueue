@@ -40,6 +40,7 @@ import java.util.ArrayList;
 public class Store_Activity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ListView lvSections;
+    private Button btnWait;
     private Button btnAddSec;
     private Button editInfo;
 
@@ -51,6 +52,7 @@ public class Store_Activity extends AppCompatActivity {
     TextView storeName;
     TextView storeAddress;
     TextView curQueue;
+    private ArrayList<Customer> waitList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +81,28 @@ public class Store_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 AddSection as = new AddSection();
                 as.execute();
+            }
+        });
+
+        btnWait = findViewById(R.id.waitListBtn);
+        btnWait.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(getApplicationContext(), "View Waitlist", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Store_Activity.this);
+                LayoutInflater inflater = getLayoutInflater();
+
+                final View dialogView = inflater.inflate(R.layout.seating_list_layout, null);
+                dialogBuilder.setView(dialogView);
+
+                final ListView lvSeats = dialogView.findViewById(R.id.lvSeatingList);
+
+                final AlertDialog waitDialog = dialogBuilder.create();
+                waitDialog.show();
+
+
+                final CustomerWaitlistAdapter wlAdapt = new CustomerWaitlistAdapter(Store_Activity.this, waitList);
+                lvSeats.setAdapter(wlAdapt);
             }
         });
 
@@ -214,7 +238,9 @@ public class Store_Activity extends AppCompatActivity {
                     Restaurant value = dataSnapshot.getValue(Restaurant.class);
 
                     curQueue = findViewById(R.id.custNum);
-                    int i = value.getWaitList().size() - 1;
+                    waitList = value.getWaitList();
+                    waitList.remove(0);
+                    int i = value.getWaitList().size();
                     curQueue.setText(Integer.toString(i));
                     slist = value.getSections();
                     SectionAdapter adapter = new SectionAdapter(Store_Activity.this, slist);
