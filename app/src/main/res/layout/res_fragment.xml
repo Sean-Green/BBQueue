@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="@dimen/res_fragment_textView_margin"
             android:textSize="@dimen/ResList_font_size"
             android:text="@string/reslist_restaurant" />
         <TextView
@@ -25,7 +25,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="10dp"
             android:textSize="@dimen/ResList_font_size"
             android:text="@string/reslist_avgWait" />
     </LinearLayout>
@@ -40,6 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginEnd="@dimen/res_fragment_textView_margin"
+
             android:textSize="@dimen/ResList_font_size"
             android:text="@string/reslist_restaurant" />
 
@@ -60,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="@dimen/res_fragment_textView_margin"
             android:textSize="@dimen/ResList_font_size"
             android:text="@string/reslist_address" />
         <TextView
@@ -68,7 +69,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="10dp"
             android:textSize="@dimen/ResList_font_size"
             android:text="@string/reslist_number" />
     </LinearLayout>
@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="@dimen/res_fragment_textView_margin"
             android:textSize="@dimen/ResList_font_size"
             android:text="@string/reslist_address" />
 
@@ -91,7 +91,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="10dp"
             android:textSize="@dimen/ResList_font_size"
             android:text="@string/reslist_number" />
     </LinearLayout>

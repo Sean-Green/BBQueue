@@ -55,7 +55,7 @@ public class ResListActivity extends AppCompatActivity {
     }
 
 
-
+    //Reloads restaurant list
     private class RefreshList extends AsyncTask <Void, Void, Void>{
 
         @Override
@@ -79,6 +79,7 @@ public class ResListActivity extends AppCompatActivity {
         }
     }
 
+    //Searches for restaurant
     private class SearchList extends AsyncTask <String, Void, Void>{
         @Override
         protected Void doInBackground(final String... strings) {
@@ -104,6 +105,8 @@ public class ResListActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    //Search bar creation
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

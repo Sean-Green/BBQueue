@@ -22,4 +22,5 @@
     <dimen name="res_account_landscape_padding">15dp</dimen>
     <dimen name="res_fragment_padding">50dp</dimen>
     <dimen name="seating_list_item_fontSize">22sp</dimen>
+    <dimen name="res_fragment_textView_margin">20dp</dimen>
 </resources>

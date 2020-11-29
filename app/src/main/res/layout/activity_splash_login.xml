@@ -44,10 +44,8 @@
     <Button
         android:id="@+id/btnRegister"
         style="@style/splash_login_btn"
-        android:backgroundTint="@color/BBQPastelPurp"
         android:layout_height="wrap_content"
         android:onClick="register"
-        android:textColor="@color/BBQWhite"
         android:text="@string/rgstrBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

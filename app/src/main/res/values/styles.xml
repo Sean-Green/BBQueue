@@ -57,7 +57,7 @@
     <style name="splash_login_editText">
         <item name="android:layout_width">250dp</item>
         <item name="android:ems">10</item>
-        <item name="layout_gravity">center</item>
+        <item name="android:layout_gravity">center</item>
     </style>
     
     <style name="seating_list_layout_textView">
@@ -66,6 +66,13 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="seating_list_item_textView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/seating_list_item_fontSize</item>
     </style>
 
     <style name="table_list_item_textView">
