@@ -51,7 +51,7 @@ public class CustomerAccountCreate extends AppCompatActivity {
         EditText Password = findViewById(R.id.CustPassword);
         String P = Password.getText().toString().trim();
         CreateAccount(E, P);
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
         RTDCreate();
         Intent intent = new Intent(this, SplashLogin.class);
         startActivity(intent);
@@ -149,7 +149,6 @@ public class CustomerAccountCreate extends AppCompatActivity {
         Log.e(getString(R.string.resInfo), u.name);
         TimeUnit.SECONDS.sleep(1);
         myRef.child(getString(R.string.r_path)).child(mAuth.getCurrentUser().getUid()).setValue(u);
-        TimeUnit.SECONDS.sleep(3);
     }
 
 }
