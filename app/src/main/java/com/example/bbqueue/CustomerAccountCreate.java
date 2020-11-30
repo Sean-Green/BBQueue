@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -46,15 +47,42 @@ public class CustomerAccountCreate extends AppCompatActivity {
     }
 
     public void OnCreateAccount(View view) throws InterruptedException {
+        EditText FirstName = findViewById(R.id.CustFirstName);
+        String FN = FirstName.getText().toString();
+        if(TextUtils.isEmpty(FN)){
+            FirstName.setError("First Name Required");
+            return;
+        }
+        EditText Phone = findViewById(R.id.CustPhone);
+        String PhoneNum = Phone.getText().toString();
+        if(TextUtils.isEmpty(PhoneNum)){
+            Phone.setError("Phone Number Required");
+            return;
+        }
+        EditText Address = findViewById(R.id.CustAddress);
+        String Add = Address.getText().toString();
+        if(TextUtils.isEmpty(Add)){
+            Address.setError("Address Required");
+            return;
+        }
         EditText Email = findViewById(R.id.CustEmail);
         String E = Email.getText().toString().trim();
+        if(TextUtils.isEmpty(E)){
+            Email.setError("Email Required");
+            return;
+        }
         EditText Password = findViewById(R.id.CustPassword);
         String P = Password.getText().toString().trim();
+        if(TextUtils.isEmpty(P)){
+            Password.setError("Password Required");
+            return;
+        }
         CreateAccount(E, P);
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
         RTDCreate();
         Intent intent = new Intent(this, SplashLogin.class);
         startActivity(intent);
+        finish();
     }
 
 
@@ -119,15 +147,42 @@ public class CustomerAccountCreate extends AppCompatActivity {
     }
 
     public void OnCreateAccountRes(View view) throws InterruptedException {
+        EditText FirstName = findViewById(R.id.ResName);
+        String FN = FirstName.getText().toString();
+        if(TextUtils.isEmpty(FN)){
+            FirstName.setError("Restaurant Name Required");
+            return;
+        }
+        EditText Phone = findViewById(R.id.ResPhone);
+        String PhoneNum = Phone.getText().toString();
+        if(TextUtils.isEmpty(PhoneNum)){
+            Phone.setError("Phone Number Required");
+            return;
+        }
+        EditText Address = findViewById(R.id.ResAddress);
+        String Add = Address.getText().toString();
+        if(TextUtils.isEmpty(Add)){
+            Address.setError("Address Required");
+            return;
+        }
         EditText Email = findViewById(R.id.ResEmail);
         String E = Email.getText().toString().trim();
+        if(TextUtils.isEmpty(E)){
+            Email.setError("Email Required");
+            return;
+        }
         EditText Password = findViewById(R.id.ResPassword);
         String P = Password.getText().toString().trim();
+        if(TextUtils.isEmpty(P)){
+            Password.setError("Password Required");
+            return;
+        }
         CreateAccount(E, P);
         TimeUnit.SECONDS.sleep(1);
         RTDCreateRes();
         Intent intent = new Intent(this, SplashLogin.class);
         startActivity(intent);
+        finish();
     }
 
     private void RTDCreateRes() throws InterruptedException {
@@ -140,8 +195,6 @@ public class CustomerAccountCreate extends AppCompatActivity {
         EditText Phone = findViewById(R.id.ResPhone);
         String PhoneNum = Phone.getText().toString();
 
-
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
 
@@ -149,7 +202,7 @@ public class CustomerAccountCreate extends AppCompatActivity {
         Log.e(getString(R.string.resInfo), u.name);
         TimeUnit.SECONDS.sleep(1);
         myRef.child(getString(R.string.r_path)).child(mAuth.getCurrentUser().getUid()).setValue(u);
-        TimeUnit.SECONDS.sleep(3);
+
     }
 
 }
