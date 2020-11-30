@@ -34,7 +34,6 @@ public class ResListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_res_list);
         lvRes = findViewById(R.id.lvRes);
         reslist = new ArrayList<Restaurant>();
@@ -52,11 +51,6 @@ public class ResListActivity extends AppCompatActivity {
         super.onStart();
         RefreshList rs = new RefreshList();
         rs.execute();
-    }
-
-    public void closeFragment(){
-        FragmentManager fm = getSupportFragmentManager();
-        fm.popBackStack();
     }
 
     //Reloads restaurant list
