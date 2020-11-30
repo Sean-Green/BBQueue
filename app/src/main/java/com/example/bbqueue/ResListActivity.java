@@ -54,6 +54,10 @@ public class ResListActivity extends AppCompatActivity {
         rs.execute();
     }
 
+    public void closeFragment(){
+        FragmentManager fm = getSupportFragmentManager();
+        fm.popBackStack();
+    }
 
     //Reloads restaurant list
     private class RefreshList extends AsyncTask <Void, Void, Void>{

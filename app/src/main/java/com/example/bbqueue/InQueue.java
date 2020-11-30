@@ -141,8 +141,8 @@ Button btnContact;
                     resRes.child("waitList").setValue(cusList).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Intent intent = new Intent(getApplicationContext(), ResListActivity.class);
-                            startActivity(intent);
+                            finish();
+
                         }
                     });
                 }
@@ -169,8 +169,7 @@ Button btnContact;
                             cusRes.child("timeEnteredQueue").setValue(new Date()).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Intent intent = new Intent(getApplicationContext(), ResListActivity.class);
-                                    startActivity(intent);
+                                    finish();
                                 }
                             });
                         }

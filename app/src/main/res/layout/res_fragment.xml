@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/txtResName"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/res_fragment_textView_width"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginEnd="@dimen/res_fragment_textView_margin"
@@ -46,7 +46,7 @@
 
         <TextView
             android:id="@+id/txtQuery"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/res_fragment_textView_width"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/ResList_font_size"
@@ -79,7 +79,7 @@
 
         <TextView
             android:id="@+id/txtAddress"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/res_fragment_textView_width"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginEnd="@dimen/res_fragment_textView_margin"
@@ -88,7 +88,7 @@
 
         <TextView
             android:id="@+id/txtPhone"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/res_fragment_textView_width"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/ResList_font_size"
