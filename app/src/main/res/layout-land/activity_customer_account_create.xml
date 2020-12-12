@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="10dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".CustomerAccountCreate">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="15dp">
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/customer_account_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/CustFName" />
+
+            <EditText
+                android:id="@+id/CustFirstName"
+                style="@style/customer_account_editText"
+                android:layout_height="wrap_content"
+                android:paddingRight="5dp"
+                android:inputType="textPersonName"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/customer_account_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/CustPhone" />
+            <EditText
+                android:id="@+id/CustPhone"
+                style="@style/customer_account_editText"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="15dp">
+            <TextView
+                android:id="@+id/textView7"
+                style="@style/customer_account_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/CustAddress" />
+
+            <EditText
+                android:id="@+id/CustAddress"
+                style="@style/customer_account_editText"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/textView8"
+                style="@style/customer_account_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/CustEmail" />
+
+            <EditText
+                android:id="@+id/CustEmail"
+                style="@style/customer_account_editText"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:orientation="vertical"
+            android:paddingRight="15dp">
+            <TextView
+                android:id="@+id/textView9"
+                style="@style/customer_account_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/CustPassword" />
+
+            <EditText
+                android:id="@+id/CustPassword"
+                style="@style/customer_account_editText"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnMainLogin"
+        android:layout_height="wrap_content"
+        android:onClick="OnCreateAccount"
+        android:text="@string/rgstrBtn"
+        style="@style/customer_account_btn"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintStart_toStartOf="@+id/btnRegister"/>
+
+
+</LinearLayout>

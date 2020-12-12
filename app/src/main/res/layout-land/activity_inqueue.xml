@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/resName"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InQueue">
+
+    <TextView
+        android:id="@+id/txtInQueue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/InQueueTopMessage"
+        style="@style/in_queue_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/resTimeRem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/InQueueTimeLeftMessage1"
+        style="@style/in_queue_textView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.543" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="44dp"
+        android:text="@string/InQueueAbandon"
+        style="@style/themedBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtFront"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/InQueueTimeLeftMessage2"
+        style="@style/in_queue_textView"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="94dp"
+        android:layout_marginEnd="404dp"
+        android:layout_marginBottom="94dp"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInQueue"
+        app:srcCompat="@drawable/clockqueue" />
+
+    <TextView
+        android:id="@+id/txtResName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="55dp"
+        style="@style/in_queue_textView"
+        android:text="@string/reslist_restaurant"
+        app:layout_constraintEnd_toEndOf="@+id/txtInQueue"
+        app:layout_constraintTop_toBottomOf="@+id/txtInQueue" />
+
+    <Button
+        android:id="@+id/btnContact"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="97dp"
+        android:layout_marginBottom="94dp"
+        android:text="@string/InQueueContact"
+        style="@style/themedBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnCancel"
+        app:layout_constraintStart_toStartOf="@+id/btnCancel"
+        app:layout_constraintTop_toTopOf="@+id/btnCancel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Section_Activity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tableIDHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tableIdHint" />
+
+            <EditText
+                android:id="@+id/editTableID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tableSeatHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tableSeatHint" />
+
+            <EditText
+                android:id="@+id/editTableSeat"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:inputType="number"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnAddTable"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/btnAddTable"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tables_touch_to_seat_hold_to_edit"/>
+    <ListView
+        android:id="@+id/tableListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+</LinearLayout>

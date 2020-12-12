@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="10dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".CustomerAccountCreate">
+
+
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/customer_account_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/ResNameCA" />
+
+    <EditText
+        android:id="@+id/ResName"
+        style="@style/customer_account_editText"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:paddingRight="5dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        style="@style/customer_account_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/CustPhone" />
+    <EditText
+        android:id="@+id/ResPhone"
+        style="@style/customer_account_editText"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        />
+
+    <TextView
+        android:id="@+id/textView7"
+        style="@style/customer_account_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ResAddressCA" />
+
+    <EditText
+        android:id="@+id/ResAddress"
+        style="@style/customer_account_editText"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        />
+
+
+    <TextView
+        android:id="@+id/textView8"
+        style="@style/customer_account_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/CustEmail" />
+
+    <EditText
+        android:id="@+id/ResEmail"
+        style="@style/customer_account_editText"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        />
+    <TextView
+        android:id="@+id/textView9"
+        style="@style/customer_account_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/CustPassword" />
+
+    <EditText
+        android:id="@+id/ResPassword"
+        style="@style/customer_account_editText"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        />
+
+
+    <Button
+        android:id="@+id/btnMainLogin"
+        android:layout_height="wrap_content"
+        android:onClick="OnCreateAccountRes"
+        android:text="@string/rgstrBtn"
+        style="@style/customer_account_btn"
+        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintStart_toStartOf="@+id/btnRegister"/>
+
+
+</LinearLayout>
